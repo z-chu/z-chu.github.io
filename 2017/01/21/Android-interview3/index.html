@@ -1,0 +1,770 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="性能优化
+界面不流程，如何去debug调试View，来定位卡顿问题？
+如何解决卡顿问题？
+xml编写和View写法是否合理？
+移除不必要的背景图
+window默认背景图
+ListView设置背景后，item又设置了背景图
+多层嵌套，多次设置背景图
+
+
+优化布局避免空间View树过高，空间重叠
+自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
+
+　可以通过An">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android面试之性能优化">
+<meta property="og:url" content="http://yoursite.com/2017/01/21/Android-interview3/index.html">
+<meta property="og:site_name" content="赵成柱的博客">
+<meta property="og:description" content="性能优化
+界面不流程，如何去debug调试View，来定位卡顿问题？
+如何解决卡顿问题？
+xml编写和View写法是否合理？
+移除不必要的背景图
+window默认背景图
+ListView设置背景后，item又设置了背景图
+多层嵌套，多次设置背景图
+
+
+优化布局避免空间View树过高，空间重叠
+自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
+
+　可以通过An">
+<meta property="og:updated_time" content="2017-01-21T10:33:38.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android面试之性能优化">
+<meta name="twitter:description" content="性能优化
+界面不流程，如何去debug调试View，来定位卡顿问题？
+如何解决卡顿问题？
+xml编写和View写法是否合理？
+移除不必要的背景图
+window默认背景图
+ListView设置背景后，item又设置了背景图
+多层嵌套，多次设置背景图
+
+
+优化布局避免空间View树过高，空间重叠
+自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
+
+　可以通过An">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/21/Android-interview3/"/>
+
+
+
+
+
+  <title> Android面试之性能优化 | 赵成柱的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">赵成柱的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/Android-interview3/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="z-chu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="赵成柱的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android面试之性能优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T14:17:17+08:00">
+                2017-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
+<li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
+<li>如何解决卡顿问题？</li>
+<li>xml编写和View写法是否合理？</li>
+<li>移除不必要的背景图<ul>
+<li>window默认背景图</li>
+<li>ListView设置背景后，item又设置了背景图</li>
+<li>多层嵌套，多次设置背景图</li>
+</ul>
+</li>
+<li>优化布局避免空间View树过高，空间重叠</li>
+<li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
+</ol>
+<p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
+<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。<br><a id="more"></a></p>
+<h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
+<li>设置本View视图的最终大小</li>
+<li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>
+<li><code>measureChilren()</code>,内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法</li>
+<li><code>measureChlid()</code>，为指定的子视图measure，会被measureChildren调用</li>
+<li><code>measureChildWithMargins()</code>,为指定子视图考虑了margin和padding的measure。</li>
+</ul>
+<h1 id="Layout过程"><a href="#Layout过程" class="headerlink" title="Layout过程"></a>Layout过程</h1><ol>
+<li>layout方法会设置该View视图位于父视图的坐标轴，即mLeft,mTop,mRight，mBottom(调用<code>setFrame()</code>函数去实现）</li>
+<li>接下来回调<code>onLayout()</code>方法（如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局）</li>
+<li>如果该View是个ViewGroup类型，需要遍历每个子视图的childView，调用该子视图的layout()方法去设置它的坐标值</li>
+</ol>
+<h1 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h1><p>　在安卓中界面要看起来流畅，那么它的帧率是60，也就是说在1秒钟之内它会刷新60次，那么每次刷新的耗时也就是1000ms除了60，等于16.67ms.<br>　那么如果视图的刷新时间在16ms之内完成了，我们用起来就会觉得很流畅，那么假如因为某种原因，一个刷新过程没有在16ms之内完成，那么就会出现掉帧现象，也就是卡顿了。那么为了不出现这种掉帧现象，让用户用起来更流程，就需要尽量让一个绘制过程在16ms只能完成。<br>　这也就是性能优化所要最终完成的目标。Measure+Layout+Draw&lt;=16ms.<br>　那么我们就只要看measure、layout、draw都干了那些事情，有哪些点是可以优化的，只要逐个的解决这些优化点，也就完成了一系列的View优化工作。</p>
+<h1 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h1><h3 id="从内优化（从View本身）"><a href="#从内优化（从View本身）" class="headerlink" title="从内优化（从View本身）"></a>从内优化（从View本身）</h3><ul>
+<li>尽可能少的使用margin,padding<br>因为在测量绘制的过程中，会单独对已经设置过margin和padding的View进行另外多一步的操作，所有这个时候可以采用在父View中设置margin和padding来代替在子View中进行分别设置</li>
+<li>减少View层级<br>这3个过程都涉及到循环遍历子View的过程，所有减少View的层级可以很好的加快循环遍历的过程</li>
+<li>去除不必要的背景</li>
+<li>去除不必要的scrollbar和不需要的效果</li>
+<li>慎用渐变</li>
+</ul>
+<h3 id="从外优化"><a href="#从外优化" class="headerlink" title="从外优化"></a>从外优化</h3><ul>
+<li>布局嵌套过于复杂<br>这个会直接导致View的层级变多，然后测量绘制的效率变差</li>
+<li>View的过度绘制</li>
+<li>View的频繁重新渲染</li>
+<li><p>UI线程中进行耗时操作</p>
+<p>在Android4.0其实是不允许ui线程中做网络操作了，那假如说你不小心做了写IO操作，而且他们又比较耗时，有可能会导致UI线程卡顿。View绘制阻塞</p>
+</li>
+<li><p>冗余资源及错误逻辑导致加载和执行缓慢（其实就代码写的烂）<br>比如你在<code>getView()</code>里去for循环，for循环里又for循环，又去声明变量之类的，都会导致代码的执行效率很差</p>
+</li>
+<li>频繁触发GC,导致渲染受阻<br>GC线程优先级高于UI线程，所有如果内存管理不够合理的话频繁的触发了GC,就会导致UI线程的受阻</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/21/Android-interview2/" rel="next" title="Android面试之网络">
+                <i class="fa fa-chevron-left"></i> Android面试之网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/21/prototype-pattern/" rel="prev" title="原型模式">
+                原型模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460"
+               alt="z-chu" />
+          <p class="site-author-name" itemprop="name">z-chu</p>
+          <p class="site-description motion-element" itemprop="description">Change is the eternal truth</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#性能优化"><span class="nav-number">1.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mesure过程"><span class="nav-number">2.</span> <span class="nav-text">Mesure过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Layout过程"><span class="nav-number">3.</span> <span class="nav-text">Layout过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#帧率"><span class="nav-number">4.</span> <span class="nav-text">帧率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何优化"><span class="nav-number">5.</span> <span class="nav-text">如何优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从内优化（从View本身）"><span class="nav-number">5.0.1.</span> <span class="nav-text">从内优化（从View本身）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从外优化"><span class="nav-number">5.0.2.</span> <span class="nav-text">从外优化</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z-chu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

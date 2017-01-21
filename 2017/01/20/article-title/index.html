@@ -1,0 +1,754 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="如何遍写测试用例测试代码主要分为java单元测试用例和Android测试用例。
+
+java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上
+Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上
+
+哪些东西需要测试呢？
+所有的Model、Presenter/ViewModel、Api、Utils等类的p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何遍写测试用例">
+<meta property="og:url" content="http://yoursite.com/2017/01/20/article-title/index.html">
+<meta property="og:site_name" content="赵成柱的博客">
+<meta property="og:description" content="如何遍写测试用例测试代码主要分为java单元测试用例和Android测试用例。
+
+java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上
+Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上
+
+哪些东西需要测试呢？
+所有的Model、Presenter/ViewModel、Api、Utils等类的p">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/s0.png">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/s1.jpg">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/s3.jpg">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/s4.jpg">
+<meta property="og:updated_time" content="2017-01-21T10:34:11.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何遍写测试用例">
+<meta name="twitter:description" content="如何遍写测试用例测试代码主要分为java单元测试用例和Android测试用例。
+
+java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上
+Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上
+
+哪些东西需要测试呢？
+所有的Model、Presenter/ViewModel、Api、Utils等类的p">
+<meta name="twitter:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/s0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/20/article-title/"/>
+
+
+
+
+
+  <title> 如何遍写测试用例 | 赵成柱的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">赵成柱的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/20/article-title/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="z-chu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="赵成柱的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何遍写测试用例
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-20T23:55:29+08:00">
+                2017-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="如何遍写测试用例"><a href="#如何遍写测试用例" class="headerlink" title="如何遍写测试用例"></a>如何遍写测试用例</h1><p>测试代码主要分为java单元测试用例和Android测试用例。</p>
+<ul>
+<li>java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上</li>
+<li>Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上</li>
+</ul>
+<h2 id="哪些东西需要测试呢？"><a href="#哪些东西需要测试呢？" class="headerlink" title="哪些东西需要测试呢？"></a>哪些东西需要测试呢？</h2><ul>
+<li><p>所有的Model、Presenter/ViewModel、Api、Utils等类的public方法</p>
+</li>
+<li><p>Data类除了getter、setter、toString、hashCode等一般自动生成的方法之外的逻辑部分</p>
+</li>
+<li><p>自定义View的功能：比如set data以后，text有没有显示出来等等，简单的交互，比如click事件，负责的交互一般不测，比如touch、滑动事件等等。</p>
+</li>
+<li><p>Activity的主要功能：比如view是不是存在、显示数据、错误信息、简单的点击事件等。比较复杂的用户交互比如onTouch，以及view的样式、位置等等可以不测。因为不好测。</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>在Android Studio中进行单元测试并不需要什么插件或者过多的配置，Android Studio本身就集成了测试环境，无论是单纯的java代码单元测试还是依赖Android SDK的Android代码单元测试，都能得心应手。</p>
+<p>首先在你的gradle中加入Junit的依赖，注意这里的依赖方式是测试期间的依赖（testCompile）：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>默认建立的结构如下：</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s0.png" alt="默认结构"> </p>
+<h2 id="编写Java测试用例"><a href="#编写Java测试用例" class="headerlink" title="编写Java测试用例"></a>编写Java测试用例</h2><p>如果所写的测试代码没有使用android sdk（android.<em>*</em>下的代码），那么可以在test目录下新建，本例中即为ExampleUnitTest，例子中测试了一个RxJava的Observable的发射后被消费的结果。</p>
+<p>注意测试用例即一个public void的方法，并且加上@Test注解，这是Junit的标准用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.earlydata.waterdrop;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> rx.Observer;</div><div class="line"><span class="keyword">import</span> rx.subjects.PublishSubject;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleUnitTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPublishSubject</span><span class="params">()</span> </span>&#123;</div><div class="line">        PublishSubject&lt;String&gt; stringPublishSubject = PublishSubject.create();</div><div class="line">        stringPublishSubject.subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Observable completed"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Observer consumed "</span> + s);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        stringPublishSubject.onNext(<span class="string">"hello world"</span>);</div><div class="line">        stringPublishSubject.onCompleted();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时候打开Android Studio左边的Structure的面板，可以看到测试用例方法testPublishSubject</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s1.jpg" alt="测试用例方法testPublishSubject"> </p>
+<p>右击并运行它，测试通过，返回了正确的值</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s3.jpg" alt="正确的值"> </p>
+<p>注意本测试用例试用了System.out.println所以测试结果直接打印在了控制台上，如果把打印的地方换成Log.d()呢，你会发现报错：</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s4.jpg" alt="报错"> </p>
+<p>这个实际是因为你在java的Unit test中引用了Android的代码，即android.util.log.Log。所以对于测试Android代码，需要在androidTest中</p>
+<h2 id="编写Android测试用例"><a href="#编写Android测试用例" class="headerlink" title="编写Android测试用例"></a>编写Android测试用例</h2><p>Android 测试用例主要是对Espresso API的使用，以下系列文章是对Espresso官方文档的翻译(偷个懒)</p>
+<p><a href="http://www.jianshu.com/p/ef4ad5424784" title="http://www.jianshu.com/p/ef4ad542478" target="_blank" rel="external">1. Espresso 概览</a></p>
+<p><a href="http://www.jianshu.com/p/92c7f6dbf80d" title="http://www.jianshu.com/p/92c7f6dbf80d" target="_blank" rel="external">2. Espresso 设置说明</a></p>
+<p><a href="http://www.jianshu.com/p/9e8e8e5f09d6" title="http://www.jianshu.com/p/9e8e8e5f09d6" target="_blank" rel="external">3. Espresso 基础</a></p>
+<p><a href="http://www.jianshu.com/p/cf1079954da5" title="http://www.jianshu.com/p/cf1079954da5" target="_blank" rel="external">4. Espresso 备忘录</a></p>
+<p><a href="http://www.jianshu.com/p/5de7c560fe33" title="http://www.jianshu.com/p/5de7c560fe33" target="_blank" rel="external">5. Espresso 意图</a></p>
+<p><a href="http://www.jianshu.com/p/4166b92fee1c" title="http://www.jianshu.com/p/4166b92fee1c" target="_blank" rel="external">6. Espresso 高级示例</a></p>
+<p><a href="http://www.jianshu.com/p/e2d37d04e95e" title="http://www.jianshu.com/p/e2d37d04e95e" target="_blank" rel="external">7. Espresso Web</a></p>
+<p><a href="http://www.jianshu.com/p/9ee72ec7f782" title="http://www.jianshu.com/p/9ee72ec7f782" target="_blank" rel="external">8. AndroidJUnitRunner</a></p>
+<p><a href="http://www.jianshu.com/p/6a32d44eb5ad" title="http://www.jianshu.com/p/6a32d44eb5ad" target="_blank" rel="external">9. ATSL 中的 JUnit4 规则</a></p>
+<p><a href="http://www.jianshu.com/p/093645e32011" title="http://www.jianshu.com/p/093645e32011" target="_blank" rel="external">10. UI Automator</a></p>
+<p><a href="http://www.jianshu.com/p/29671943b69c" title="http://www.jianshu.com/p/29671943b69c" target="_blank" rel="external">11. 可访问性检查</a></p>
+<p>其他资料</p>
+<p><a href="http://chriszou.com/2016/06/07/android-unit-testing-everything-you-need-to-know.html?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" title="http://chriszou.com/2016/06/07/android-unit-testing-everything-you-need-to-know.html?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">关于安卓单元测试，你需要知道的一切</a></p>
+<p><a href="http://www.jianshu.com/p/4f019c1c04a2" title="http://www.jianshu.com/p/4f019c1c04a2" target="_blank" rel="external">使用 Espresso 进行 Android UI 测试</a></p>
+<p><a href="http://www.jianshu.com/p/37a3f68934cd" title="http://www.jianshu.com/p/37a3f68934cd" target="_blank" rel="external">Android UI 测试框架 Espresso</a></p>
+<p><a href="http://www.jianshu.com/p/c265a781c8ce" title="http://www.jianshu.com/p/c265a781c8ce" target="_blank" rel="external">Android 测试代码编写小技巧 - UI 和 单元测试间共享代码</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/20/hello-world/" rel="next" title="使用Github搭建自己的博客">
+                <i class="fa fa-chevron-left"></i> 使用Github搭建自己的博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/21/GlideLoadedCircularImageBug/" rel="prev" title="Glide加载圆形image第一次只显示占位图的坑">
+                Glide加载圆形image第一次只显示占位图的坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460"
+               alt="z-chu" />
+          <p class="site-author-name" itemprop="name">z-chu</p>
+          <p class="site-description motion-element" itemprop="description">Change is the eternal truth</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何遍写测试用例"><span class="nav-number">1.</span> <span class="nav-text">如何遍写测试用例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些东西需要测试呢？"><span class="nav-number">1.1.</span> <span class="nav-text">哪些东西需要测试呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Java测试用例"><span class="nav-number">1.3.</span> <span class="nav-text">编写Java测试用例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Android测试用例"><span class="nav-number">1.4.</span> <span class="nav-text">编写Android测试用例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z-chu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

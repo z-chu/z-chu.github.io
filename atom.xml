@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>赵成柱的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-01-21T10:33:59.263Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>z-chu</name>
+    <email>zchu8073@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我对MVC和MVP的一些理解</title>
+    <link href="http://yoursite.com/2017/01/21/architecture1/"/>
+    <id>http://yoursite.com/2017/01/21/architecture1/</id>
+    <published>2017-01-21T08:20:24.000Z</published>
+    <updated>2017-01-21T10:33:59.263Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.<br>比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。</p>
+<p>那具体到Android上是怎么样一个情况呢？<br>对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，<br>里面都是一些view的布局代码，而各种java bean，<br>还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。</p>
+<p>举个例子:<br>比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.<br>这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.</p>
+<p>那怎么连接这两层呢？<br>当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.</p>
+<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br><a id="more"></a><br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
+<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP作为MVC的演化，解决了MVC不少的缺点.</p>
+<p>对于Android来说，MVP的model层相对于MVC是一样的,而activity和fragment不再是controller层，而是纯粹的view层，所有关于用户事件的转发全部交由presenter层处理。</p>
+<p>与MVC最明显的差别就是view层和model层不再相互可知，完全的解耦，MVC中View会直接从Model中读取数据而不是通过 Controller。<br>取而代之的presenter层充当了桥梁的作用，用于操作view层发出的事件传递到presenter层中，presenter层去操作model层，并且将数据返回给view层，整个过程中view层和model层完全没有联系。</p>
+<p>看到这里大家可能会问，虽然view层和model层解耦了，但是view层和presenter层不是耦合在一起了吗？<br>其实不是的，对于view层和presenter层的通信，我们是可以通过接口实现的，具体的意思就是说我们的activity，<br>fragment可以去实现实现定义好的接口，而在对应的presenter中通过接口调用方法。<br>不仅如此，我们还可以编写测试用的View，模拟用户的各种操作，从而实现对Presenter的测试。</p>
+<p>这就解决了MVC模式中测试，维护难的问题。<br>具体来说，如果你需要测试一个http请求是否顺利，你不需要写一个activity，只需要写一个java类，实现对应的接口，presenter获取了数据自然会调用相应的方法，相应的，你也可以自己在presenter中模仿数据，<br>分发给view层，用来测试布局是否正确。</p>
+<p>MVP的问题在于，由于我们使用了接口的方式去连接view层和presenter层，这样就导致了一个问题，如果你有一个逻辑很复杂的页面，你的接口会有很多，十几二十个都不足为奇。想象一个app中有很多个这样复杂的页面，维护接口的成本就会非常的大。</p>
+<p>这个问题的解决方案就是你得根据自己的业务逻辑去斟酌着写接口。你可以定义一些基类接口，把一些公共的逻辑，比如网络请求成功失败，toast等等放在里面，之后你再定义新的接口的时候可以继承自那些基类，这样会好不少。</p>
+<h3 id="MVP的优点"><a href="#MVP的优点" class="headerlink" title="MVP的优点"></a>MVP的优点</h3><ol>
+<li>降低耦合度，隐藏数据，Activity中代码更简洁</li>
+<li>模块职责划分明显</li>
+<li>方便测试驱动开发</li>
+<li>代码复用度较高</li>
+<li>代码灵活性</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从MVC到MVP的一个转变，就是减少了Activity的职责，减轻了它的负担，简化了Activity中的代码和一些操作，将逻辑代码提取到了Presenter中进行处理，降低了其耦合度。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;MVC&quot;&gt;&lt;a href=&quot;#MVC&quot; class=&quot;headerlink&quot; title=&quot;MVC&quot;&gt;&lt;/a&gt;MVC&lt;/h2&gt;&lt;p&gt;MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.&lt;br&gt;比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。&lt;/p&gt;
+&lt;p&gt;那具体到Android上是怎么样一个情况呢？&lt;br&gt;对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，&lt;br&gt;里面都是一些view的布局代码，而各种java bean，&lt;br&gt;还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。&lt;/p&gt;
+&lt;p&gt;举个例子:&lt;br&gt;比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.&lt;br&gt;这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.&lt;/p&gt;
+&lt;p&gt;那怎么连接这两层呢？&lt;br&gt;当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.&lt;/p&gt;
+&lt;p&gt;问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，&lt;br&gt;必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。&lt;br&gt;如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>原型模式</title>
+    <link href="http://yoursite.com/2017/01/21/prototype-pattern/"/>
+    <id>http://yoursite.com/2017/01/21/prototype-pattern/</id>
+    <published>2017-01-21T07:50:24.000Z</published>
+    <updated>2017-01-21T10:45:40.427Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h2><p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
+<h2 id="模式的使用场景"><a href="#模式的使用场景" class="headerlink" title="模式的使用场景"></a>模式的使用场景</h2><ol>
+<li>类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等，通过原型拷贝避免这些消耗；</li>
+<li>通过 new 产生一个对象需要非常繁琐的数据准备或访问权限，则可以使用原型模式；</li>
+<li>一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用，即保护性拷贝。</li>
+</ol>
+<h2 id="Android源码中的模式实现"><a href="#Android源码中的模式实现" class="headerlink" title="Android源码中的模式实现"></a>Android源码中的模式实现</h2><p>Intent中使用了原型模式</p>
+<pre><code class="java">Uri uri = Uri.parse(<span class="string">"smsto:0800000123"</span>);    
+Intent shareIntent = <span class="keyword">new</span> Intent(Intent.ACTION_SENDTO, uri);    
+shareIntent.putExtra(<span class="string">"sms_body"</span>, <span class="string">"The SMS text"</span>);    
+
+Intent intent = (Intent)shareIntent.clone() ;
+startActivity(intent);
+</code></pre>
+<h2 id="优点与缺点"><a href="#优点与缺点" class="headerlink" title="优点与缺点"></a>优点与缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>原型模式是在内存二进制流的拷贝，要比直接 new 一个对象性能好很多，特别是要在一个循环体内产生大量的对象时，原型模式可以更好地体现其优点。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>这既是它的优点也是缺点，直接在内存中拷贝，构造函数是不会执行的，在实际开发当中应该注意这个潜在的问题。优点就是减少了约束，缺点也是减少了约束，需要大家在实际应用时考虑。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;模式的定义&quot;&gt;&lt;a href=&quot;#模式的定义&quot; class=&quot;headerlink&quot; title=&quot;模式的定义&quot;&gt;&lt;/a&gt;模式的定义&lt;/h2&gt;&lt;p&gt;用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。&lt;/p&gt;
+&lt;h2 id=&quot;模式的使用场景&quot;&gt;&lt;a hr
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之性能优化</title>
+    <link href="http://yoursite.com/2017/01/21/Android-interview3/"/>
+    <id>http://yoursite.com/2017/01/21/Android-interview3/</id>
+    <published>2017-01-21T06:17:17.000Z</published>
+    <updated>2017-01-21T10:33:38.679Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
+<li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
+<li>如何解决卡顿问题？</li>
+<li>xml编写和View写法是否合理？</li>
+<li>移除不必要的背景图<ul>
+<li>window默认背景图</li>
+<li>ListView设置背景后，item又设置了背景图</li>
+<li>多层嵌套，多次设置背景图</li>
+</ul>
+</li>
+<li>优化布局避免空间View树过高，空间重叠</li>
+<li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
+</ol>
+<p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
+<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。<br><a id="more"></a></p>
+<h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
+<li>设置本View视图的最终大小</li>
+<li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>
+<li><code>measureChilren()</code>,内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法</li>
+<li><code>measureChlid()</code>，为指定的子视图measure，会被measureChildren调用</li>
+<li><code>measureChildWithMargins()</code>,为指定子视图考虑了margin和padding的measure。</li>
+</ul>
+<h1 id="Layout过程"><a href="#Layout过程" class="headerlink" title="Layout过程"></a>Layout过程</h1><ol>
+<li>layout方法会设置该View视图位于父视图的坐标轴，即mLeft,mTop,mRight，mBottom(调用<code>setFrame()</code>函数去实现）</li>
+<li>接下来回调<code>onLayout()</code>方法（如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局）</li>
+<li>如果该View是个ViewGroup类型，需要遍历每个子视图的childView，调用该子视图的layout()方法去设置它的坐标值</li>
+</ol>
+<h1 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h1><p>　在安卓中界面要看起来流畅，那么它的帧率是60，也就是说在1秒钟之内它会刷新60次，那么每次刷新的耗时也就是1000ms除了60，等于16.67ms.<br>　那么如果视图的刷新时间在16ms之内完成了，我们用起来就会觉得很流畅，那么假如因为某种原因，一个刷新过程没有在16ms之内完成，那么就会出现掉帧现象，也就是卡顿了。那么为了不出现这种掉帧现象，让用户用起来更流程，就需要尽量让一个绘制过程在16ms只能完成。<br>　这也就是性能优化所要最终完成的目标。Measure+Layout+Draw&lt;=16ms.<br>　那么我们就只要看measure、layout、draw都干了那些事情，有哪些点是可以优化的，只要逐个的解决这些优化点，也就完成了一系列的View优化工作。</p>
+<h1 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h1><h3 id="从内优化（从View本身）"><a href="#从内优化（从View本身）" class="headerlink" title="从内优化（从View本身）"></a>从内优化（从View本身）</h3><ul>
+<li>尽可能少的使用margin,padding<br>因为在测量绘制的过程中，会单独对已经设置过margin和padding的View进行另外多一步的操作，所有这个时候可以采用在父View中设置margin和padding来代替在子View中进行分别设置</li>
+<li>减少View层级<br>这3个过程都涉及到循环遍历子View的过程，所有减少View的层级可以很好的加快循环遍历的过程</li>
+<li>去除不必要的背景</li>
+<li>去除不必要的scrollbar和不需要的效果</li>
+<li>慎用渐变</li>
+</ul>
+<h3 id="从外优化"><a href="#从外优化" class="headerlink" title="从外优化"></a>从外优化</h3><ul>
+<li>布局嵌套过于复杂<br>这个会直接导致View的层级变多，然后测量绘制的效率变差</li>
+<li>View的过度绘制</li>
+<li>View的频繁重新渲染</li>
+<li><p>UI线程中进行耗时操作</p>
+<p>在Android4.0其实是不允许ui线程中做网络操作了，那假如说你不小心做了写IO操作，而且他们又比较耗时，有可能会导致UI线程卡顿。View绘制阻塞</p>
+</li>
+<li><p>冗余资源及错误逻辑导致加载和执行缓慢（其实就代码写的烂）<br>比如你在<code>getView()</code>里去for循环，for循环里又for循环，又去声明变量之类的，都会导致代码的执行效率很差</p>
+</li>
+<li>频繁触发GC,导致渲染受阻<br>GC线程优先级高于UI线程，所有如果内存管理不够合理的话频繁的触发了GC,就会导致UI线程的受阻</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;性能优化&quot;&gt;&lt;a href=&quot;#性能优化&quot; class=&quot;headerlink&quot; title=&quot;性能优化&quot;&gt;&lt;/a&gt;性能优化&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;界面不流程，如何去debug调试View，来定位卡顿问题？&lt;/li&gt;
+&lt;li&gt;如何解决卡顿问题？&lt;/li&gt;
+&lt;li&gt;xml编写和View写法是否合理？&lt;/li&gt;
+&lt;li&gt;移除不必要的背景图&lt;ul&gt;
+&lt;li&gt;window默认背景图&lt;/li&gt;
+&lt;li&gt;ListView设置背景后，item又设置了背景图&lt;/li&gt;
+&lt;li&gt;多层嵌套，多次设置背景图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;优化布局避免空间View树过高，空间重叠&lt;/li&gt;
+&lt;li&gt;自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度&lt;/p&gt;
+&lt;p&gt;　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之网络</title>
+    <link href="http://yoursite.com/2017/01/21/Android-interview2/"/>
+    <id>http://yoursite.com/2017/01/21/Android-interview2/</id>
+    <published>2017-01-21T06:15:17.000Z</published>
+    <updated>2017-01-21T10:46:38.188Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="TCP-IP、HTTP、Socket的区别"><a href="#TCP-IP、HTTP、Socket的区别" class="headerlink" title="TCP/IP、HTTP、Socket的区别"></a>TCP/IP、HTTP、Socket的区别</h1><p>网络由下往上分为：</p>
+<p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
+<p>我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。</p>
+<p>三者从本质上来说没有可比性，</p>
+<p>Socket则是对TCP/IP协议的封装和应用(程序员层面上)。</p>
+<p>也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，</p>
+<p>而HTTP是应用层协议，主要解决如何包装数据。</p>
+<p>关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：<br><a id="more"></a><br><strong>我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。</strong></p>
+<p><strong>如果想要是传输的数据有意义，则必须使用到应用层协议。</strong></p>
+<p><strong>应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。</strong></p>
+<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong></p>
+<p>而我们平时说的最多的Socket是什么呢，实际上Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API）。</p>
+<p>通过Socket,我们才能使用TCP/IP协议。</p>
+<p>实际上，Socket跟TCP/IP协议没有必然的联系。</p>
+<p>SoCket编程接口在设计的时候，级希望也能适应其他的网络协议。</p>
+<p>所以说，Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，</p>
+<p>从而形成了我们知道的一些最基本的函数接口，比如create、listen、connect、accept、send、read和write等等。</p>
+<p>网络有一段关于socket和TCP/IP协议关系的说法比较容易理解：</p>
+<p><strong>TCP/IP只是一个协议栈，就像操作系统的运行机制一样，必须要具体实现，同时还有提供对外的操作接口。</strong></p>
+<p><strong>这个就像操作系统会提供标准的编程接口，比如win32编程接口一样，</strong></p>
+<p><strong>TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</strong></p>
+<p>CSDN上有个比较现象的描述：<strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong></p>
+<p>实际上，传输层的TCP是基于网络层的IP协议的，而应用层的HTTP协议又是基于传输层的TCP协议的，而Socket本身不算是协议，就像上面所说，它只是提供了一个针对TCP或者UDP编程的接口。</p>
+<h1 id="什么是TCP连接的三次握手"><a href="#什么是TCP连接的三次握手" class="headerlink" title="什么是TCP连接的三次握手"></a>什么是TCP连接的三次握手</h1><p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1）,同时自己也发送一个SYN包（syn=k）,即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1),此包发送完毕，客户端和服务器进入ESTABLISHED（确认连接）状态，完成三次握手。</p>
+<p>握手过程中传送的包含数据，三次握手完成后，客户端和服务器才正式开始传送数据。</p>
+<p>理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP连接都将被一直保持下去。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;TCP-IP、HTTP、Socket的区别&quot;&gt;&lt;a href=&quot;#TCP-IP、HTTP、Socket的区别&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP、HTTP、Socket的区别&quot;&gt;&lt;/a&gt;TCP/IP、HTTP、Socket的区别&lt;/h1&gt;&lt;p&gt;网络由下往上分为：&lt;/p&gt;
+&lt;p&gt;物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。&lt;/p&gt;
+&lt;p&gt;我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。&lt;/p&gt;
+&lt;p&gt;三者从本质上来说没有可比性，&lt;/p&gt;
+&lt;p&gt;Socket则是对TCP/IP协议的封装和应用(程序员层面上)。&lt;/p&gt;
+&lt;p&gt;也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，&lt;/p&gt;
+&lt;p&gt;而HTTP是应用层协议，主要解决如何包装数据。&lt;/p&gt;
+&lt;p&gt;关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之java基础</title>
+    <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
+    <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
+    <published>2017-01-21T06:14:17.000Z</published>
+    <updated>2017-01-21T10:52:47.043Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
+<p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
+<p>　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。<br>程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。<br>软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。<br>而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。</p>
+<p>　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。</p>
+<p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong><br><a id="more"></a></p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
+<p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
+<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
+<h2 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h2><p><code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
+<h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
+<li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
+<li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>这两个方法来自不同的类分别是Thread和Object</p>
+</li>
+<li><code>sleep</code>必须捕获异常，而<code>wait</code>，<code>notify</code>和<code>notifyAll</code>不需要捕获异常</li>
+</ol>
+<h2 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h2><ul>
+<li>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</li>
+<li>Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。</li>
+</ul>
+<h2 id="weak-soft-strong引用的区别"><a href="#weak-soft-strong引用的区别" class="headerlink" title="weak/soft/strong引用的区别"></a>weak/soft/strong引用的区别</h2><ul>
+<li>强引用(StrongReference) 是 Java 的默认引用实现,  它会一直存活于 JVM 内， 直到没有任何对象指向它时 GC 执行后才会被回收</li>
+<li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
+<li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
+</ul>
+<h2 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h2><p><code>equals(Object obj)</code>方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br><code>hashcode()</code>方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
+<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。</p>
+<p>　这些集合通过对象的<code>hashCode</code>和<code>equals</code>方法判断集合中是否已存着该对象。</p>
+<p>　约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong></p>
+<p>伪代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h2&gt;&lt;p&gt;　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。&lt;/p&gt;
+&lt;p&gt;　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。&lt;/p&gt;
+&lt;p&gt;　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。&lt;br&gt;程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。&lt;br&gt;软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。&lt;br&gt;而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。&lt;/p&gt;
+&lt;p&gt;　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。&lt;/p&gt;
+&lt;p&gt;　&lt;strong&gt;模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的&lt;/strong&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Glide加载圆形image第一次只显示占位图的坑</title>
+    <link href="http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/"/>
+    <id>http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/</id>
+    <published>2017-01-21T06:03:17.000Z</published>
+    <updated>2017-01-21T06:06:41.971Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Glide加载圆形image第一次只显示占位图的坑"><a href="#Glide加载圆形image第一次只显示占位图的坑" class="headerlink" title="Glide加载圆形image第一次只显示占位图的坑"></a>Glide加载圆形image第一次只显示占位图的坑</h1><p>在使用<a href="https://github.com/bumptech/glide" title="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>加载图片时，经常出现图片加载不出来，只显示占位图的情况。</p>
+<p>随后我好好的分析了这个问题的触发场景：</p>
+<ol>
+<li>出现此问题的ImageView都是<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>，其他ImageView的一切正常</li>
+<li>出现此问题的ImagView都设置了占位图，不设置一切正常</li>
+<li>出现此问题的ImagView加载时都使用了Glide的渐显动画，不使用一切正常</li>
+</ol>
+<p>所以如果你刚好使用了<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>或者其他的一些自定义的圆形Imageview，而你又刚好设置了占位图的话，那么，你就会遇到这个问题。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一：不设置占位图；"><a href="#方案一：不设置占位图；" class="headerlink" title="方案一：不设置占位图；"></a>方案一：不设置占位图；</h3><h3 id="方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。"><a href="#方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。" class="headerlink" title="方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。"></a>方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。</h3><h3 id="方案三：使用下面的代码加载图片："><a href="#方案三：使用下面的代码加载图片：" class="headerlink" title="方案三：使用下面的代码加载图片："></a>方案三：使用下面的代码加载图片：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(<span class="keyword">new</span> SimpleTarget&lt;Bitmap&gt;(width, height) &#123;</div><div class="line">        <span class="meta">@Override</span> </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResourceReady</span><span class="params">(Bitmap bitmap, GlideAnimation anim)</span> </span>&#123;</div><div class="line">            circleImageView.setImageDrawable(resource); </div><div class="line">        &#125; </div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="方案四：不使用Glide的默认动画："><a href="#方案四：不使用Glide的默认动画：" class="headerlink" title="方案四：不使用Glide的默认动画："></a>方案四：不使用Glide的默认动画：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">	.load(url) </div><div class="line">	.dontAnimate()</div><div class="line">	.placeholder(R.drawable.ic_default_avatar)</div><div class="line">	.into(circleImageview);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Glide加载圆形image第一次只显示占位图的坑&quot;&gt;&lt;a href=&quot;#Glide加载圆形image第一次只显示占位图的坑&quot; class=&quot;headerlink&quot; title=&quot;Glide加载圆形image第一次只显示占位图的坑&quot;&gt;&lt;/a&gt;Glide加载圆形im
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何遍写测试用例</title>
+    <link href="http://yoursite.com/2017/01/20/article-title/"/>
+    <id>http://yoursite.com/2017/01/20/article-title/</id>
+    <published>2017-01-20T15:55:29.000Z</published>
+    <updated>2017-01-21T10:34:11.119Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="如何遍写测试用例"><a href="#如何遍写测试用例" class="headerlink" title="如何遍写测试用例"></a>如何遍写测试用例</h1><p>测试代码主要分为java单元测试用例和Android测试用例。</p>
+<ul>
+<li>java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上</li>
+<li>Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上</li>
+</ul>
+<h2 id="哪些东西需要测试呢？"><a href="#哪些东西需要测试呢？" class="headerlink" title="哪些东西需要测试呢？"></a>哪些东西需要测试呢？</h2><ul>
+<li><p>所有的Model、Presenter/ViewModel、Api、Utils等类的public方法</p>
+</li>
+<li><p>Data类除了getter、setter、toString、hashCode等一般自动生成的方法之外的逻辑部分</p>
+</li>
+<li><p>自定义View的功能：比如set data以后，text有没有显示出来等等，简单的交互，比如click事件，负责的交互一般不测，比如touch、滑动事件等等。</p>
+</li>
+<li><p>Activity的主要功能：比如view是不是存在、显示数据、错误信息、简单的点击事件等。比较复杂的用户交互比如onTouch，以及view的样式、位置等等可以不测。因为不好测。</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>在Android Studio中进行单元测试并不需要什么插件或者过多的配置，Android Studio本身就集成了测试环境，无论是单纯的java代码单元测试还是依赖Android SDK的Android代码单元测试，都能得心应手。</p>
+<p>首先在你的gradle中加入Junit的依赖，注意这里的依赖方式是测试期间的依赖（testCompile）：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>默认建立的结构如下：</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s0.png" alt="默认结构"> </p>
+<h2 id="编写Java测试用例"><a href="#编写Java测试用例" class="headerlink" title="编写Java测试用例"></a>编写Java测试用例</h2><p>如果所写的测试代码没有使用android sdk（android.<em>*</em>下的代码），那么可以在test目录下新建，本例中即为ExampleUnitTest，例子中测试了一个RxJava的Observable的发射后被消费的结果。</p>
+<p>注意测试用例即一个public void的方法，并且加上@Test注解，这是Junit的标准用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.earlydata.waterdrop;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> rx.Observer;</div><div class="line"><span class="keyword">import</span> rx.subjects.PublishSubject;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleUnitTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPublishSubject</span><span class="params">()</span> </span>&#123;</div><div class="line">        PublishSubject&lt;String&gt; stringPublishSubject = PublishSubject.create();</div><div class="line">        stringPublishSubject.subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Observable completed"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">                System.out.println(<span class="string">"Observer consumed "</span> + s);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        stringPublishSubject.onNext(<span class="string">"hello world"</span>);</div><div class="line">        stringPublishSubject.onCompleted();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这时候打开Android Studio左边的Structure的面板，可以看到测试用例方法testPublishSubject</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s1.jpg" alt="测试用例方法testPublishSubject"> </p>
+<p>右击并运行它，测试通过，返回了正确的值</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s3.jpg" alt="正确的值"> </p>
+<p>注意本测试用例试用了System.out.println所以测试结果直接打印在了控制台上，如果把打印的地方换成Log.d()呢，你会发现报错：</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s4.jpg" alt="报错"> </p>
+<p>这个实际是因为你在java的Unit test中引用了Android的代码，即android.util.log.Log。所以对于测试Android代码，需要在androidTest中</p>
+<h2 id="编写Android测试用例"><a href="#编写Android测试用例" class="headerlink" title="编写Android测试用例"></a>编写Android测试用例</h2><p>Android 测试用例主要是对Espresso API的使用，以下系列文章是对Espresso官方文档的翻译(偷个懒)</p>
+<p><a href="http://www.jianshu.com/p/ef4ad5424784" title="http://www.jianshu.com/p/ef4ad542478" target="_blank" rel="external">1. Espresso 概览</a></p>
+<p><a href="http://www.jianshu.com/p/92c7f6dbf80d" title="http://www.jianshu.com/p/92c7f6dbf80d" target="_blank" rel="external">2. Espresso 设置说明</a></p>
+<p><a href="http://www.jianshu.com/p/9e8e8e5f09d6" title="http://www.jianshu.com/p/9e8e8e5f09d6" target="_blank" rel="external">3. Espresso 基础</a></p>
+<p><a href="http://www.jianshu.com/p/cf1079954da5" title="http://www.jianshu.com/p/cf1079954da5" target="_blank" rel="external">4. Espresso 备忘录</a></p>
+<p><a href="http://www.jianshu.com/p/5de7c560fe33" title="http://www.jianshu.com/p/5de7c560fe33" target="_blank" rel="external">5. Espresso 意图</a></p>
+<p><a href="http://www.jianshu.com/p/4166b92fee1c" title="http://www.jianshu.com/p/4166b92fee1c" target="_blank" rel="external">6. Espresso 高级示例</a></p>
+<p><a href="http://www.jianshu.com/p/e2d37d04e95e" title="http://www.jianshu.com/p/e2d37d04e95e" target="_blank" rel="external">7. Espresso Web</a></p>
+<p><a href="http://www.jianshu.com/p/9ee72ec7f782" title="http://www.jianshu.com/p/9ee72ec7f782" target="_blank" rel="external">8. AndroidJUnitRunner</a></p>
+<p><a href="http://www.jianshu.com/p/6a32d44eb5ad" title="http://www.jianshu.com/p/6a32d44eb5ad" target="_blank" rel="external">9. ATSL 中的 JUnit4 规则</a></p>
+<p><a href="http://www.jianshu.com/p/093645e32011" title="http://www.jianshu.com/p/093645e32011" target="_blank" rel="external">10. UI Automator</a></p>
+<p><a href="http://www.jianshu.com/p/29671943b69c" title="http://www.jianshu.com/p/29671943b69c" target="_blank" rel="external">11. 可访问性检查</a></p>
+<p>其他资料</p>
+<p><a href="http://chriszou.com/2016/06/07/android-unit-testing-everything-you-need-to-know.html?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" title="http://chriszou.com/2016/06/07/android-unit-testing-everything-you-need-to-know.html?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">关于安卓单元测试，你需要知道的一切</a></p>
+<p><a href="http://www.jianshu.com/p/4f019c1c04a2" title="http://www.jianshu.com/p/4f019c1c04a2" target="_blank" rel="external">使用 Espresso 进行 Android UI 测试</a></p>
+<p><a href="http://www.jianshu.com/p/37a3f68934cd" title="http://www.jianshu.com/p/37a3f68934cd" target="_blank" rel="external">Android UI 测试框架 Espresso</a></p>
+<p><a href="http://www.jianshu.com/p/c265a781c8ce" title="http://www.jianshu.com/p/c265a781c8ce" target="_blank" rel="external">Android 测试代码编写小技巧 - UI 和 单元测试间共享代码</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;如何遍写测试用例&quot;&gt;&lt;a href=&quot;#如何遍写测试用例&quot; class=&quot;headerlink&quot; title=&quot;如何遍写测试用例&quot;&gt;&lt;/a&gt;如何遍写测试用例&lt;/h1&gt;&lt;p&gt;测试代码主要分为java单元测试用例和Android测试用例。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上&lt;/li&gt;
+&lt;li&gt;Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;哪些东西需要测试呢？&quot;&gt;&lt;a href=&quot;#哪些东西需要测试呢？&quot; class=&quot;headerlink&quot; title=&quot;哪些东西需要测试呢？&quot;&gt;&lt;/a&gt;哪些东西需要测试呢？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;所有的Model、Presenter/ViewModel、Api、Utils等类的public方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Data类除了getter、setter、toString、hashCode等一般自动生成的方法之外的逻辑部分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自定义View的功能：比如set data以后，text有没有显示出来等等，简单的交互，比如click事件，负责的交互一般不测，比如touch、滑动事件等等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Activity的主要功能：比如view是不是存在、显示数据、错误信息、简单的点击事件等。比较复杂的用户交互比如onTouch，以及view的样式、位置等等可以不测。因为不好测。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用Github搭建自己的博客</title>
+    <link href="http://yoursite.com/2017/01/20/hello-world/"/>
+    <id>http://yoursite.com/2017/01/20/hello-world/</id>
+    <published>2017-01-20T13:25:12.642Z</published>
+    <updated>2017-01-20T16:00:51.371Z</updated>
+    
+    <content type="html"><![CDATA[<p>　本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。</p>
+<p>　看了<a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" title="手把手教你用Hexo+Github 搭建属于自己的博客 " target="_blank" rel="external">《手把手教你用Hexo+Github 搭建属于自己的博客》</a>之后决定搭建自己的博客，开始养成写博客的习惯。</p>
+<p>　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。&lt;/p&gt;
+&lt;p&gt;　看了&lt;a href=&quot;http://blog.csdn.net/gdutxiaoxu/article/details/53576018&quot; title=&quot;手把手教你用Hexo+Github 搭建属于
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
