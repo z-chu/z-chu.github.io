@@ -263,6 +263,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/architecture1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="z-chu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="赵成柱的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/21/architecture1/" itemprop="url">
+                  我对MVC和MVP的一些理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T16:20:24+08:00">
+                2017-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.<br>比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。</p>
+<p>那具体到Android上是怎么样一个情况呢？<br>对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，<br>里面都是一些view的布局代码，而各种java bean，<br>还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。</p>
+<p>举个例子:<br>比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.<br>这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.</p>
+<p>那怎么连接这两层呢？<br>当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.</p>
+<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
+<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP作为MVC的演化，解决了MVC不少的缺点.</p>
+<p>对于Android来说，MVP的model层相对于MVC是一样的,而activity和fragment不再是controller层，而是纯粹的view层，所有关于用户事件的转发全部交由presenter层处理。</p>
+<p>与MVC最明显的差别就是view层和model层不再相互可知，完全的解耦，MVC中View会直接从Model中读取数据而不是通过 Controller。<br>取而代之的presenter层充当了桥梁的作用，用于操作view层发出的事件传递到presenter层中，presenter层去操作model层，并且将数据返回给view层，整个过程中view层和model层完全没有联系。</p>
+<p>看到这里大家可能会问，虽然view层和model层解耦了，但是view层和presenter层不是耦合在一起了吗？<br>其实不是的，对于view层和presenter层的通信，我们是可以通过接口实现的，具体的意思就是说我们的activity，<br>fragment可以去实现实现定义好的接口，而在对应的presenter中通过接口调用方法。<br>不仅如此，我们还可以编写测试用的View，模拟用户的各种操作，从而实现对Presenter的测试。</p>
+<p>这就解决了MVC模式中测试，维护难的问题。<br>具体来说，如果你需要测试一个http请求是否顺利，你不需要写一个activity，只需要写一个java类，实现对应的接口，presenter获取了数据自然会调用相应的方法，相应的，你也可以自己在presenter中模仿数据，<br>分发给view层，用来测试布局是否正确。</p>
+<p>MVP的问题在于，由于我们使用了接口的方式去连接view层和presenter层，这样就导致了一个问题，如果你有一个逻辑很复杂的页面，你的接口会有很多，十几二十个都不足为奇。想象一个app中有很多个这样复杂的页面，维护接口的成本就会非常的大。</p>
+<p>这个问题的解决方案就是你得根据自己的业务逻辑去斟酌着写接口。你可以定义一些基类接口，把一些公共的逻辑，比如网络请求成功失败，toast等等放在里面，之后你再定义新的接口的时候可以继承自那些基类，这样会好不少。</p>
+<h3 id="MVP的优点"><a href="#MVP的优点" class="headerlink" title="MVP的优点"></a>MVP的优点</h3><ol>
+<li>降低耦合度，隐藏数据，Activity中代码更简洁</li>
+<li>模块职责划分明显</li>
+<li>方便测试驱动开发</li>
+<li>代码复用度较高</li>
+<li>代码灵活性</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从MVC到MVP的一个转变，就是减少了Activity的职责，减轻了它的负担，简化了Activity中的代码和一些操作，将逻辑代码提取到了Presenter中进行处理，降低了其耦合度。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/prototype-pattern/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1441,7 +1601,7 @@ startActivity(intent);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
