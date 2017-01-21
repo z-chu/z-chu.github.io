@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
 
@@ -94,7 +96,7 @@
 <meta property="og:site_name" content="赵成柱的博客">
 <meta property="og:description" content="MVCMVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。
 那具体到Android上是怎么样一个情况呢？对于原生的Andro">
-<meta property="og:updated_time" content="2017-01-21T08:20:23.972Z">
+<meta property="og:updated_time" content="2017-01-21T10:33:59.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我对MVC和MVP的一些理解">
 <meta name="twitter:description" content="MVCMVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。
@@ -366,7 +368,7 @@
 <p>那具体到Android上是怎么样一个情况呢？<br>对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，<br>里面都是一些view的布局代码，而各种java bean，<br>还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。</p>
 <p>举个例子:<br>比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.<br>这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.</p>
 <p>那怎么连接这两层呢？<br>当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.</p>
-<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
+<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br><a id="more"></a><br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
 <h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP作为MVC的演化，解决了MVC不少的缺点.</p>
 <p>对于Android来说，MVP的model层相对于MVC是一样的,而activity和fragment不再是controller层，而是纯粹的view层，所有关于用户事件的转发全部交由presenter层处理。</p>
 <p>与MVC最明显的差别就是view层和model层不再相互可知，完全的解耦，MVC中View会直接从Model中读取数据而不是通过 Controller。<br>取而代之的presenter层充当了桥梁的作用，用于操作view层发出的事件传递到presenter层中，presenter层去操作model层，并且将数据返回给view层，整个过程中view层和model层完全没有联系。</p>

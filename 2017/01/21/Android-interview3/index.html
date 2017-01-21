@@ -118,7 +118,7 @@ ListView设置背景后，item又设置了背景图
 自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
 
 　可以通过An">
-<meta property="og:updated_time" content="2017-01-21T06:34:25.371Z">
+<meta property="og:updated_time" content="2017-01-21T10:33:38.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试之性能优化">
 <meta name="twitter:description" content="性能优化
@@ -412,7 +412,7 @@ ListView设置背景后，item又设置了背景图
 <li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
 </ol>
 <p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
-<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。</p>
+<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。<br><a id="more"></a></p>
 <h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
 <li>设置本View视图的最终大小</li>
 <li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>

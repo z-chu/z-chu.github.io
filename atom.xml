@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-21T08:20:23.972Z</updated>
+  <updated>2017-01-21T10:33:59.263Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://yoursite.com/2017/01/21/architecture1/"/>
     <id>http://yoursite.com/2017/01/21/architecture1/</id>
     <published>2017-01-21T08:20:24.000Z</published>
-    <updated>2017-01-21T08:20:23.972Z</updated>
+    <updated>2017-01-21T10:33:59.263Z</updated>
     
     <content type="html"><![CDATA[<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.<br>比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。</p>
 <p>那具体到Android上是怎么样一个情况呢？<br>对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，<br>里面都是一些view的布局代码，而各种java bean，<br>还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。</p>
 <p>举个例子:<br>比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.<br>这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.</p>
 <p>那怎么连接这两层呢？<br>当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.</p>
-<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
+<p>问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，<br>必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。<br>如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。<br><a id="more"></a><br>MVC还有一个重要的缺陷，view层和model层是相互可知的，这意味着两层之间存在耦合.</p>
 <h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP作为MVC的演化，解决了MVC不少的缺点.</p>
 <p>对于Android来说，MVP的model层相对于MVC是一样的,而activity和fragment不再是controller层，而是纯粹的view层，所有关于用户事件的转发全部交由presenter层处理。</p>
 <p>与MVC最明显的差别就是view层和model层不再相互可知，完全的解耦，MVC中View会直接从Model中读取数据而不是通过 Controller。<br>取而代之的presenter层充当了桥梁的作用，用于操作view层发出的事件传递到presenter层中，presenter层去操作model层，并且将数据返回给view层，整个过程中view层和model层完全没有联系。</p>
@@ -46,7 +46,11 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;MVC&quot;&gt;&lt;a href=&quot;#MVC&quot; class=&quot;headerlink&quot; title=&quot;MVC&quot;&gt;&lt;/a&gt;MVC&lt;/h2&gt;&lt;p&gt;MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.&lt;
+      &lt;h2 id=&quot;MVC&quot;&gt;&lt;a href=&quot;#MVC&quot; class=&quot;headerlink&quot; title=&quot;MVC&quot;&gt;&lt;/a&gt;MVC&lt;/h2&gt;&lt;p&gt;MVC是软件架构中最常见的一种框架,简单来说就是通过controller的控制去操作model层的数据，并且返回给view层展示.&lt;br&gt;比如当用户出发事件的时候，view层会发送指令到controller层，接着controller去通知model层更新数据，model层更新完数据以后直接显示在view层上，这就是MVC的工作原理。&lt;/p&gt;
+&lt;p&gt;那具体到Android上是怎么样一个情况呢？&lt;br&gt;对于原生的Android项目来说，layout.xml里面的xml文件就对应于MVC的view层，&lt;br&gt;里面都是一些view的布局代码，而各种java bean，&lt;br&gt;还有一些数据相关的类就对应于model层，至于controller层嘛，当然就是各种activity咯。&lt;/p&gt;
+&lt;p&gt;举个例子:&lt;br&gt;比如你的界面有一个按钮，按下这个按钮去网络上下载一个文件.&lt;br&gt;这个按钮是view层的，是使用xml来写的.这个下载文件的工作,你可以写一个专门的下载器,这个就是model层.&lt;/p&gt;
+&lt;p&gt;那怎么连接这两层呢？&lt;br&gt;当然是在activity通过给这个按钮设置点击事件的监听,在响应点击事件时去启动这个下载器，这就对应于controller层.&lt;/p&gt;
+&lt;p&gt;问题就在于xml作为view层，控制能力实在太弱了，你想去动态的改变一个页面的背景，或者动态的隐藏/显示一个按钮，&lt;br&gt;必须要获得这个view 对象去操控,这些都没办法在xml中做，只能把代码写在activity中，造成了activity既是controller层，又是view层的这样一个窘境。&lt;br&gt;如果是一个逻辑很复杂的页面，activity或者fragment是不是动辄上千行呢？这样不仅写起来麻烦，维护起来更是噩梦。&lt;br&gt;
     
     </summary>
     
@@ -60,10 +64,9 @@
     <link href="http://yoursite.com/2017/01/21/prototype-pattern/"/>
     <id>http://yoursite.com/2017/01/21/prototype-pattern/</id>
     <published>2017-01-21T07:50:24.000Z</published>
-    <updated>2017-01-21T08:07:40.410Z</updated>
+    <updated>2017-01-21T10:34:55.878Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><hr>
-<h2 id="模式介绍"><a href="#模式介绍" class="headerlink" title="模式介绍"></a>模式介绍</h2><h3 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h3><p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
+    <content type="html"><![CDATA[<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><h3 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h3><p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
 <h3 id="模式的使用场景"><a href="#模式的使用场景" class="headerlink" title="模式的使用场景"></a>模式的使用场景</h3><ol>
 <li>类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等，通过原型拷贝避免这些消耗；</li>
 <li>通过 new 产生一个对象需要非常繁琐的数据准备或访问权限，则可以使用原型模式；</li>
@@ -83,8 +86,7 @@ startActivity(intent);
     
     <summary type="html">
     
-      &lt;h1 id=&quot;原型模式&quot;&gt;&lt;a href=&quot;#原型模式&quot; class=&quot;headerlink&quot; title=&quot;原型模式&quot;&gt;&lt;/a&gt;原型模式&lt;/h1&gt;&lt;hr&gt;
-&lt;h2 id=&quot;模式介绍&quot;&gt;&lt;a href=&quot;#模式介绍&quot; class=&quot;headerlink&quot; title=&quot;模式介绍
+      &lt;h2 id=&quot;原型模式&quot;&gt;&lt;a href=&quot;#原型模式&quot; class=&quot;headerlink&quot; title=&quot;原型模式&quot;&gt;&lt;/a&gt;原型模式&lt;/h2&gt;&lt;h3 id=&quot;模式的定义&quot;&gt;&lt;a href=&quot;#模式的定义&quot; class=&quot;headerlink&quot; title=&quot;模式的定义&quot;&gt;
     
     </summary>
     
@@ -98,7 +100,7 @@ startActivity(intent);
     <link href="http://yoursite.com/2017/01/21/Android-interview3/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview3/</id>
     <published>2017-01-21T06:17:17.000Z</published>
-    <updated>2017-01-21T06:34:25.371Z</updated>
+    <updated>2017-01-21T10:33:38.679Z</updated>
     
     <content type="html"><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
 <li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
@@ -114,7 +116,7 @@ startActivity(intent);
 <li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
 </ol>
 <p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
-<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。</p>
+<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。<br><a id="more"></a></p>
 <h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
 <li>设置本View视图的最终大小</li>
 <li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>
@@ -153,7 +155,18 @@ startActivity(intent);
       &lt;h1 id=&quot;性能优化&quot;&gt;&lt;a href=&quot;#性能优化&quot; class=&quot;headerlink&quot; title=&quot;性能优化&quot;&gt;&lt;/a&gt;性能优化&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;界面不流程，如何去debug调试View，来定位卡顿问题？&lt;/li&gt;
 &lt;li&gt;如何解决卡顿问题？&lt;/li&gt;
-&lt;l
+&lt;li&gt;xml编写和View写法是否合理？&lt;/li&gt;
+&lt;li&gt;移除不必要的背景图&lt;ul&gt;
+&lt;li&gt;window默认背景图&lt;/li&gt;
+&lt;li&gt;ListView设置背景后，item又设置了背景图&lt;/li&gt;
+&lt;li&gt;多层嵌套，多次设置背景图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;优化布局避免空间View树过高，空间重叠&lt;/li&gt;
+&lt;li&gt;自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度&lt;/p&gt;
+&lt;p&gt;　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。&lt;br&gt;
     
     </summary>
     
@@ -167,7 +180,7 @@ startActivity(intent);
     <link href="http://yoursite.com/2017/01/21/Android-interview2/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview2/</id>
     <published>2017-01-21T06:15:17.000Z</published>
-    <updated>2017-01-21T06:39:12.941Z</updated>
+    <updated>2017-01-21T10:33:04.055Z</updated>
     
     <content type="html"><![CDATA[<h1 id="TCP-IP、HTTP、Socket的区别"><a href="#TCP-IP、HTTP、Socket的区别" class="headerlink" title="TCP/IP、HTTP、Socket的区别"></a>TCP/IP、HTTP、Socket的区别</h1><p>网络由下往上分为：</p>
 <p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
@@ -180,7 +193,7 @@ startActivity(intent);
 <p><strong>我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。</strong></p>
 <p><strong>如果想要是传输的数据有意义，则必须使用到应用层协议。</strong></p>
 <p><strong>应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。</strong></p>
-<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong></p>
+<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong><br><a id="more"></a></p>
 <p>而我们平时说的最多的Socket是什么呢，实际上Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API）。</p>
 <p>通过Socket,我们才能使用TCP/IP协议。</p>
 <p>实际上，Socket跟TCP/IP协议没有必然的联系。</p>
@@ -202,7 +215,18 @@ startActivity(intent);
     
     <summary type="html">
     
-      &lt;h1 id=&quot;TCP-IP、HTTP、Socket的区别&quot;&gt;&lt;a href=&quot;#TCP-IP、HTTP、Socket的区别&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP、HTTP、Socket的区别&quot;&gt;&lt;/a&gt;TCP/IP、HTTP、Socket的区别&lt;/
+      &lt;h1 id=&quot;TCP-IP、HTTP、Socket的区别&quot;&gt;&lt;a href=&quot;#TCP-IP、HTTP、Socket的区别&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP、HTTP、Socket的区别&quot;&gt;&lt;/a&gt;TCP/IP、HTTP、Socket的区别&lt;/h1&gt;&lt;p&gt;网络由下往上分为：&lt;/p&gt;
+&lt;p&gt;物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。&lt;/p&gt;
+&lt;p&gt;我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。&lt;/p&gt;
+&lt;p&gt;三者从本质上来说没有可比性，&lt;/p&gt;
+&lt;p&gt;Socket则是对TCP/IP协议的封装和应用(程序员层面上)。&lt;/p&gt;
+&lt;p&gt;也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，&lt;/p&gt;
+&lt;p&gt;而HTTP是应用层协议，主要解决如何包装数据。&lt;/p&gt;
+&lt;p&gt;关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果想要是传输的数据有意义，则必须使用到应用层协议。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。&lt;/strong&gt;&lt;br&gt;
     
     </summary>
     
@@ -216,7 +240,7 @@ startActivity(intent);
     <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
     <published>2017-01-21T06:14:17.000Z</published>
-    <updated>2017-01-21T06:37:52.899Z</updated>
+    <updated>2017-01-21T10:32:22.444Z</updated>
     
     <content type="html"><![CDATA[<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
 <p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
@@ -225,7 +249,7 @@ startActivity(intent);
 <p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong></p>
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
 <p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
-<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
+<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong><br><a id="more"></a></p>
 <h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　<code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
 <h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
 <li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
@@ -258,7 +282,13 @@ startActivity(intent);
     <summary type="html">
     
       &lt;h1 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h1&gt;&lt;p&gt;　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。&lt;/p&gt;
-&lt;p&gt;　对于一个OOP来说，它的一个”碎片
+&lt;p&gt;　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。&lt;/p&gt;
+&lt;p&gt;　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。&lt;br&gt;程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。&lt;br&gt;软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。&lt;br&gt;而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。&lt;/p&gt;
+&lt;p&gt;　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。&lt;/p&gt;
+&lt;p&gt;　&lt;strong&gt;模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;泛型&quot;&gt;&lt;a href=&quot;#泛型&quot; class=&quot;headerlink&quot; title=&quot;泛型&quot;&gt;&lt;/a&gt;泛型&lt;/h1&gt;&lt;p&gt;　Java 1.5发行版本中增加了&lt;a href=&quot;http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW&quot;&gt;泛型(Generic)&lt;/a&gt;。&lt;br&gt;　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。&lt;br&gt;如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。&lt;br&gt;有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。&lt;br&gt;这样可以使程序既更加安全，又更加清楚。&lt;/p&gt;
+&lt;p&gt;　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List&lt;E&gt;相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。&lt;/p&gt;
+&lt;p&gt;　请不要在新代码中使用原生类型，&lt;strong&gt;如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。&lt;/strong&gt;&lt;br&gt;
     
     </summary>
     
@@ -301,7 +331,7 @@ startActivity(intent);
     <link href="http://yoursite.com/2017/01/20/article-title/"/>
     <id>http://yoursite.com/2017/01/20/article-title/</id>
     <published>2017-01-20T15:55:29.000Z</published>
-    <updated>2017-01-20T16:06:21.793Z</updated>
+    <updated>2017-01-21T10:34:11.119Z</updated>
     
     <content type="html"><![CDATA[<h1 id="如何遍写测试用例"><a href="#如何遍写测试用例" class="headerlink" title="如何遍写测试用例"></a>如何遍写测试用例</h1><p>测试代码主要分为java单元测试用例和Android测试用例。</p>
 <ul>
@@ -318,8 +348,7 @@ startActivity(intent);
 <li><p>Activity的主要功能：比如view是不是存在、显示数据、错误信息、简单的点击事件等。比较复杂的用户交互比如onTouch，以及view的样式、位置等等可以不测。因为不好测。</p>
 </li>
 </ul>
-<hr>
-<p>在Android Studio中进行单元测试并不需要什么插件或者过多的配置，Android Studio本身就集成了测试环境，无论是单纯的java代码单元测试还是依赖Android SDK的Android代码单元测试，都能得心应手。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>在Android Studio中进行单元测试并不需要什么插件或者过多的配置，Android Studio本身就集成了测试环境，无论是单纯的java代码单元测试还是依赖Android SDK的Android代码单元测试，都能得心应手。</p>
 <p>首先在你的gradle中加入Junit的依赖，注意这里的依赖方式是测试期间的依赖（testCompile）：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>默认建立的结构如下：</p>
 <p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/s0.png" alt="默认结构"> </p>
@@ -356,7 +385,20 @@ startActivity(intent);
     
       &lt;h1 id=&quot;如何遍写测试用例&quot;&gt;&lt;a href=&quot;#如何遍写测试用例&quot; class=&quot;headerlink&quot; title=&quot;如何遍写测试用例&quot;&gt;&lt;/a&gt;如何遍写测试用例&lt;/h1&gt;&lt;p&gt;测试代码主要分为java单元测试用例和Android测试用例。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;j
+&lt;li&gt;java单元测试用例 ： 主要是业务逻辑和数据相关，独立于Android 不需要跑在 Android 设备上&lt;/li&gt;
+&lt;li&gt;Android 测试用例 ： 主要是UI相关，这类 case 必须要运行在 android 设备上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;哪些东西需要测试呢？&quot;&gt;&lt;a href=&quot;#哪些东西需要测试呢？&quot; class=&quot;headerlink&quot; title=&quot;哪些东西需要测试呢？&quot;&gt;&lt;/a&gt;哪些东西需要测试呢？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;所有的Model、Presenter/ViewModel、Api、Utils等类的public方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Data类除了getter、setter、toString、hashCode等一般自动生成的方法之外的逻辑部分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;自定义View的功能：比如set data以后，text有没有显示出来等等，简单的交互，比如click事件，负责的交互一般不测，比如touch、滑动事件等等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Activity的主要功能：比如view是不是存在、显示数据、错误信息、简单的点击事件等。比较复杂的用户交互比如onTouch，以及view的样式、位置等等可以不测。因为不好测。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
     
     </summary>
     

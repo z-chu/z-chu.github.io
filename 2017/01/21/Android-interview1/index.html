@@ -96,7 +96,7 @@
 <meta property="og:description" content="面向对象　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。
 　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。
 　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。程序员可以">
-<meta property="og:updated_time" content="2017-01-21T06:37:52.899Z">
+<meta property="og:updated_time" content="2017-01-21T10:32:22.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试之java基础">
 <meta name="twitter:description" content="面向对象　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。
@@ -372,7 +372,7 @@
 <p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong></p>
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
 <p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
-<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
+<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong><br><a id="more"></a></p>
 <h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　<code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
 <h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
 <li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
