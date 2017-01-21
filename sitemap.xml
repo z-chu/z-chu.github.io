@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/01/21/Android-interview2/</loc>
+    
+    <lastmod>2017-01-21T06:39:12.941Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/01/21/Android-interview1/</loc>
     
     <lastmod>2017-01-21T06:37:52.899Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2017/01/21/Android-interview3/</loc>
     
     <lastmod>2017-01-21T06:34:25.371Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/01/21/Android-interview2/</loc>
-    
-    <lastmod>2017-01-21T06:30:45.068Z</lastmod>
     
   </url>
   

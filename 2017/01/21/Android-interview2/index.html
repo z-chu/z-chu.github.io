@@ -86,34 +86,34 @@
 
 
 
-<meta name="description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+<meta name="description" content="TCP/IP、HTTP、Socket的区别网络由下往上分为：
 物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
 我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
 三者从本质上来说没有可比性，
 Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
 也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
-而HTTP是应用层协议，">
+而HTTP是应用层协议，主">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android面试之网络">
 <meta property="og:url" content="http://yoursite.com/2017/01/21/Android-interview2/index.html">
 <meta property="og:site_name" content="赵成柱的博客">
-<meta property="og:description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+<meta property="og:description" content="TCP/IP、HTTP、Socket的区别网络由下往上分为：
 物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
 我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
 三者从本质上来说没有可比性，
 Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
 也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
-而HTTP是应用层协议，">
-<meta property="og:updated_time" content="2017-01-21T06:30:45.068Z">
+而HTTP是应用层协议，主">
+<meta property="og:updated_time" content="2017-01-21T06:39:12.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试之网络">
-<meta name="twitter:description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+<meta name="twitter:description" content="TCP/IP、HTTP、Socket的区别网络由下往上分为：
 物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
 我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
 三者从本质上来说没有可比性，
 Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
 也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
-而HTTP是应用层协议，">
+而HTTP是应用层协议，主">
 
 
 
@@ -377,7 +377,7 @@ Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
       
 
       
-        <p>#TCP/IP、HTTP、Socket的区别<br>网络由下往上分为：</p>
+        <h1 id="TCP-IP、HTTP、Socket的区别"><a href="#TCP-IP、HTTP、Socket的区别" class="headerlink" title="TCP/IP、HTTP、Socket的区别"></a>TCP/IP、HTTP、Socket的区别</h1><p>网络由下往上分为：</p>
 <p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
 <p>我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。</p>
 <p>三者从本质上来说没有可比性，</p>
@@ -401,8 +401,7 @@ Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
 <p><strong>TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</strong></p>
 <p>CSDN上有个比较现象的描述：<strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong></p>
 <p>实际上，传输层的TCP是基于网络层的IP协议的，而应用层的HTTP协议又是基于传输层的TCP协议的，而Socket本身不算是协议，就像上面所说，它只是提供了一个针对TCP或者UDP编程的接口。</p>
-<p>#什么是TCP连接的三次握手</p>
-<p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<h1 id="什么是TCP连接的三次握手"><a href="#什么是TCP连接的三次握手" class="headerlink" title="什么是TCP连接的三次握手"></a>什么是TCP连接的三次握手</h1><p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
 <p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1）,同时自己也发送一个SYN包（syn=k）,即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
 <p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1),此包发送完毕，客户端和服务器进入ESTABLISHED（确认连接）状态，完成三次握手。</p>
 <p>握手过程中传送的包含数据，三次握手完成后，客户端和服务器才正式开始传送数据。</p>
@@ -492,8 +491,17 @@ Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460"
@@ -549,6 +557,22 @@ Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP、HTTP、Socket的区别"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP、HTTP、Socket的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是TCP连接的三次握手"><span class="nav-number">2.</span> <span class="nav-text">什么是TCP连接的三次握手</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
