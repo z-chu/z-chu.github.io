@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-21T06:30:34.028Z</updated>
+  <updated>2017-01-21T06:34:25.371Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,33 +20,33 @@
     <link href="http://yoursite.com/2017/01/21/Android-interview3/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview3/</id>
     <published>2017-01-21T06:17:17.000Z</published>
-    <updated>2017-01-21T06:30:34.028Z</updated>
+    <updated>2017-01-21T06:34:25.371Z</updated>
     
     <content type="html"><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
 <li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
 <li>如何解决卡顿问题？</li>
 <li>xml编写和View写法是否合理？</li>
-</ol>
-<ol>
-<li><p>移除不必要的背景图<br>window默认背景图<br>ListView设置背景后，item又设置了背景图<br>多层嵌套，多次设置背景图</p>
+<li>移除不必要的背景图<ul>
+<li>window默认背景图</li>
+<li>ListView设置背景后，item又设置了背景图</li>
+<li>多层嵌套，多次设置背景图</li>
+</ul>
 </li>
-<li><p>优化布局避免空间View树过高，空间重叠</p>
-</li>
-<li><p>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</p>
-</li>
+<li>优化布局避免空间View树过高，空间重叠</li>
+<li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
 </ol>
 <p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
 <p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。</p>
 <h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
 <li>设置本View视图的最终大小</li>
-<li>如果该View对象是个ViewGroup类型，需要重写该onMeasure()方法，对其子视图进行遍历的measure()过程。</li>
-<li>measureChilren(),内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法</li>
-<li>measureChlid()，为指定的子视图measure，会被measureChildren调用</li>
-<li>measureChildWithMargins(),为指定子视图考虑了margin和padding的measure。</li>
+<li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>
+<li><code>measureChilren()</code>,内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法</li>
+<li><code>measureChlid()</code>，为指定的子视图measure，会被measureChildren调用</li>
+<li><code>measureChildWithMargins()</code>,为指定子视图考虑了margin和padding的measure。</li>
 </ul>
 <h1 id="Layout过程"><a href="#Layout过程" class="headerlink" title="Layout过程"></a>Layout过程</h1><ol>
-<li>layout方法会设置该View视图位于父视图的坐标轴，即mLeft,mTop,mRight，mBottom(调用setFrame()函数去实现）</li>
-<li>接下来回调onLayout()方法（如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局）</li>
+<li>layout方法会设置该View视图位于父视图的坐标轴，即mLeft,mTop,mRight，mBottom(调用<code>setFrame()</code>函数去实现）</li>
+<li>接下来回调<code>onLayout()</code>方法（如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局）</li>
 <li>如果该View是个ViewGroup类型，需要遍历每个子视图的childView，调用该子视图的layout()方法去设置它的坐标值</li>
 </ol>
 <h1 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h1><p>　在安卓中界面要看起来流畅，那么它的帧率是60，也就是说在1秒钟之内它会刷新60次，那么每次刷新的耗时也就是1000ms除了60，等于16.67ms.<br>　那么如果视图的刷新时间在16ms之内完成了，我们用起来就会觉得很流畅，那么假如因为某种原因，一个刷新过程没有在16ms之内完成，那么就会出现掉帧现象，也就是卡顿了。那么为了不出现这种掉帧现象，让用户用起来更流程，就需要尽量让一个绘制过程在16ms只能完成。<br>　这也就是性能优化所要最终完成的目标。Measure+Layout+Draw&lt;=16ms.<br>　那么我们就只要看measure、layout、draw都干了那些事情，有哪些点是可以优化的，只要逐个的解决这些优化点，也就完成了一系列的View优化工作。</p>
@@ -64,7 +64,7 @@
 <li><p>UI线程中进行耗时操作</p>
 <p>在Android4.0其实是不允许ui线程中做网络操作了，那假如说你不小心做了写IO操作，而且他们又比较耗时，有可能会导致UI线程卡顿。View绘制阻塞</p>
 </li>
-<li><p>冗余资源及错误逻辑导致加载和执行缓慢（其实就代码写的烂）<br>比如你在getView()里去for循环，for循环里又for循环，又去声明变量之类的，都会导致代码的执行效率很差</p>
+<li><p>冗余资源及错误逻辑导致加载和执行缓慢（其实就代码写的烂）<br>比如你在<code>getView()</code>里去for循环，for循环里又for循环，又去声明变量之类的，都会导致代码的执行效率很差</p>
 </li>
 <li>频繁触发GC,导致渲染受阻<br>GC线程优先级高于UI线程，所有如果内存管理不够合理的话频繁的触发了GC,就会导致UI线程的受阻</li>
 </ul>
@@ -142,7 +142,7 @@
     <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
     <published>2017-01-21T06:14:17.000Z</published>
-    <updated>2017-01-21T06:23:52.814Z</updated>
+    <updated>2017-01-21T06:37:52.899Z</updated>
     
     <content type="html"><![CDATA[<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
 <p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
@@ -152,15 +152,15 @@
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
 <p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
 <p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
-<h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　sleep()方法和wait()方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
+<h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　<code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
 <h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
-<li>最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
+<li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
 <li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>这两个方法来自不同的类分别是Thread和Object</p>
 </li>
-<li>sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常</li>
+<li><code>sleep</code>必须捕获异常，而<code>wait</code>，<code>notify</code>和<code>notifyAll</code>不需要捕获异常</li>
 </ol>
 <h1 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h1><ul>
 <li><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
@@ -173,8 +173,11 @@
 <li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
 <li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
 </ul>
-<h1 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h1><p>　equals(Object obj)方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br>hashcode()方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
-<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。<br>对象的hashCode和equals方法作用：这些集合通过对象的这2个方法判断集合中是否已存着该对象。<br>约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong><br>伪代码如下：</p>
+<h1 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h1><p>　<code>equals(Object obj)</code>方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br><code>hashcode()</code>方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
+<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。</p>
+<p>　这些集合通过对象的<code>hashCode</code>和<code>equals</code>方法判断集合中是否已存着该对象。</p>
+<p>　约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong></p>
+<p>伪代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
 ]]></content>
     
