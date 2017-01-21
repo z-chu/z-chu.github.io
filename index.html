@@ -73,8 +73,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
 
@@ -376,7 +374,7 @@
 </ol>
 <p>所以如果你刚好使用了<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>或者其他的一些自定义的圆形Imageview，而你又刚好设置了占位图的话，那么，你就会遇到这个问题。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一：不设置占位图；"><a href="#方案一：不设置占位图；" class="headerlink" title="方案一：不设置占位图；"></a>方案一：不设置占位图；</h3><h3 id="方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。"><a href="#方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。" class="headerlink" title="方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。"></a>方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。</h3><h3 id="方案三：使用下面的代码加载图片："><a href="#方案三：使用下面的代码加载图片：" class="headerlink" title="方案三：使用下面的代码加载图片："></a>方案三：使用下面的代码加载图片：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(<span class="keyword">new</span> SimpleTarget&lt;Bitmap&gt;(width, height) &#123;</div><div class="line">        <span class="meta">@Override</span> </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResourceReady</span><span class="params">(Bitmap bitmap, GlideAnimation anim)</span> </span>&#123;</div><div class="line">            circleImageView.setImageDrawable(resource); </div><div class="line">        &#125; </div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<h3 id="方案四：不使用Glide的默认动画："><a href="#方案四：不使用Glide的默认动画：" class="headerlink" title="方案四：不使用Glide的默认动画："></a>方案四：不使用Glide的默认动画：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">	.dontAnimate()</div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(circleImageview);</div></pre></td></tr></table></figure>
+<h3 id="方案四：不使用Glide的默认动画："><a href="#方案四：不使用Glide的默认动画：" class="headerlink" title="方案四：不使用Glide的默认动画："></a>方案四：不使用Glide的默认动画：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">	.load(url) </div><div class="line">	.dontAnimate()</div><div class="line">	.placeholder(R.drawable.ic_default_avatar)</div><div class="line">	.into(circleImageview);</div></pre></td></tr></table></figure>
           
         
       
