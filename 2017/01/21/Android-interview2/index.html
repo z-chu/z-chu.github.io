@@ -86,22 +86,34 @@
 
 
 
-<meta name="description" content="本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。
-　看了《手把手教你用Hexo+Github 搭建属于自己的博客》之后决定搭建自己的博客，开始养成写博客的习惯。
-　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。">
+<meta name="description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
+我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
+三者从本质上来说没有可比性，
+Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
+也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
+而HTTP是应用层协议，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Github搭建自己的博客">
-<meta property="og:url" content="http://yoursite.com/2017/01/20/hello-world/index.html">
+<meta property="og:title" content="Android面试之网络">
+<meta property="og:url" content="http://yoursite.com/2017/01/21/Android-interview2/index.html">
 <meta property="og:site_name" content="赵成柱的博客">
-<meta property="og:description" content="本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。
-　看了《手把手教你用Hexo+Github 搭建属于自己的博客》之后决定搭建自己的博客，开始养成写博客的习惯。
-　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。">
-<meta property="og:updated_time" content="2017-01-20T16:00:51.371Z">
+<meta property="og:description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
+我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
+三者从本质上来说没有可比性，
+Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
+也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
+而HTTP是应用层协议，">
+<meta property="og:updated_time" content="2017-01-21T06:24:11.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Github搭建自己的博客">
-<meta name="twitter:description" content="本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。
-　看了《手把手教你用Hexo+Github 搭建属于自己的博客》之后决定搭建自己的博客，开始养成写博客的习惯。
-　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。">
+<meta name="twitter:title" content="Android面试之网络">
+<meta name="twitter:description" content="#TCP/IP、HTTP、Socket的区别网络由下往上分为：
+物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。
+我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。
+三者从本质上来说没有可比性，
+Socket则是对TCP/IP协议的封装和应用(程序员层面上)。
+也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，
+而HTTP是应用层协议，">
 
 
 
@@ -129,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/20/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/21/Android-interview2/"/>
 
 
 
 
 
-  <title> 使用Github搭建自己的博客 | 赵成柱的博客 </title>
+  <title> Android面试之网络 | 赵成柱的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/20/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/Android-interview2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="z-chu">
@@ -292,7 +304,7 @@
             
             
               
-                使用Github搭建自己的博客
+                Android面试之网络
               
             
           </h1>
@@ -307,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-20T21:25:12+08:00">
-                2017-01-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T14:03:17+08:00">
+                2017-01-21
               </time>
             
 
@@ -317,6 +329,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -343,9 +377,36 @@
       
 
       
-        <p>　本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。</p>
-<p>　看了<a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" title="手把手教你用Hexo+Github 搭建属于自己的博客 " target="_blank" rel="external">《手把手教你用Hexo+Github 搭建属于自己的博客》</a>之后决定搭建自己的博客，开始养成写博客的习惯。</p>
-<p>　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。</p>
+        <p>#TCP/IP、HTTP、Socket的区别<br>网络由下往上分为：</p>
+<p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
+<p>我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。</p>
+<p>三者从本质上来说没有可比性，</p>
+<p>Socket则是对TCP/IP协议的封装和应用(程序员层面上)。</p>
+<p>也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，</p>
+<p>而HTTP是应用层协议，主要解决如何包装数据。</p>
+<p>关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：</p>
+<p><strong>我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。</strong></p>
+<p><strong>如果想要是传输的数据有意义，则必须使用到应用层协议。</strong></p>
+<p><strong>应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。</strong></p>
+<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong></p>
+<p>而我们平时说的最多的Socket是什么呢，实际上Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API）。</p>
+<p>通过Socket,我们才能使用TCP/IP协议。</p>
+<p>实际上，Socket跟TCP/IP协议没有必然的联系。</p>
+<p>SoCket编程接口在设计的时候，级希望也能适应其他的网络协议。</p>
+<p>所以说，Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，</p>
+<p>从而形成了我们知道的一些最基本的函数接口，比如create、listen、connect、accept、send、read和write等等。</p>
+<p>网络有一段关于socket和TCP/IP协议关系的说法比较容易理解：</p>
+<p><strong>TCP/IP只是一个协议栈，就像操作系统的运行机制一样，必须要具体实现，同时还有提供对外的操作接口。</strong></p>
+<p><strong>这个就像操作系统会提供标准的编程接口，比如win32编程接口一样，</strong></p>
+<p><strong>TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</strong></p>
+<p>CSDN上有个比较现象的描述：<strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong></p>
+<p>实际上，传输层的TCP是基于网络层的IP协议的，而应用层的HTTP协议又是基于传输层的TCP协议的，而Socket本身不算是协议，就像上面所说，它只是提供了一个针对TCP或者UDP编程的接口。</p>
+<p>#什么是TCP连接的三次握手</p>
+<p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1）,同时自己也发送一个SYN包（syn=k）,即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1),此包发送完毕，客户端和服务器进入ESTABLISHED（确认连接）状态，完成三次握手。</p>
+<p>握手过程中传送的包含数据，三次握手完成后，客户端和服务器才正式开始传送数据。</p>
+<p>理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP连接都将被一直保持下去。</p>
 
       
     </div>
@@ -372,14 +433,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/01/21/Android-interview3/" rel="next" title="Android面试之网络">
+                <i class="fa fa-chevron-left"></i> Android面试之网络
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/20/article-title/" rel="prev" title="如何遍写测试用例">
-                如何遍写测试用例 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/21/Android-interview1/" rel="prev" title="Android面试之java基础">
+                Android面试之java基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
