@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
 
@@ -253,6 +255,155 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="z-chu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="赵成柱的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/21/GlideLoadedCircularImageBug/" itemprop="url">
+                  Glide加载圆形image第一次只显示占位图的坑
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T14:03:17+08:00">
+                2017-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Glide加载圆形image第一次只显示占位图的坑"><a href="#Glide加载圆形image第一次只显示占位图的坑" class="headerlink" title="Glide加载圆形image第一次只显示占位图的坑"></a>Glide加载圆形image第一次只显示占位图的坑</h1><p>在使用<a href="https://github.com/bumptech/glide" title="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>加载图片时，经常出现图片加载不出来，只显示占位图的情况。</p>
+<p>随后我好好的分析了这个问题的触发场景：</p>
+<ol>
+<li>出现此问题的ImageView都是<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>，其他ImageView的一切正常</li>
+<li>出现此问题的ImagView都设置了占位图，不设置一切正常</li>
+<li>出现此问题的ImagView加载时都使用了Glide的渐显动画，不使用一切正常</li>
+</ol>
+<p>所以如果你刚好使用了<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>或者其他的一些自定义的圆形Imageview，而你又刚好设置了占位图的话，那么，你就会遇到这个问题。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一：不设置占位图；"><a href="#方案一：不设置占位图；" class="headerlink" title="方案一：不设置占位图；"></a>方案一：不设置占位图；</h3><h3 id="方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。"><a href="#方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。" class="headerlink" title="方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。"></a>方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。</h3><h3 id="方案三：使用下面的代码加载图片："><a href="#方案三：使用下面的代码加载图片：" class="headerlink" title="方案三：使用下面的代码加载图片："></a>方案三：使用下面的代码加载图片：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(<span class="keyword">new</span> SimpleTarget&lt;Bitmap&gt;(width, height) &#123;</div><div class="line">        <span class="meta">@Override</span> </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResourceReady</span><span class="params">(Bitmap bitmap, GlideAnimation anim)</span> </span>&#123;</div><div class="line">            circleImageView.setImageDrawable(resource); </div><div class="line">        &#125; </div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="方案四：不使用Glide的默认动画："><a href="#方案四：不使用Glide的默认动画：" class="headerlink" title="方案四：不使用Glide的默认动画："></a>方案四：不使用Glide的默认动画：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">	.dontAnimate()</div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(circleImageview);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -605,7 +756,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

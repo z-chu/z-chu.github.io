@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-20T16:06:21.793Z</updated>
+  <updated>2017-01-21T06:03:58.594Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Glide加载圆形image第一次只显示占位图的坑</title>
+    <link href="http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/"/>
+    <id>http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/</id>
+    <published>2017-01-21T06:03:17.000Z</published>
+    <updated>2017-01-21T06:03:58.594Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Glide加载圆形image第一次只显示占位图的坑"><a href="#Glide加载圆形image第一次只显示占位图的坑" class="headerlink" title="Glide加载圆形image第一次只显示占位图的坑"></a>Glide加载圆形image第一次只显示占位图的坑</h1><p>在使用<a href="https://github.com/bumptech/glide" title="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>加载图片时，经常出现图片加载不出来，只显示占位图的情况。</p>
+<p>随后我好好的分析了这个问题的触发场景：</p>
+<ol>
+<li>出现此问题的ImageView都是<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>，其他ImageView的一切正常</li>
+<li>出现此问题的ImagView都设置了占位图，不设置一切正常</li>
+<li>出现此问题的ImagView加载时都使用了Glide的渐显动画，不使用一切正常</li>
+</ol>
+<p>所以如果你刚好使用了<a href="https://github.com/hdodenhof/CircleImageView" title="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="external">CircleImageView</a>或者其他的一些自定义的圆形Imageview，而你又刚好设置了占位图的话，那么，你就会遇到这个问题。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方案一：不设置占位图；"><a href="#方案一：不设置占位图；" class="headerlink" title="方案一：不设置占位图；"></a>方案一：不设置占位图；</h3><h3 id="方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。"><a href="#方案二：使用Glide的Transformation-API自定义圆形Bitmap的转换。" class="headerlink" title="方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。"></a>方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。</h3><h3 id="方案三：使用下面的代码加载图片："><a href="#方案三：使用下面的代码加载图片：" class="headerlink" title="方案三：使用下面的代码加载图片："></a>方案三：使用下面的代码加载图片：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(<span class="keyword">new</span> SimpleTarget&lt;Bitmap&gt;(width, height) &#123;</div><div class="line">        <span class="meta">@Override</span> </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResourceReady</span><span class="params">(Bitmap bitmap, GlideAnimation anim)</span> </span>&#123;</div><div class="line">            circleImageView.setImageDrawable(resource); </div><div class="line">        &#125; </div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="方案四：不使用Glide的默认动画："><a href="#方案四：不使用Glide的默认动画：" class="headerlink" title="方案四：不使用Glide的默认动画："></a>方案四：不使用Glide的默认动画：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">	.dontAnimate()</div><div class="line">    .placeholder(R.drawable.ic_default_avatar)</div><div class="line">    .into(circleImageview);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Glide加载圆形image第一次只显示占位图的坑&quot;&gt;&lt;a href=&quot;#Glide加载圆形image第一次只显示占位图的坑&quot; class=&quot;headerlink&quot; title=&quot;Glide加载圆形image第一次只显示占位图的坑&quot;&gt;&lt;/a&gt;Glide加载圆形im
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>如何遍写测试用例</title>
