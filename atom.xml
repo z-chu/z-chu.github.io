@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-21T06:23:52.814Z</updated>
+  <updated>2017-01-21T06:30:34.028Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,117 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Android面试之java基础</title>
-    <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
-    <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
-    <published>2017-01-21T06:14:17.000Z</published>
-    <updated>2017-01-21T06:23:52.814Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
-<p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
-<p>　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。<br>程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。<br>软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。<br>而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。</p>
-<p>　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。</p>
-<p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong></p>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
-<p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
-<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
-<h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　sleep()方法和wait()方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
-<h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
-<li>最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
-<li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>这两个方法来自不同的类分别是Thread和Object</p>
-</li>
-<li>sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常</li>
-</ol>
-<h1 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h1><ul>
-<li><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
-</li>
-<li><p>Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。</p>
-</li>
-</ul>
-<h1 id="weak-soft-strong引用的区别"><a href="#weak-soft-strong引用的区别" class="headerlink" title="weak/soft/strong引用的区别"></a>weak/soft/strong引用的区别</h1><ul>
-<li>强引用(StrongReference) 是 Java 的默认引用实现,  它会一直存活于 JVM 内， 直到没有任何对象指向它时 GC 执行后才会被回收</li>
-<li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
-<li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
-</ul>
-<h1 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h1><p>　equals(Object obj)方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br>hashcode()方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
-<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。<br>对象的hashCode和equals方法作用：这些集合通过对象的这2个方法判断集合中是否已存着该对象。<br>约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong><br>伪代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h1&gt;&lt;p&gt;　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。&lt;/p&gt;
-&lt;p&gt;　对于一个OOP来说，它的一个”碎片
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android面试之网络</title>
-    <link href="http://yoursite.com/2017/01/21/Android-interview2/"/>
-    <id>http://yoursite.com/2017/01/21/Android-interview2/</id>
-    <published>2017-01-21T06:03:17.000Z</published>
-    <updated>2017-01-21T06:24:11.318Z</updated>
-    
-    <content type="html"><![CDATA[<p>#TCP/IP、HTTP、Socket的区别<br>网络由下往上分为：</p>
-<p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
-<p>我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。</p>
-<p>三者从本质上来说没有可比性，</p>
-<p>Socket则是对TCP/IP协议的封装和应用(程序员层面上)。</p>
-<p>也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，</p>
-<p>而HTTP是应用层协议，主要解决如何包装数据。</p>
-<p>关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：</p>
-<p><strong>我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。</strong></p>
-<p><strong>如果想要是传输的数据有意义，则必须使用到应用层协议。</strong></p>
-<p><strong>应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。</strong></p>
-<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong></p>
-<p>而我们平时说的最多的Socket是什么呢，实际上Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API）。</p>
-<p>通过Socket,我们才能使用TCP/IP协议。</p>
-<p>实际上，Socket跟TCP/IP协议没有必然的联系。</p>
-<p>SoCket编程接口在设计的时候，级希望也能适应其他的网络协议。</p>
-<p>所以说，Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，</p>
-<p>从而形成了我们知道的一些最基本的函数接口，比如create、listen、connect、accept、send、read和write等等。</p>
-<p>网络有一段关于socket和TCP/IP协议关系的说法比较容易理解：</p>
-<p><strong>TCP/IP只是一个协议栈，就像操作系统的运行机制一样，必须要具体实现，同时还有提供对外的操作接口。</strong></p>
-<p><strong>这个就像操作系统会提供标准的编程接口，比如win32编程接口一样，</strong></p>
-<p><strong>TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</strong></p>
-<p>CSDN上有个比较现象的描述：<strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong></p>
-<p>实际上，传输层的TCP是基于网络层的IP协议的，而应用层的HTTP协议又是基于传输层的TCP协议的，而Socket本身不算是协议，就像上面所说，它只是提供了一个针对TCP或者UDP编程的接口。</p>
-<p>#什么是TCP连接的三次握手</p>
-<p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
-<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1）,同时自己也发送一个SYN包（syn=k）,即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
-<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1),此包发送完毕，客户端和服务器进入ESTABLISHED（确认连接）状态，完成三次握手。</p>
-<p>握手过程中传送的包含数据，三次握手完成后，客户端和服务器才正式开始传送数据。</p>
-<p>理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP连接都将被一直保持下去。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#TCP/IP、HTTP、Socket的区别&lt;br&gt;网络由下往上分为：&lt;/p&gt;
-&lt;p&gt;物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。&lt;/p&gt;
-&lt;p&gt;我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。&lt;/p&gt;
-&lt;p&gt;三者从本质上来说
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android面试之网络</title>
+    <title>Android面试之性能优化</title>
     <link href="http://yoursite.com/2017/01/21/Android-interview3/"/>
     <id>http://yoursite.com/2017/01/21/Android-interview3/</id>
-    <published>2017-01-21T06:03:17.000Z</published>
-    <updated>2017-01-21T06:27:44.078Z</updated>
+    <published>2017-01-21T06:17:17.000Z</published>
+    <updated>2017-01-21T06:30:34.028Z</updated>
     
     <content type="html"><![CDATA[<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
 <li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
@@ -182,6 +76,112 @@
 &lt;li&gt;界面不流程，如何去debug调试View，来定位卡顿问题？&lt;/li&gt;
 &lt;li&gt;如何解决卡顿问题？&lt;/li&gt;
 &lt;l
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之网络</title>
+    <link href="http://yoursite.com/2017/01/21/Android-interview2/"/>
+    <id>http://yoursite.com/2017/01/21/Android-interview2/</id>
+    <published>2017-01-21T06:15:17.000Z</published>
+    <updated>2017-01-21T06:30:45.068Z</updated>
+    
+    <content type="html"><![CDATA[<p>#TCP/IP、HTTP、Socket的区别<br>网络由下往上分为：</p>
+<p>物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。</p>
+<p>我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。</p>
+<p>三者从本质上来说没有可比性，</p>
+<p>Socket则是对TCP/IP协议的封装和应用(程序员层面上)。</p>
+<p>也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，</p>
+<p>而HTTP是应用层协议，主要解决如何包装数据。</p>
+<p>关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：</p>
+<p><strong>我们在传输数据时，可以只使用(传输层)TCP/IP协议。但那样的话，没有了应用层，便无法识别数据内容。</strong></p>
+<p><strong>如果想要是传输的数据有意义，则必须使用到应用层协议。</strong></p>
+<p><strong>应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。</strong></p>
+<p><strong>web使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。</strong></p>
+<p>而我们平时说的最多的Socket是什么呢，实际上Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API）。</p>
+<p>通过Socket,我们才能使用TCP/IP协议。</p>
+<p>实际上，Socket跟TCP/IP协议没有必然的联系。</p>
+<p>SoCket编程接口在设计的时候，级希望也能适应其他的网络协议。</p>
+<p>所以说，Socket的出现只是使得程序员更方便地使用TCP/IP协议栈而已，是对TCP/IP协议的抽象，</p>
+<p>从而形成了我们知道的一些最基本的函数接口，比如create、listen、connect、accept、send、read和write等等。</p>
+<p>网络有一段关于socket和TCP/IP协议关系的说法比较容易理解：</p>
+<p><strong>TCP/IP只是一个协议栈，就像操作系统的运行机制一样，必须要具体实现，同时还有提供对外的操作接口。</strong></p>
+<p><strong>这个就像操作系统会提供标准的编程接口，比如win32编程接口一样，</strong></p>
+<p><strong>TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</strong></p>
+<p>CSDN上有个比较现象的描述：<strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong></p>
+<p>实际上，传输层的TCP是基于网络层的IP协议的，而应用层的HTTP协议又是基于传输层的TCP协议的，而Socket本身不算是协议，就像上面所说，它只是提供了一个针对TCP或者UDP编程的接口。</p>
+<p>#什么是TCP连接的三次握手</p>
+<p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1）,同时自己也发送一个SYN包（syn=k）,即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1),此包发送完毕，客户端和服务器进入ESTABLISHED（确认连接）状态，完成三次握手。</p>
+<p>握手过程中传送的包含数据，三次握手完成后，客户端和服务器才正式开始传送数据。</p>
+<p>理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP连接都将被一直保持下去。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#TCP/IP、HTTP、Socket的区别&lt;br&gt;网络由下往上分为：&lt;/p&gt;
+&lt;p&gt;物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。&lt;/p&gt;
+&lt;p&gt;我们知道IP协议对应网络层，TCP协议对应于传输层，而HTTP协议对应于应用层。&lt;/p&gt;
+&lt;p&gt;三者从本质上来说
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之java基础</title>
+    <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
+    <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
+    <published>2017-01-21T06:14:17.000Z</published>
+    <updated>2017-01-21T06:23:52.814Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
+<p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
+<p>　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。<br>程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。<br>软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。<br>而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。</p>
+<p>　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。</p>
+<p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong></p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
+<p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
+<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
+<h1 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h1><p>　sleep()方法和wait()方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
+<h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
+<li>最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
+<li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>这两个方法来自不同的类分别是Thread和Object</p>
+</li>
+<li>sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常</li>
+</ol>
+<h1 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h1><ul>
+<li><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p>
+</li>
+<li><p>Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。</p>
+</li>
+</ul>
+<h1 id="weak-soft-strong引用的区别"><a href="#weak-soft-strong引用的区别" class="headerlink" title="weak/soft/strong引用的区别"></a>weak/soft/strong引用的区别</h1><ul>
+<li>强引用(StrongReference) 是 Java 的默认引用实现,  它会一直存活于 JVM 内， 直到没有任何对象指向它时 GC 执行后才会被回收</li>
+<li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
+<li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
+</ul>
+<h1 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h1><p>　equals(Object obj)方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br>hashcode()方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
+<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。<br>对象的hashCode和equals方法作用：这些集合通过对象的这2个方法判断集合中是否已存着该对象。<br>约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong><br>伪代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h1&gt;&lt;p&gt;　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。&lt;/p&gt;
+&lt;p&gt;　对于一个OOP来说，它的一个”碎片
     
     </summary>
     
