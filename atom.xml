@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-21T10:33:59.263Z</updated>
+  <updated>2017-01-23T14:41:35.046Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开闭原则</title>
+    <link href="http://yoursite.com/2017/01/23/OpenClosedPrinciple/"/>
+    <id>http://yoursite.com/2017/01/23/OpenClosedPrinciple/</id>
+    <published>2017-01-23T14:38:41.000Z</published>
+    <updated>2017-01-23T14:41:35.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>面向扩展开放，面向修改关闭。简单的说就是，别人可以基于你的代码进行拓展编写，但却不能修改你的代码</p>
+<p>开闭原则（OCP）是面向对象设计中“可复用设计”的基石，是面向对象设计七大原则之一，也是面向对象设计中最重要的原则之一，实际上<a href="http://baike.baidu.com/view/1688346.htm" target="_blank" rel="external">里氏替换原则</a>（LSP）、<a href="http://baike.baidu.com/view/1996652.htm" target="_blank" rel="external">依赖倒转原则</a>（DIP）、<a href="http://baike.baidu.com/view/1638378.htm" target="_blank" rel="external">接口隔离原则</a>（ISP）以及<a href="http://baike.baidu.com/view/262290.htm" target="_blank" rel="external">抽象类</a>（Abstract Class）、<a href="http://baike.baidu.com/view/159864.htm" target="_blank" rel="external">接口</a>(Interface)等等，都可以看作是开闭原则的实现方法。</p>
+<h2 id="面向扩展开放，面向修改关闭"><a href="#面向扩展开放，面向修改关闭" class="headerlink" title="面向扩展开放，面向修改关闭"></a>面向扩展开放，面向修改关闭</h2><ol>
+<li><p>对于扩展是开放的（Open for extension）。这意味着模块的行为是可以扩展的。当应用的需求改变时，我们可以对模块进行扩展，使其具有满足那些改变的新行为。也就是说，我们可以改变模块的功能。</p>
+</li>
+<li><p>对于修改是关闭的（Closed for modification）。对模块行为进行扩展时，不必改动模块的源代码。相对的在设计时就应考虑到，不需要改动模块的源代码，就可以对模块进行扩展。</p>
+</li>
+</ol>
+<h2 id="开闭原则的相对性"><a href="#开闭原则的相对性" class="headerlink" title="开闭原则的相对性"></a>开闭原则的相对性</h2><p>软件系统的构建是一个需要不断重构的过程，在这个过程中，模块的功能抽象，模块与模块间的关系，都不会从一开始就非常清晰明了，所以构建100%满足开闭原则的软件系统是相当困难的，这就是开闭原则的相对性。但在设计过程中，通过对模块功能的抽象（接口定义），模块之间的关系的抽象（通过接口调用），抽象与实现的分离（面向接口的程序设计）等，可以尽量接近满足开闭原则。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;面向扩展开放，面向修改关闭。简单的说就是，别人可以基于你的代码进行拓展编写，但却不能修改你的代码&lt;/p&gt;
+&lt;p&gt;开闭原则（OCP）是面向对象设计中“可复用设计”的基石，是面向对象设计七大原则之一，也是面向对象设计中最重要的原则之一，实际上&lt;a href=&quot;http://ba
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>我对MVC和MVP的一些理解</title>
@@ -64,7 +96,7 @@
     <link href="http://yoursite.com/2017/01/21/prototype-pattern/"/>
     <id>http://yoursite.com/2017/01/21/prototype-pattern/</id>
     <published>2017-01-21T07:50:24.000Z</published>
-    <updated>2017-01-21T10:45:40.427Z</updated>
+    <updated>2017-01-23T14:41:19.893Z</updated>
     
     <content type="html"><![CDATA[<h2 id="模式的定义"><a href="#模式的定义" class="headerlink" title="模式的定义"></a>模式的定义</h2><p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
 <h2 id="模式的使用场景"><a href="#模式的使用场景" class="headerlink" title="模式的使用场景"></a>模式的使用场景</h2><ol>
