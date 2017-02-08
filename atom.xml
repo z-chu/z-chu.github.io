@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-08T15:15:40.960Z</updated>
+  <updated>2017-02-08T15:19:02.752Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/08/Design-patterns-2/"/>
     <id>http://yoursite.com/2017/02/08/Design-patterns-2/</id>
     <published>2017-02-08T15:10:41.000Z</published>
-    <updated>2017-02-08T15:15:40.960Z</updated>
+    <updated>2017-02-08T15:19:02.752Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
 <li>某类特定问题的代码设计解决方案</li>
