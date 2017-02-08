@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -86,22 +86,64 @@
 
 
 
-<meta name="description" content="面向对象　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。
-　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。
-　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。程序员可以">
+<meta name="description" content="1.定义
+某类特定问题的代码设计解决方案
+是一套代码设计的经验总结
+设计模式，其实只是前人针对某类问题的代码设计经验而已，并没有很高大上
+
+
+
+2.作用
+提高代码复用率，降低开发成本和周期
+提高代码可维护性、可拓展性
+使代码更加优雅
+让代码更容易被他人理解
+
+3.七大设计原则
+开闭原则一个实体（类、函数、模块等）应该对外扩展开放，对内修改关闭
+简单的说就是，别人可以基于你的代码进行拓展编写，但却不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android面试之java基础">
-<meta property="og:url" content="http://yoursite.com/2017/01/21/Android-interview1/index.html">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/Design-patterns-2/index.html">
 <meta property="og:site_name" content="赵成柱的博客">
-<meta property="og:description" content="面向对象　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。
-　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。
-　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。程序员可以">
-<meta property="og:updated_time" content="2017-01-21T10:52:47.043Z">
+<meta property="og:description" content="1.定义
+某类特定问题的代码设计解决方案
+是一套代码设计的经验总结
+设计模式，其实只是前人针对某类问题的代码设计经验而已，并没有很高大上
+
+
+
+2.作用
+提高代码复用率，降低开发成本和周期
+提高代码可维护性、可拓展性
+使代码更加优雅
+让代码更容易被他人理解
+
+3.七大设计原则
+开闭原则一个实体（类、函数、模块等）应该对外扩展开放，对内修改关闭
+简单的说就是，别人可以基于你的代码进行拓展编写，但却不">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.PNG">
+<meta property="og:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB-23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20.png">
+<meta property="og:updated_time" content="2017-02-08T15:11:57.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android面试之java基础">
-<meta name="twitter:description" content="面向对象　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。
-　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。
-　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。程序员可以">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="1.定义
+某类特定问题的代码设计解决方案
+是一套代码设计的经验总结
+设计模式，其实只是前人针对某类问题的代码设计经验而已，并没有很高大上
+
+
+
+2.作用
+提高代码复用率，降低开发成本和周期
+提高代码可维护性、可拓展性
+使代码更加优雅
+让代码更容易被他人理解
+
+3.七大设计原则
+开闭原则一个实体（类、函数、模块等）应该对外扩展开放，对内修改关闭
+简单的说就是，别人可以基于你的代码进行拓展编写，但却不">
+<meta name="twitter:image" content="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.PNG">
 
 
 
@@ -129,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/21/Android-interview1/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/08/Design-patterns-2/"/>
 
 
 
 
 
-  <title> Android面试之java基础 | 赵成柱的博客 </title>
+  <title> 设计模式 | 赵成柱的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +320,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/Android-interview1/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/Design-patterns-2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="z-chu">
@@ -302,7 +344,7 @@
             
             
               
-                Android面试之java基础
+                设计模式
               
             
           </h1>
@@ -317,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T14:14:17+08:00">
-                2017-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-08T23:10:41+08:00">
+                2017-02-08
               </time>
             
 
@@ -340,8 +382,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -358,8 +400,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/21/Android-interview1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/21/Android-interview1/" itemprop="commentCount"></span>
+                <a href="/2017/02/08/Design-patterns-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/08/Design-patterns-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,39 +427,61 @@
       
 
       
-        <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
-<p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
-<p>　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。<br>程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。<br>软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。<br>而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。</p>
-<p>　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。</p>
-<p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong><br><a id="more"></a></p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
-<p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
-<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
-<h2 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h2><p><code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
-<h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
-<li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
-<li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
+<li>某类特定问题的代码设计解决方案</li>
+<li>是一套代码设计的经验总结<blockquote>
+<p>设计模式，其实只是前人针对某类问题的代码设计经验而已，并没有很高大上</p>
+</blockquote>
 </li>
-<li><p>这两个方法来自不同的类分别是Thread和Object</p>
-</li>
-<li><code>sleep</code>必须捕获异常，而<code>wait</code>，<code>notify</code>和<code>notifyAll</code>不需要捕获异常</li>
+</ul>
+<h2 id="2-作用"><a href="#2-作用" class="headerlink" title="2.作用"></a>2.作用</h2><ul>
+<li>提高代码复用率，降低开发成本和周期</li>
+<li>提高代码可维护性、可拓展性</li>
+<li>使代码更加优雅</li>
+<li>让代码更容易被他人理解</li>
+</ul>
+<h2 id="3-七大设计原则"><a href="#3-七大设计原则" class="headerlink" title="3.七大设计原则"></a>3.七大设计原则</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.PNG" alt="设计模式总览图"></p>
+<h4 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h4><p>一个实体（类、函数、模块等）应该对外扩展开放，对内修改关闭</p>
+<p>简单的说就是，别人可以基于你的代码进行拓展编写，但却不能修改你的代码。<br>反过来说就是，你在写代码时就要考虑到：怎么让别人可以不修改你的代码，就能对你的代码进行扩展。</p>
+<p>开闭原则是面向对象设计中“可复用设计”的基石，是面向对象设计中最重要的原则之一，其他原则都可以看作是开闭原则的实现方法。</p>
+<blockquote>
+<ol>
+<li>即每次发生变化时，要通过添加新的代码来增强现有类型的行为，而不是修改原有的代码。</li>
+<li>符合开放封闭原则的最好方式是提供一个固有的接口，然后让所有可能发生变化的类实现该接口，让固定的接口与相关对象进行交互。</li>
 </ol>
-<h2 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h2><ul>
-<li>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</li>
-<li>Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。</li>
-</ul>
-<h2 id="weak-soft-strong引用的区别"><a href="#weak-soft-strong引用的区别" class="headerlink" title="weak/soft/strong引用的区别"></a>weak/soft/strong引用的区别</h2><ul>
-<li>强引用(StrongReference) 是 Java 的默认引用实现,  它会一直存活于 JVM 内， 直到没有任何对象指向它时 GC 执行后才会被回收</li>
-<li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
-<li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
-</ul>
-<h2 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h2><p><code>equals(Object obj)</code>方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br><code>hashcode()</code>方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
-<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。</p>
-<p>　这些集合通过对象的<code>hashCode</code>和<code>equals</code>方法判断集合中是否已存着该对象。</p>
-<p>　约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong></p>
-<p>伪代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h4><p>一个类应该只能有一个引起它变化的原因。</p>
+<blockquote>
+<p>一个类，只有一个引起它变化的原因。应该只有一个职责。每一个职责都是变化的一个轴线，如果一个类有一个以上的职责，这些职责就耦合在了一起。这会导致脆弱的设计。当一个职责发生变化时，可能会影响其它的职责。另外，多个职责耦合在一起，会影响复用性。例如：要实现逻辑和界面的分离。</p>
+</blockquote>
+<h4 id="里氏代替原则"><a href="#里氏代替原则" class="headerlink" title="里氏代替原则"></a>里氏代替原则</h4><p>任何基类可以出现的地方，子类一定可以出现。<br>子类可以扩展父类的功能，但不能改变父类原有的功能。</p>
+<blockquote>
+<ol>
+<li>在软件开发过程中，子类替换父类后，程序的表现行为是一样的。</li>
+<li>只有当子类替换掉父类后软件的功能不受影响时，父类才能真正地被复用，而子类也可以在父类的基础上添加新的行为。</li>
+</ol>
+</blockquote>
+<h4 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h4><p>程序要依赖于抽象接口，不要依赖于具体实现。简单的说就面向抽象进行编程，不要面向实现进行编程，这样就降低了客户与实现模块间的耦合。</p>
+<blockquote>
+<ol>
+<li>高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象。</li>
+<li>抽象不应该依赖于具体，具体应该依赖于抽象。</li>
+</ol>
+</blockquote>
+<h4 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h4><p>程序不应该依赖它不需要的接口。一个类对另一个类的依赖应该建立在最小的接口上。</p>
+<blockquote>
+<p>使用多个专门的接口比使用单一的总接口要好。<br>一个类对另外一个类的依赖性应当是建立在最小的接口上的。<br>一个接口代表一个角色，不应当将不同的角色都交给一个接口。没有关系的接口合并在一起，形成一个臃肿的大接口，这是对角色和接口的污染。</p>
+</blockquote>
+<h4 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h4><p>在一个新的对象里面使用一些已有的对象，使之成为新对象的一部分。</p>
+<blockquote>
+<p>新对象通过向这些对象的委派达到复用已用功能的目的。简单地说，就是要尽量使用合成/聚合，尽量不要使用继承。</p>
+</blockquote>
+<h4 id="最少知识原则（迪米特法则）"><a href="#最少知识原则（迪米特法则）" class="headerlink" title="最少知识原则（迪米特法则）"></a>最少知识原则（迪米特法则）</h4><p>一个模块或对象应尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立，这样当一个模块修改时，影响的模块就会越少，扩展起来更加容易。</p>
+<blockquote>
+<p>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中的一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。<br>关于迪米特法则的其他描述：只与你直接的朋友们通信；不要跟“陌生人”说话。</p>
+</blockquote>
+<h2 id="4-七大设计原则"><a href="#4-七大设计原则" class="headerlink" title="4.七大设计原则"></a>4.七大设计原则</h2><p>分3大类，共23种设计模式.</p>
+<p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB-23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20.png" alt="设计模式总览图"></p>
 
       
     </div>
@@ -439,13 +503,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/21/GlideLoadedCircularImageBug/" rel="next" title="Glide加载圆形image第一次只显示占位图的坑">
-                <i class="fa fa-chevron-left"></i> Glide加载圆形image第一次只显示占位图的坑
+              <a href="/2017/02/07/Design-patterns-1/" rel="next" title="面向对象基础">
+                <i class="fa fa-chevron-left"></i> 面向对象基础
               </a>
             
           </div>
@@ -453,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/21/Android-interview2/" rel="prev" title="Android面试之网络">
-                Android面试之网络 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -482,8 +548,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/21/Android-interview1/"
-           data-title="Android面试之java基础" data-url="http://yoursite.com/2017/01/21/Android-interview1/">
+      <div class="ds-thread" data-thread-key="2017/02/08/Design-patterns-2/"
+           data-title="设计模式" data-url="http://yoursite.com/2017/02/08/Design-patterns-2/">
       </div>
     
   </div>
@@ -601,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">2.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep-和wait-的区别"><span class="nav-number">3.</span> <span class="nav-text">sleep()和wait()的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不同点："><span class="nav-number">3.1.</span> <span class="nav-text">不同点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA反射机制"><span class="nav-number">4.</span> <span class="nav-text">JAVA反射机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-soft-strong引用的区别"><span class="nav-number">5.</span> <span class="nav-text">weak/soft/strong引用的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object的hashCode-与equals-的区别和作用"><span class="nav-number">6.</span> <span class="nav-text">Object的hashCode()与equals()的区别和作用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-定义"><span class="nav-number">1.</span> <span class="nav-text">1.定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-作用"><span class="nav-number">2.</span> <span class="nav-text">2.作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-七大设计原则"><span class="nav-number">3.</span> <span class="nav-text">3.七大设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.0.1.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单一职责原则"><span class="nav-number">3.0.2.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#里氏代替原则"><span class="nav-number">3.0.3.</span> <span class="nav-text">里氏代替原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">3.0.4.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">3.0.5.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合成复用原则"><span class="nav-number">3.0.6.</span> <span class="nav-text">合成复用原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最少知识原则（迪米特法则）"><span class="nav-number">3.0.7.</span> <span class="nav-text">最少知识原则（迪米特法则）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-七大设计原则"><span class="nav-number">4.</span> <span class="nav-text">4.七大设计原则</span></a></li></ol></div>
             
 
           </div>
