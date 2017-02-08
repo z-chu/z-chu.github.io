@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-08T15:11:57.085Z</updated>
+  <updated>2017-02-08T15:13:41.921Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/08/Design-patterns-2/"/>
     <id>http://yoursite.com/2017/02/08/Design-patterns-2/</id>
     <published>2017-02-08T15:10:41.000Z</published>
-    <updated>2017-02-08T15:11:57.085Z</updated>
+    <updated>2017-02-08T15:13:41.921Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
 <li>某类特定问题的代码设计解决方案</li>
@@ -36,6 +36,7 @@
 <li>让代码更容易被他人理解</li>
 </ul>
 <h2 id="3-七大设计原则"><a href="#3-七大设计原则" class="headerlink" title="3.七大设计原则"></a>3.七大设计原则</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.PNG" alt="设计模式总览图"></p>
+<a id="more"></a>
 <h4 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h4><p>一个实体（类、函数、模块等）应该对外扩展开放，对内修改关闭</p>
 <p>简单的说就是，别人可以基于你的代码进行拓展编写，但却不能修改你的代码。<br>反过来说就是，你在写代码时就要考虑到：怎么让别人可以不修改你的代码，就能对你的代码进行扩展。</p>
 <p>开闭原则是面向对象设计中“可复用设计”的基石，是面向对象设计中最重要的原则之一，其他原则都可以看作是开闭原则的实现方法。</p>
@@ -84,7 +85,17 @@
       &lt;h2 id=&quot;1-定义&quot;&gt;&lt;a href=&quot;#1-定义&quot; class=&quot;headerlink&quot; title=&quot;1.定义&quot;&gt;&lt;/a&gt;1.定义&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;某类特定问题的代码设计解决方案&lt;/li&gt;
 &lt;li&gt;是一套代码设计的经验总结&lt;blockquote&gt;
-&lt;p&gt;设计模
+&lt;p&gt;设计模式，其实只是前人针对某类问题的代码设计经验而已，并没有很高大上&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-作用&quot;&gt;&lt;a href=&quot;#2-作用&quot; class=&quot;headerlink&quot; title=&quot;2.作用&quot;&gt;&lt;/a&gt;2.作用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;提高代码复用率，降低开发成本和周期&lt;/li&gt;
+&lt;li&gt;提高代码可维护性、可拓展性&lt;/li&gt;
+&lt;li&gt;使代码更加优雅&lt;/li&gt;
+&lt;li&gt;让代码更容易被他人理解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;3-七大设计原则&quot;&gt;&lt;a href=&quot;#3-七大设计原则&quot; class=&quot;headerlink&quot; title=&quot;3.七大设计原则&quot;&gt;&lt;/a&gt;3.七大设计原则&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xq7yd.com1.z0.glb.clouddn.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.PNG&quot; alt=&quot;设计模式总览图&quot;&gt;&lt;/p&gt;
     
     </summary>
     
