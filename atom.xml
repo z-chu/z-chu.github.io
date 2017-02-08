@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-08T15:19:02.752Z</updated>
+  <updated>2017-02-08T15:20:30.456Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>设计模式</title>
+    <title>设计模式概览</title>
     <link href="http://yoursite.com/2017/02/08/Design-patterns-2/"/>
     <id>http://yoursite.com/2017/02/08/Design-patterns-2/</id>
     <published>2017-02-08T15:10:41.000Z</published>
-    <updated>2017-02-08T15:19:02.752Z</updated>
+    <updated>2017-02-08T15:20:30.456Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><ul>
 <li>某类特定问题的代码设计解决方案</li>
@@ -101,8 +101,6 @@
     
       <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
