@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-09T14:29:22.309Z</updated>
+  <updated>2017-02-09T14:33:25.022Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/09/singleton-pattern/"/>
     <id>http://yoursite.com/2017/02/09/singleton-pattern/</id>
     <published>2017-02-09T14:23:54.000Z</published>
-    <updated>2017-02-09T14:29:22.309Z</updated>
+    <updated>2017-02-09T14:33:25.022Z</updated>
     
     <content type="html"><![CDATA[<p>当我们有这样的需求:<strong>某一些类应该只存在一个实例</strong> 的时候,我们就可以用单例模式来应对.</p>
 <p>单例模式是所有设计模式中最简单的一个,也是大部分人最早知道的一个设计模式.</p>
@@ -29,7 +29,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>简单总结一下这样的写法:</p>
 <ol>
-<li>提供一个全局静态的getIns方法,使得易于使用.</li>
+<li>提供一个全局静态的getInstance方法,使得易于使用.</li>
 <li>延迟Singleton的实例化,节省资源(所谓的懒汉式).</li>
 <li>缺点是线程不安全.当多个线程同时进入<code>if (null == instance) {}</code>的时候就会创建多个实例.</li>
 </ol>
@@ -40,7 +40,7 @@
 <p>诚然这个能解决问题,但是我们知道<code>synchronized</code>是非常耗性能的.</p>
 <p>更何况:<br>我们只需要在第一次执行这个方法的时候同步,也就是说当instance实例化后,我们不再需要同步了<br>而如果我们加了<code>synchronized</code>,那么实例化后的每次调用<code>getInstance</code>都是一种多余的消耗操作,是累赘</p>
 <blockquote>
-<p>:当然,如果哪些额外的负担你能接受(比如用的很少),那么添加<code>synchronized</code>的方法也是可以接受的,毕竟这是最简单的方式.</p>
+<p>当然,如果哪些额外的负担你能接受(比如用的很少),那么添加<code>synchronized</code>的方法也是可以接受的,毕竟这是最简单的方式.</p>
 </blockquote>
 <p>那么问题来了,如何改善?<br>如何确保单例,而又不影响性能?</p>
 <h2 id="性能进阶"><a href="#性能进阶" class="headerlink" title="性能进阶"></a>性能进阶</h2><p>接下去介绍一种更优秀的,线程安全的单例写法—双重检查锁模式(double check locking pattern)</p>
@@ -98,7 +98,7 @@
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Singleton&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Singleton instance;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; Singleton &lt;span class=&quot;title&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt; == instance) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            instance = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Singleton();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; instance;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;简单总结一下这样的写法:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;提供一个全局静态的getIns方法,使得易于使用.&lt;/li&gt;
+&lt;li&gt;提供一个全局静态的getInstance方法,使得易于使用.&lt;/li&gt;
 &lt;li&gt;延迟Singleton的实例化,节省资源(所谓的懒汉式).&lt;/li&gt;
 &lt;li&gt;缺点是线程不安全.当多个线程同时进入&lt;code&gt;if (null == instance) {}&lt;/code&gt;的时候就会创建多个实例.&lt;/li&gt;
 &lt;/ol&gt;

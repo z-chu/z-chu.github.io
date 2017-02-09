@@ -100,7 +100,7 @@
 但是即使是最简单的,也有很多可以推敲的细节,要做得对也不简单.
 经典的单例相信大家一定写过这样类似的单例模式代码:
 1234567891011public class Singleton &amp;#123;    private static">
-<meta property="og:updated_time" content="2017-02-09T14:29:22.309Z">
+<meta property="og:updated_time" content="2017-02-09T14:33:25.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈设计模式之单例模式">
 <meta name="twitter:description" content="当我们有这样的需求:某一些类应该只存在一个实例 的时候,我们就可以用单例模式来应对.
@@ -398,7 +398,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>简单总结一下这样的写法:</p>
 <ol>
-<li>提供一个全局静态的getIns方法,使得易于使用.</li>
+<li>提供一个全局静态的getInstance方法,使得易于使用.</li>
 <li>延迟Singleton的实例化,节省资源(所谓的懒汉式).</li>
 <li>缺点是线程不安全.当多个线程同时进入<code>if (null == instance) {}</code>的时候就会创建多个实例.</li>
 </ol>
@@ -409,7 +409,7 @@
 <p>诚然这个能解决问题,但是我们知道<code>synchronized</code>是非常耗性能的.</p>
 <p>更何况:<br>我们只需要在第一次执行这个方法的时候同步,也就是说当instance实例化后,我们不再需要同步了<br>而如果我们加了<code>synchronized</code>,那么实例化后的每次调用<code>getInstance</code>都是一种多余的消耗操作,是累赘</p>
 <blockquote>
-<p>:当然,如果哪些额外的负担你能接受(比如用的很少),那么添加<code>synchronized</code>的方法也是可以接受的,毕竟这是最简单的方式.</p>
+<p>当然,如果哪些额外的负担你能接受(比如用的很少),那么添加<code>synchronized</code>的方法也是可以接受的,毕竟这是最简单的方式.</p>
 </blockquote>
 <p>那么问题来了,如何改善?<br>如何确保单例,而又不影响性能?</p>
 <h2 id="性能进阶"><a href="#性能进阶" class="headerlink" title="性能进阶"></a>性能进阶</h2><p>接下去介绍一种更优秀的,线程安全的单例写法—双重检查锁模式(double check locking pattern)</p>
