@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-08T15:22:05.700Z</updated>
+  <updated>2017-02-09T14:25:31.031Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,95 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈设计模式之单例模式</title>
+    <link href="http://yoursite.com/2017/02/09/singleton-pattern/"/>
+    <id>http://yoursite.com/2017/02/09/singleton-pattern/</id>
+    <published>2017-02-09T14:23:54.000Z</published>
+    <updated>2017-02-09T14:25:31.031Z</updated>
+    
+    <content type="html"><![CDATA[<p>当我们有这样的需求:<strong>某一些类应该只存在一个实例</strong> 的时候,我们就可以用单例模式来应对.</p>
+<p>单例模式是所有设计模式中最简单的一个,也是大部分人最早知道的一个设计模式.</p>
+<p>但是即使是最简单的,也有很多可以推敲的细节,要做得对也不简单.</p>
+<h2 id="经典的单例"><a href="#经典的单例" class="headerlink" title="经典的单例"></a>经典的单例</h2><p>相信大家一定写过这样类似的单例模式代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简单总结一下这样的写法:</p>
+<ol>
+<li>提供一个全局静态的getIns方法,使得易于使用.</li>
+<li>延迟Singleton的实例化,节省资源(所谓的懒汉式).</li>
+<li>缺点是线程不安全.当多个线程同时进入<code>if (null == instance) {}</code>的时候就会创建多个实例.</li>
+</ol>
+<p>OK,接下来我们看来是要解决多线程不安全的问题了.</p>
+<h2 id="多线程安全"><a href="#多线程安全" class="headerlink" title="多线程安全"></a>多线程安全</h2><p>这个时候可能有的人就说了,这个太简单了,加一个<code>synchronized</code>不就结了吗?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">        instance = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>确实,增加<code>synchronized</code>之后能够迫使每个线程在进入这个方法之前,要先等别的线程离开该方法.也即避免了多个线程同时进入<code>getInstance</code>方法.</p>
+<p>诚然这个能解决问题,但是我们知道<code>synchronized</code>是非常耗性能的.</p>
+<p>更何况:<br>我们只需要在第一次执行这个方法的时候同步,也就是说当instance实例化后,我们不再需要同步了<br>而如果我们加了<code>synchronized</code>,那么实例化后的每次调用<code>getInstance</code>都是一种多余的消耗操作,是累赘</p>
+<blockquote>
+<p>:当然,如果哪些额外的负担你能接受(比如用的很少),那么添加<code>synchronized</code>的方法也是可以接受的,毕竟这是最简单的方式.</p>
+</blockquote>
+<p>那么问题来了,如何改善?<br>如何确保单例,而又不影响性能?</p>
+<h2 id="性能进阶"><a href="#性能进阶" class="headerlink" title="性能进阶"></a>性能进阶</h2><p>接下去介绍一种更优秀的,线程安全的单例写法—双重检查锁模式(double check locking pattern)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleCheck</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> DoubleCheck instance;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DoubleCheck</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DoubleCheck <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span>==instance)&#123; <span class="comment">//检查</span></div><div class="line">            <span class="keyword">synchronized</span> (DoubleCheck.class)&#123;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123; <span class="comment">//又检查一次</span></div><div class="line">                    instance = <span class="keyword">new</span> DoubleCheck();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意这里的instance用了<code>volatile</code>关键字来修饰,为什么呢?<br>因为执行<code>instance = new DoubleCheck()</code>做了很多事情:</p>
+<ol>
+<li>给instance分配内存</li>
+<li>调用构造函数来初始化成员变量(可能会很久)</li>
+<li>将ins对象指向分配的内存空间（执行完这步 ins才不为null）</li>
+</ol>
+<p>上面的操作并不是原子操作,而jvm也可能重排序指令,导致第二三两步的执行顺序可能会被打乱,当第3步先于第2步完成,那么会导致有线程拿到了初始化未完毕的<code>instance</code>,那么就会错误,而这里利用了<code>volatile</code>的禁止指令重排序优化特性,用来解决这个问题.</p>
+<blockquote>
+<p>注:<code>volatile</code> 在java 5 后才有效,原因是 Java 5 以前的 Java 内存模型是存在缺陷的,当然现在不需要担心这个啦!</p>
+</blockquote>
+<p>小结</p>
+<p>双重检查非常适用于高并发,我们熟知的开源库<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>,<a href="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>等都是用的双重检查锁方式实现单例</p>
+<p>不过它,写起来稍微复杂了些,有没有简单点的呢?<br>答案是:有!</p>
+<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p>直接上代码吧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Early</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Early instance = <span class="keyword">new</span> Early();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Early <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>饿汉式的原理其实是<strong>基于classLoader机制</strong>来避免了多线程的同步问题</p>
+<p>饿汉式与之前提到的懒汉式不同,它在我们调用getInstance之前就实例化了(在类加载的时候就实例化了),所以不是一个懒加载,这样就有几个缺点:</p>
+<ol>
+<li>延长了类加载时间</li>
+<li>如果没用到这个类,就浪费了资源(加载了但是没用它)</li>
+<li>不能传递参数(很显然适用的场景会减少)</li>
+</ol>
+<h2 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h2><p>静态内部类原理同上,另外虽然它看上去有点恶汉式,但是与之前的恶汉有点不同,它在类<code>Singleton</code>加载完毕后并没有实例化,而是当调用<code>getInstance</code>去加载Holder的时候才会实例化,静态内部类的方式把实例化延迟到了内部类的加载中去了!所以它比饿汉式更优秀!(偷偷告诉你<a href="https://book.douban.com/subject/1103015/" target="_blank" rel="external">《Effective Java》</a>中也推荐这个方式)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span></span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> Holder.INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>最后介绍一种,也是我在<a href="https://book.douban.com/subject/1103015/" target="_blank" rel="external">《Effective Java》</a>中看到的,居然用枚举!!!</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton&#123;</div><div class="line">    INSTANCE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看上去好牛逼，通过<code>Singleton.INSTANCE</code>来访问，这比调用getInstance()方法简单多了。这种方式是<a href="https://book.douban.com/subject/1103015/" target="_blank" rel="external">《Effective Java》</a>作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象，可谓是很坚强的壁垒啊。</p>
+<p>默认枚举实例的创建是线程安全的，所以不需要担心线程安全的问题。但是在枚举中的其他任何方法的线程安全由程序员自己负责。还有防止上面的通过反射机制调用私用构造器。</p>
+<p>这个版本基本上消除了绝大多数的问题。代码也非常简单，实在无法不用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>单例模式（Singleton）会控制其实例对象的数量，从而确保访问对象的唯一性。</p>
+<h4 id="单例模式的优点："><a href="#单例模式的优点：" class="headerlink" title="单例模式的优点："></a>单例模式的优点：</h4><ol>
+<li>实例控制：单例模式防止其它对象对自己的实例化，确保所有的对象都访问一个实例。</li>
+<li>伸缩性：因为由类自己来控制实例化进程，类就在改变实例化进程上有相应的伸缩性。</li>
+</ol>
+<h4 id="单例模式的缺点："><a href="#单例模式的缺点：" class="headerlink" title="单例模式的缺点："></a>单例模式的缺点：</h4><ol>
+<li>系统开销。虽然这个系统开销看起来很小，但是每次引用这个类实例的时候都要进行实例是否存在的检查。这个问题可以通过静态实例来解决。</li>
+<li>开发混淆。当使用一个单例模式的对象的时候（特别是定义在类库中的），开发人员必须要记住不能使用new关键字来实例化对象。因为开发者看不到在类库中的源代码，所以当他们发现不能实例化一个类的时候会很惊讶。</li>
+<li>对象生命周期。单例模式没有提出对象的销毁。在提供内存管理的开发语言（比如，基于.NetFramework的语言）中，只有单例模式对象自己才能将对象实例销毁，因为只有它拥有对实例的引用。在各种开发语言中，比如C++，其它类可以销毁对象实例，但是这么做将导致单例类内部的指针指向不明。</li>
+</ol>
+<h4 id="单例适用性"><a href="#单例适用性" class="headerlink" title="单例适用性"></a>单例适用性</h4><p>使用Singleton模式有一个必要条件：在一个系统要求一个类只有一个实例时才应当使用单例模式。反之，如果一个类可以有几个实例共存，就不要使用单例模式。</p>
+<p>不要使用单例模式存取全局变量。这违背了单例模式的用意，最好放到对应类的静态成员中。</p>
+<p>不要将数据库连接做成单例，因为一个系统可能会与数据库有多个连接，并且在有连接池的情况下，应当尽可能及时释放连接。Singleton模式由于使用静态成员存储类实例，所以可能会造成资源无法及时释放，带来问题。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当我们有这样的需求:&lt;strong&gt;某一些类应该只存在一个实例&lt;/strong&gt; 的时候,我们就可以用单例模式来应对.&lt;/p&gt;
+&lt;p&gt;单例模式是所有设计模式中最简单的一个,也是大部分人最早知道的一个设计模式.&lt;/p&gt;
+&lt;p&gt;但是即使是最简单的,也有很多可以推敲的细节,要做得
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式概览</title>
