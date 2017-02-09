@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-09T14:27:55.927Z</updated>
+  <updated>2017-02-09T14:29:22.309Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/09/singleton-pattern/"/>
     <id>http://yoursite.com/2017/02/09/singleton-pattern/</id>
     <published>2017-02-09T14:23:54.000Z</published>
-    <updated>2017-02-09T14:27:55.927Z</updated>
+    <updated>2017-02-09T14:29:22.309Z</updated>
     
     <content type="html"><![CDATA[<p>当我们有这样的需求:<strong>某一些类应该只存在一个实例</strong> 的时候,我们就可以用单例模式来应对.</p>
 <p>单例模式是所有设计模式中最简单的一个,也是大部分人最早知道的一个设计模式.</p>
@@ -33,8 +33,7 @@
 <li>延迟Singleton的实例化,节省资源(所谓的懒汉式).</li>
 <li>缺点是线程不安全.当多个线程同时进入<code>if (null == instance) {}</code>的时候就会创建多个实例.</li>
 </ol>
-<p>OK,接下来我们看来是要解决多线程不安全的问题了.</p>
-<a id="more"></a>
+<p>OK,接下来我们看来是要解决多线程不安全的问题了.<br><a id="more"></a></p>
 <h2 id="多线程安全"><a href="#多线程安全" class="headerlink" title="多线程安全"></a>多线程安全</h2><p>这个时候可能有的人就说了,这个太简单了,加一个<code>synchronized</code>不就结了吗?</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">        instance = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>确实,增加<code>synchronized</code>之后能够迫使每个线程在进入这个方法之前,要先等别的线程离开该方法.也即避免了多个线程同时进入<code>getInstance</code>方法.</p>
@@ -103,7 +102,7 @@
 &lt;li&gt;延迟Singleton的实例化,节省资源(所谓的懒汉式).&lt;/li&gt;
 &lt;li&gt;缺点是线程不安全.当多个线程同时进入&lt;code&gt;if (null == instance) {}&lt;/code&gt;的时候就会创建多个实例.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;OK,接下来我们看来是要解决多线程不安全的问题了.&lt;/p&gt;
+&lt;p&gt;OK,接下来我们看来是要解决多线程不安全的问题了.&lt;br&gt;
     
     </summary>
     
