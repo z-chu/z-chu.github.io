@@ -100,7 +100,7 @@
 但是即使是最简单的,也有很多可以推敲的细节,要做得对也不简单.
 经典的单例相信大家一定写过这样类似的单例模式代码:
 1234567891011public class Singleton &amp;#123;    private static">
-<meta property="og:updated_time" content="2017-02-09T14:26:48.703Z">
+<meta property="og:updated_time" content="2017-02-09T14:27:55.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈设计模式之单例模式">
 <meta name="twitter:description" content="当我们有这样的需求:某一些类应该只存在一个实例 的时候,我们就可以用单例模式来应对.
@@ -445,11 +445,11 @@
 <p>默认枚举实例的创建是线程安全的，所以不需要担心线程安全的问题。但是在枚举中的其他任何方法的线程安全由程序员自己负责。还有防止上面的通过反射机制调用私用构造器。</p>
 <p>这个版本基本上消除了绝大多数的问题。代码也非常简单，实在无法不用。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>单例模式（Singleton）会控制其实例对象的数量，从而确保访问对象的唯一性。</p>
-<h4 id="单例模式的优点："><a href="#单例模式的优点：" class="headerlink" title="单例模式的优点："></a>单例模式的优点：</h4><ol>
+<h4 id="单例模式的优点"><a href="#单例模式的优点" class="headerlink" title="单例模式的优点"></a>单例模式的优点</h4><ol>
 <li>实例控制：单例模式防止其它对象对自己的实例化，确保所有的对象都访问一个实例。</li>
 <li>伸缩性：因为由类自己来控制实例化进程，类就在改变实例化进程上有相应的伸缩性。</li>
 </ol>
-<h4 id="单例模式的缺点："><a href="#单例模式的缺点：" class="headerlink" title="单例模式的缺点："></a>单例模式的缺点：</h4><ol>
+<h4 id="单例模式的缺点"><a href="#单例模式的缺点" class="headerlink" title="单例模式的缺点"></a>单例模式的缺点</h4><ol>
 <li>系统开销。虽然这个系统开销看起来很小，但是每次引用这个类实例的时候都要进行实例是否存在的检查。这个问题可以通过静态实例来解决。</li>
 <li>开发混淆。当使用一个单例模式的对象的时候（特别是定义在类库中的），开发人员必须要记住不能使用new关键字来实例化对象。因为开发者看不到在类库中的源代码，所以当他们发现不能实例化一个类的时候会很惊讶。</li>
 <li>对象生命周期。单例模式没有提出对象的销毁。在提供内存管理的开发语言（比如，基于.NetFramework的语言）中，只有单例模式对象自己才能将对象实例销毁，因为只有它拥有对实例的引用。在各种开发语言中，比如C++，其它类可以销毁对象实例，但是这么做将导致单例类内部的指针指向不明。</li>
@@ -642,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#经典的单例"><span class="nav-number">1.</span> <span class="nav-text">经典的单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程安全"><span class="nav-number">2.</span> <span class="nav-text">多线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能进阶"><span class="nav-number">3.</span> <span class="nav-text">性能进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">4.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态内部类"><span class="nav-number">5.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举"><span class="nav-number">6.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的优点："><span class="nav-number">7.0.1.</span> <span class="nav-text">单例模式的优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的缺点："><span class="nav-number">7.0.2.</span> <span class="nav-text">单例模式的缺点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例适用性"><span class="nav-number">7.0.3.</span> <span class="nav-text">单例适用性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#经典的单例"><span class="nav-number">1.</span> <span class="nav-text">经典的单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程安全"><span class="nav-number">2.</span> <span class="nav-text">多线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能进阶"><span class="nav-number">3.</span> <span class="nav-text">性能进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">4.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态内部类"><span class="nav-number">5.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举"><span class="nav-number">6.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的优点"><span class="nav-number">7.0.1.</span> <span class="nav-text">单例模式的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例模式的缺点"><span class="nav-number">7.0.2.</span> <span class="nav-text">单例模式的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单例适用性"><span class="nav-number">7.0.3.</span> <span class="nav-text">单例适用性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
