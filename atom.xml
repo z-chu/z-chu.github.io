@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-09T14:33:25.022Z</updated>
+  <updated>2017-02-11T09:37:22.802Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RecycleView4种定位滚动方式演示</title>
+    <link href="http://yoursite.com/2017/02/11/RecyclerView-Scroll/"/>
+    <id>http://yoursite.com/2017/02/11/RecyclerView-Scroll/</id>
+    <published>2017-02-11T09:35:14.000Z</published>
+    <updated>2017-02-11T09:37:22.802Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>相信大家在项目中使用RecyclerView时，经常会遇到这样的需求：<br>将RecyclerView滑动到指定位置，或者检索RecyclerView的某一项（各个项的高度不确定），然后定位滚动这到一项，将它显示。</p>
+<p>下面就讲解4种RecyclerView定位滚动的方式及具体效果演示。</p>
+<h2 id="scrollBy"><a href="#scrollBy" class="headerlink" title="scrollBy"></a>scrollBy</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/RecycleView-ScrollBy.gif" alt="recyclerView.scrollBy(x, y)"></p>
+<p>使用：<code>recyclerView.scrollBy(x, y)</code></p>
+<p><code>scrollBy(x, y)</code>这个方法是自己去控制移动的距离，单位是像素,所以在使用<code>scrollBy(x, y)</code>需要自己去计算移动的高度或宽度。</p>
+<a id="more"></a>
+<h2 id="scrollToPosition"><a href="#scrollToPosition" class="headerlink" title="scrollToPosition"></a>scrollToPosition</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/RecycleView-ScrollToPosition.gif" alt="recyclerView.scrollToPosition(position)"></p>
+<p>使用： <code>recyclerView.scrollToPosition(position)</code></p>
+<p><code>scrollToPosition(position)</code>这个方法的作用是定位到指定项，就是把你想显示的项显示出来，但是在屏幕的什么位置是不管的，只要那一项现在看得到了，那它就罢工了！ </p>
+<h2 id="smoothScrollToPosition"><a href="#smoothScrollToPosition" class="headerlink" title="smoothScrollToPosition"></a>smoothScrollToPosition</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/RecycleView-SmoothScriollToPosition.gif" alt="recyclerView.smoothScrollToPosition(position)"></p>
+<p>使用： <code>recyclerView.smoothScrollToPosition(position)</code></p>
+<p><code>smoothScrollToPosition(position)</code>和<code>scrollToPosition(position)</code>效果基本相似，也是把你想显示的项显示出来，只要那一项现在看得到了，那它就罢工了，不同的是smoothScrollToPosition是平滑到你想显示的项，而scrollToPosition是直接定位显示！</p>
+<h2 id="scrollToPositionWithOffset"><a href="#scrollToPositionWithOffset" class="headerlink" title="scrollToPositionWithOffset"></a>scrollToPositionWithOffset</h2><p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/RecycleView-ScrollToPositionWithOffset.gif" alt="recyclerView.smoothScrollToPosition(position)"></p>
+<p>使用： <code>((LinearLayoutManager)recyclerView.getLayoutManager()).scrollToPositionWithOffset(position,0);</code></p>
+<p>主角总是最后才登场，这种方式是定位到指定项如果该项可以置顶就将其置顶显示。比如:微信联系人的字母索引定位就是采用这种方式实现。</p>
+<h2 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载</h2><p><a href="https://raw.githubusercontent.com/z-chu/RecyclerView-Scroll-Sample/master/app/app-release.apk" target="_blank" rel="external">apk下载</a></p>
+<p><a href="https://github.com/z-chu/RecyclerView-Scroll-Sample" target="_blank" rel="external">Github</a></p>
+<h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><p><a href="http://blog.csdn.net/tyzlmjj/article/details/49227601" title=" Android RecyclerView滚动定位" target="_blank" rel="external">Android RecyclerView滚动定位</a></p>
+<p><a href="http://blog.csdn.net/a86261566/article/details/50906456" target="_blank" rel="external">RecyclerView调用smoothScrollToPosition() 控制滑动速度</a></p>
+<p><a href="http://www.jianshu.com/p/b3edc873b42d" target="_blank" rel="external">RecyclerView使用技巧-自动滚动</a></p>
+<p><a href="https://www.zhihu.com/question/31270461" target="_blank" rel="external">如何获取 RecyclerView 的滑动距离？</a></p>
+<p><a href="http://blog.csdn.net/csdn_lqr/article/details/53859707" title="RecyclerView滚动到指定位置" target="_blank" rel="external"> RecyclerView滚动到指定位置</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;相信大家在项目中使用RecyclerView时，经常会遇到这样的需求：&lt;br&gt;将RecyclerView滑动到指定位置，或者检索RecyclerView的某一项（各个项的高度不确定），然后定位滚动这到一项，将它显示。&lt;/p&gt;
+&lt;p&gt;下面就讲解4种RecyclerView定位滚动的方式及具体效果演示。&lt;/p&gt;
+&lt;h2 id=&quot;scrollBy&quot;&gt;&lt;a href=&quot;#scrollBy&quot; class=&quot;headerlink&quot; title=&quot;scrollBy&quot;&gt;&lt;/a&gt;scrollBy&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xq7yd.com1.z0.glb.clouddn.com/RecycleView-ScrollBy.gif&quot; alt=&quot;recyclerView.scrollBy(x, y)&quot;&gt;&lt;/p&gt;
+&lt;p&gt;使用：&lt;code&gt;recyclerView.scrollBy(x, y)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;scrollBy(x, y)&lt;/code&gt;这个方法是自己去控制移动的距离，单位是像素,所以在使用&lt;code&gt;scrollBy(x, y)&lt;/code&gt;需要自己去计算移动的高度或宽度。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="RecycleView" scheme="http://yoursite.com/tags/RecycleView/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈设计模式之单例模式</title>

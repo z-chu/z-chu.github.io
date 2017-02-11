@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/02/11/RecyclerView-Scroll/</loc>
+    
+    <lastmod>2017-02-11T09:37:22.802Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/02/09/singleton-pattern/</loc>
     
     <lastmod>2017-02-09T14:33:25.022Z</lastmod>
