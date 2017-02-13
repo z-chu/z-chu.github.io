@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-13T16:11:35.715Z</updated>
+  <updated>2017-02-13T16:12:29.563Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="http://yoursite.com/2017/02/14/release-JCenter/"/>
     <id>http://yoursite.com/2017/02/14/release-JCenter/</id>
     <published>2017-02-13T16:06:54.000Z</published>
-    <updated>2017-02-13T16:11:35.715Z</updated>
+    <updated>2017-02-13T16:12:29.563Z</updated>
     
     <content type="html"><![CDATA[<p>最近在整理项目的时候，想要上传至Jcenter，可以让大家一句代码就可以引入。就在网上寻找，然而网上有些方法实在是太麻烦，故写此篇文章将心酸历程写下，让各位老司机少走弯路，快速发布</p>
 <h2 id="注册Bintray账号"><a href="#注册Bintray账号" class="headerlink" title="注册Bintray账号"></a>注册Bintray账号</h2><p>个人注册 Bintray 地址：<a href="https://bintray.com/signup/oss" target="_blank" rel="external">https://bintray.com/signup/oss</a><br>不要去 <a href="https://bintray.com/login" target="_blank" rel="external">https://bintray.com/login</a> 注册，这个千万不能搞错。<br><strong>注意一下邮箱问题：不能用QQ，163等，推荐用Gmail</strong>，国内用户可以使用github的账号进行登陆完成注册，也要注意邮箱问题。</p>
 <p><strong>获取信息：</strong>登陆后在首页右上角点击用户名进入个人主页，然后点击用户名下面的Edit Profile进入个人信息编辑页面，接下来点击页面左边列表的最后一项API Key，保存下来，因为将项目发布到JCenter时会用到它。</p>
 <p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/Jcenter-API-key.png" alt="获取 API key"></p>
+<a id="more"></a>
 <h2 id="Add-New-Repository"><a href="#Add-New-Repository" class="headerlink" title="Add New Repository"></a>Add New Repository</h2><p>注册完之后，第一件事情是”Add New Repository”。</p>
 <p><img src="http://7xq7yd.com1.z0.glb.clouddn.com/Add%20New%20Repository.png" alt="Add New Repository"></p>
 <p>点击之后就是创建Repository了，记得下图中红框的位置一定要填小写的maven，否则无法发布上去:</p>
@@ -57,7 +58,9 @@
     <summary type="html">
     
       &lt;p&gt;最近在整理项目的时候，想要上传至Jcenter，可以让大家一句代码就可以引入。就在网上寻找，然而网上有些方法实在是太麻烦，故写此篇文章将心酸历程写下，让各位老司机少走弯路，快速发布&lt;/p&gt;
-&lt;h2 id=&quot;注册Bintray账号&quot;&gt;&lt;a href=&quot;#注册Bintray账号
+&lt;h2 id=&quot;注册Bintray账号&quot;&gt;&lt;a href=&quot;#注册Bintray账号&quot; class=&quot;headerlink&quot; title=&quot;注册Bintray账号&quot;&gt;&lt;/a&gt;注册Bintray账号&lt;/h2&gt;&lt;p&gt;个人注册 Bintray 地址：&lt;a href=&quot;https://bintray.com/signup/oss&quot;&gt;https://bintray.com/signup/oss&lt;/a&gt;&lt;br&gt;不要去 &lt;a href=&quot;https://bintray.com/login&quot;&gt;https://bintray.com/login&lt;/a&gt; 注册，这个千万不能搞错。&lt;br&gt;&lt;strong&gt;注意一下邮箱问题：不能用QQ，163等，推荐用Gmail&lt;/strong&gt;，国内用户可以使用github的账号进行登陆完成注册，也要注意邮箱问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;获取信息：&lt;/strong&gt;登陆后在首页右上角点击用户名进入个人主页，然后点击用户名下面的Edit Profile进入个人信息编辑页面，接下来点击页面左边列表的最后一项API Key，保存下来，因为将项目发布到JCenter时会用到它。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq7yd.com1.z0.glb.clouddn.com/Jcenter-API-key.png&quot; alt=&quot;获取 API key&quot;&gt;&lt;/p&gt;
     
     </summary>
     
