@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/02/14/release-JCenter/</loc>
+    
+    <lastmod>2017-02-13T16:11:35.715Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/02/11/RecyclerView-Scroll/</loc>
     
     <lastmod>2017-02-11T09:37:22.802Z</lastmod>
