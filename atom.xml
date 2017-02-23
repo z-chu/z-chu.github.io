@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-13T16:12:29.563Z</updated>
+  <updated>2017-02-23T15:23:33.576Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,95 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java到底是不是一种纯面向对象语言</title>
+    <link href="http://yoursite.com/2017/02/23/java-1/"/>
+    <id>http://yoursite.com/2017/02/23/java-1/</id>
+    <published>2017-02-23T15:22:20.000Z</published>
+    <updated>2017-02-23T15:23:33.576Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java到底是不是一种纯面向对象语言？<br>静态内容和基本类型它们到底是不是一个对象？<br>下面让我们深入到Java的世界，一步一步证实它！</p>
+<h2 id="旧的认知"><a href="#旧的认知" class="headerlink" title="旧的认知"></a>旧的认知</h2><p>在我刚开始学习 Java 的时候，我从书本里知道了 Java 是遵循 “面向对象编程范式”的。在Java世界内一切都是对象，甚至包括字符串（String）这些都是对象（在 C 语言中，字符串是字符数组），那时候，我认为 Java是一种面向对象的语言。</p>
+<p>但在后来，我在互联网站上陆续看到不少开发者说 “Java实际上不是纯粹的面向对象，因为并不是所有的东西在 Java 世界都是一个对象”。</p>
+<p><strong>他们很多的论点都可以概括为以下两点：</strong></p>
+<ul>
+<li>所有的静态内容（ static 关键修饰的变量和方法）不属于任何对象，所以这些是非对象的东西。</li>
+<li>所有基本类型（char，boolean，byte，short，int，long，float，double）都不是对象，因为我们不能做类似正常对象的所具有的操作（例如：使用“.”来访问对象的属性和方法）。</li>
+</ul>
+<p>在那时，由于个人知识经验储备有限，我又很容地相信上面的论点，并且也开始认为 “Java 不是纯粹的面向对象编程语言”。</p>
+<a id="more"></a>
+<h2 id="新的发现"><a href="#新的发现" class="headerlink" title="新的发现"></a>新的发现</h2><p><strong>JVM 在创建对象的时候，实际上会创建两个对象：</strong></p>
+<ul>
+<li>一个是实例对象</li>
+<li>另一个是Class 对象。该 Class 对象在JVM内仅仅会装载一次，该类的静态方法和静态属性也一同装载，JVM使用该 Class 对象来创建具体的实例对象（如上面的对象）。</li>
+</ul>
+<p>例如，在下面的 Java 语句中，将有两个对象被创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Employee emp = <span class="keyword">new</span> Employee();</div></pre></td></tr></table></figure>
+<p>一个是实例对象 emp ；另一个则是 Class对象，我们可以通过 Employee.class 引用到它；这个 Class 对象拥有所有的这个类定义的静态变量和静态方法，同时，如果我们访问 通过 emp 对象来访问静态内容，会发现它其实指向的对象就是 Employee.class .</p>
+<p>这也揭开了另一个迷：<br><strong>为什么静态内容在一个对象中（不管是emp还是emp2）改变了，在另一个对象中也同时改变，因为这两个对象改变的都是在 Employee.class 同一个对象里面的内容。</strong></p>
+<p><strong>现在，上面说到的第一个论点我们要取消了。因为，静态内容确实被证实属于一个对象。</strong></p>
+<p>但是我们还要确认第二个论点：正如早前提到的，原始类型在Java中不是对象，它们无法做类似对象的操作。为了解决这个问题，Java 官方为每一个原始类型推出了对应的包装类（比如：Integer 对应 int，Long 对应 long，Character 对应 char），所以，其实现在我们可以为原始类型创建一个包装对象，同时对它们做对象相关的操作。并且，由于自动拆装箱，我们可以把一个原始类型值赋值给它对应的包装类的引用。但是我们仍然不能对这些原始类型做对象的操作——我们需要创建对应包装类的对象。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Integer obj = <span class="keyword">new</span> Integer(<span class="number">5</span>); <span class="comment">// here we can do i.toString();</span></div><div class="line"><span class="keyword">int</span> i = <span class="number">5</span>; <span class="comment">// but we can't do i.toString() here</span></div></pre></td></tr></table></figure>
+<p>到目前为止，从一个最终用户的角度上来看的，我们可以确认 “原始类别不是对象”。（ Java开发人员是Java的最终用户，因为我们正在使用它，而不是创造它 ）。</p>
+<p>如果站在JVM的视角，会有新的发现：</p>
+<p>其实，在JVM看来它把所有的 “原始类型” 都是当作对象处理” ，要证明这一点可以通过 Class类的源代码 或者 Javadoc中Class类的说明。</p>
+<p>根据 java.lang.Class 类的源代码，该类的注释是：</p>
+<p>Java官方描述：</p>
+<blockquote>
+<p>Instances of the class Class represent classes and interfaces in a running Java application. An enum is a kind of class and an annotation is a kind of interface. Every array also belongs to a class that is reflected as a Class object that is shared by all arrays with the same element type and number of dimensions. The primitive Java types (boolean, byte, char, short, int, long, float, and double), and the keyword void are also represented as Class objects.</p>
+</blockquote>
+<p>参考译文：</p>
+<blockquote>
+<p>Class类的实例表示正在运行的Java应用程序的类和接口。像枚举是一种类,注解则是一种接口。每个数组也属于被反射作为由具有相同的元素类型和尺寸的数目的所有阵列共享一类对象的类。原始的Java类型（boolean, byte, char, short, int, long, float, and double）和关键字void也表示为Class对象。</p>
+</blockquote>
+<p>同时也根据Javadoc中对Class.isPrimitive()方法的定义，来判断</p>
+<p>Java官方描述：</p>
+<blockquote>
+<p>public boolean isPrimitive()<br>Determines if the specified Class object represents a primitive type.<br>There are nine predefined Class objects to represent the eight primitive types and void. These are created by the Java Virtual Machine, and have the same names as t he primitive types that they represent, namely boolean,byte, char, short, int, long, float, and double.<br>These objects may only be accessed via the following public static final variables, and are the only Class objects for which this method returns true.<br>Returns:<br>true if and only if this class represents a primitive type<br>Since:<br>JDK1.1</p>
+</blockquote>
+<p>参考翻译：</p>
+<blockquote>
+<p>public boolean isPrimitive()<br>判断指定的Class对象是否代表一个基本类型。<br>一共有9种设定好的Class对象来表示对应的基本类型和void关键字。这些对象都是由JVM创建的。…<br>return<br>当且仅当该类表示一个真正的基本类型</p>
+</blockquote>
+<p>以上都说明，在JVM内部，其实原始类型就是对象。<br>当你打开 Javadoc 对 Class 类的定义中，通过 “CTRL＋F ” 查找关键字 “primitive”， 将会发现证据在表面 “在JVM里，它把基本类型当作对象来处理的”。<br>我们可以再来看一个例子： Integer.TYPE，在这部分文档清晰记录着：<br>Java官方描述：</p>
+<blockquote>
+<p>public static final Class<integer> TYPE<br>The Class instance representing the primitive type int.</integer></p>
+</blockquote>
+<p>以上都说明，在JVM内部，其实原始类型就是对象。</p>
+<p>那么，既然说 “JVM”会为所有的基本类型创建一个对象，那我们为什么还那么常用 “原始类型”， 而不是直接使用对应的包装类对象呢？</p>
+<p>这是因为，为 “原始类型” 创建的对象，在JVM内部是很轻量级的，相对与我们直接创建的对应包装类对象做了许多优化； 也正因为轻量的缘故，这些原始类的功能就比较少（例如我们不能调用其内部的方法，因为他们内部已经优化成没有方法了）</p>
+<p>使用实际的例子来说明，为什么我们更应该使用 “原始类型”：</p>
+<p>“原始类型”有更快的速度（例如，下面的代码执行，在我们的机器上需要9秒，但当我把 Long 改成 long 之后，0秒内就完成了）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span> millis = System.currentTimeMillis();</div><div class="line">    Long sum = <span class="number">0L</span>; <span class="comment">// uses Long, not long</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i &lt;= Integer.MAX_VALUE; i++) &#123;</div><div class="line">        sum += i;</div><div class="line">    &#125;</div><div class="line">    System.out.println(sum);</div><div class="line">    System.out.println((System.currentTimeMillis() - millis) / <span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>“原始类型”允许我们直接使用 “==”来进行比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Integer(<span class="number">3</span>) == <span class="keyword">new</span> Integer(<span class="number">3</span>); <span class="comment">// false</span></div><div class="line"><span class="keyword">new</span> Integer(<span class="number">100</span>) == <span class="keyword">new</span> Integer(<span class="number">100</span>); <span class="comment">// false</span></div><div class="line">Integer.valueOf(<span class="number">5</span>) == Integer.valueOf(<span class="number">5</span>); <span class="comment">//true</span></div><div class="line">Integer.valueOf(<span class="number">200</span>) == Integer.valueOf(<span class="number">200</span>); <span class="comment">//false</span></div></pre></td></tr></table></figure>
+<p>我们注意看第四句，输出结果确实为 “false” 。这个是因在 [-128; 127] 这个区间的265个整数会被 JVM 缓存存放， 所以在这个区间， JVM返回相同的对象；然而，超出这个区间， JVM就不再有缓存了，将会创建新的对象，所以结果是不等的。</p>
+<p>所以总结一下是：<strong> 在JVM内部，原始类型就是被当作对象来处理的。但是我们开发者直接把 “原始类型” 当作对象使用，开发者应该使用对应的包装来。</strong></p>
+<p><strong>以上就证实了Java确实是一个纯粹的面向对象语言</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java到底是不是一种纯面向对象语言？&lt;br&gt;静态内容和基本类型它们到底是不是一个对象？&lt;br&gt;下面让我们深入到Java的世界，一步一步证实它！&lt;/p&gt;
+&lt;h2 id=&quot;旧的认知&quot;&gt;&lt;a href=&quot;#旧的认知&quot; class=&quot;headerlink&quot; title=&quot;旧的认知&quot;&gt;&lt;/a&gt;旧的认知&lt;/h2&gt;&lt;p&gt;在我刚开始学习 Java 的时候，我从书本里知道了 Java 是遵循 “面向对象编程范式”的。在Java世界内一切都是对象，甚至包括字符串（String）这些都是对象（在 C 语言中，字符串是字符数组），那时候，我认为 Java是一种面向对象的语言。&lt;/p&gt;
+&lt;p&gt;但在后来，我在互联网站上陆续看到不少开发者说 “Java实际上不是纯粹的面向对象，因为并不是所有的东西在 Java 世界都是一个对象”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;他们很多的论点都可以概括为以下两点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的静态内容（ static 关键修饰的变量和方法）不属于任何对象，所以这些是非对象的东西。&lt;/li&gt;
+&lt;li&gt;所有基本类型（char，boolean，byte，short，int，long，float，double）都不是对象，因为我们不能做类似正常对象的所具有的操作（例如：使用“.”来访问对象的属性和方法）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在那时，由于个人知识经验储备有限，我又很容地相信上面的论点，并且也开始认为 “Java 不是纯粹的面向对象编程语言”。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Android快速发布项目到jcenter</title>
