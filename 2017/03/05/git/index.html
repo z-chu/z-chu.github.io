@@ -86,31 +86,25 @@
 
 
 
-<meta name="description" content="创建创建本地仓库：1git init
-获取远程仓库：
-1git clone [url]
-例：git clone https://github.com/you/yourpro.git
-远程添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
-例：git remote add origin https://github.com/you/yourp">
+<meta name="description" content="创建本地仓库：1git init
+获取远程仓库：1git clone [url]
+例：git clone https://github.com/you/yourpro.git添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
+例：git remote add origin https://github.com/you/yourpro.git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 命令入门到放弃">
+<meta property="og:title" content="Git 常用命令合集">
 <meta property="og:url" content="http://yoursite.com/2017/03/05/git/index.html">
 <meta property="og:site_name" content="赵成柱的博客">
-<meta property="og:description" content="创建创建本地仓库：1git init
-获取远程仓库：
-1git clone [url]
-例：git clone https://github.com/you/yourpro.git
-远程添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
-例：git remote add origin https://github.com/you/yourp">
-<meta property="og:updated_time" content="2017-03-04T16:24:39.931Z">
+<meta property="og:description" content="创建本地仓库：1git init
+获取远程仓库：1git clone [url]
+例：git clone https://github.com/you/yourpro.git添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
+例：git remote add origin https://github.com/you/yourpro.git">
+<meta property="og:updated_time" content="2017-03-04T16:32:48.680Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 命令入门到放弃">
-<meta name="twitter:description" content="创建创建本地仓库：1git init
-获取远程仓库：
-1git clone [url]
-例：git clone https://github.com/you/yourpro.git
-远程添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
-例：git remote add origin https://github.com/you/yourp">
+<meta name="twitter:title" content="Git 常用命令合集">
+<meta name="twitter:description" content="创建本地仓库：1git init
+获取远程仓库：1git clone [url]
+例：git clone https://github.com/you/yourpro.git添加一个新的 remote 远程仓库：1git remote add [remote-name] [url]
+例：git remote add origin https://github.com/you/yourpro.git">
 
 
 
@@ -144,7 +138,7 @@
 
 
 
-  <title> Git 命令入门到放弃 | 赵成柱的博客 </title>
+  <title> Git 常用命令合集 | 赵成柱的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +305,7 @@
             
             
               
-                Git 命令入门到放弃
+                Git 常用命令合集
               
             
           </h1>
@@ -372,34 +366,56 @@
       
 
       
-        <h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>创建本地仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
-<p>获取远程仓库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [url]</div></pre></td></tr></table></figure>
-<p>例：<code>git clone https://github.com/you/yourpro.git</code></p>
-<h2 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h2><p>添加一个新的 remote 远程仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add [remote-name] [url]</div></pre></td></tr></table></figure></p>
+        <p>创建本地仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
+<p>获取远程仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [url]</div></pre></td></tr></table></figure></p>
+<p>例：<code>git clone https://github.com/you/yourpro.git</code><br>添加一个新的 remote 远程仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add [remote-name] [url]</div></pre></td></tr></table></figure></p>
 <p>例：<code>git remote add origin https://github.com/you/yourpro.git</code><br>origin：相当于该远程仓库的别名<br><a id="more"></a></p>
 <p>列出所有 remote 的别名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote</div></pre></td></tr></table></figure></p>
 <p>列出所有 remote 的 url：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure></p>
-<p>删除一个 remote：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git remote rm [name]</div><div class="line">```	</div><div class="line"></div><div class="line">重命名 remote：</div></pre></td></tr></table></figure></p>
-<p>git remote rename [old-name] [new-name]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">修改远程仓库地址：</div><div class="line">* 修改命令</div></pre></td></tr></table></figure></p>
-<p>git remote set-url origin [url]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">例如：`git remote set-url origin https://github.com/you/yourpro.git`</div><div class="line">		</div><div class="line">* 先删后加</div></pre></td></tr></table></figure></p>
-<p>git remote rm origin<br>git remote add origin [url]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 提交</div><div class="line"></div><div class="line">从本地仓库中添加新的文件：</div></pre></td></tr></table></figure></p>
-<p>git add .               // 添加所有文件<br>git add file.txt        // 添加指定文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">从本地仓库中删除：</div></pre></td></tr></table></figure></p>
-<p>git rm file.txt         // 从版本库中移除，删除文件<br>git rm file.txt -cached // 从版本库中移除，不删除原始文件<br>git rm -r xxx           // 从版本库中删除指定文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">提交，把内容提交到 HEAD 里：</div></pre></td></tr></table></figure></p>
-<p>git commit -m “注释”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">撤销：</div></pre></td></tr></table></figure></p>
-<p>git revert HEAD     // 撤销最近的一个提交<br>git reset –mixed   // 取消 commit + add<br>git reset –soft    // 取消 commit<br>git reset –hard    // 取消 commit + add + local working<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">把本地提交 push 到远程服务器：</div></pre></td></tr></table></figure></p>
-<p>git push [remote-name] [loca-branch]:[remote-branch]<br>例：git push origin master:master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看状态：</div></pre></td></tr></table></figure></p>
-<p>git status<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">从远程库中下载新的改动-方式1：</div></pre></td></tr></table></figure></p>
-<p>git fetch [remote-name]/[branch]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">从远程库中下载新的改动-方式2：</div></pre></td></tr></table></figure></p>
-<p>git pull [remote-name] [branch]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">例：`git pull origin master`</div><div class="line">pull = fetch + merge</div><div class="line"></div><div class="line">合并下载的改动到分支-方式1：</div></pre></td></tr></table></figure></p>
-<p>git merge [remote-name]/[branch]<br>解决冲突…<br>git add .<br>git commit -m’fix conflict’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">合并下载的改动到分支-方式2：</div></pre></td></tr></table></figure></p>
-<p>git rebase [remote-name]/[branch]<br>解决冲突…<br>git add .<br>git rebase –continue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">## 分支</div></pre></td></tr></table></figure></p>
-<p>git branch                    // 列出分支<br>git branch (branch-name)    // 创建一个新的分支<br>git branch -d (branch-nam)    // 删除一个分支<br>git push (remote-name) :(remote-branch)     // 删除 remote 的分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">### 切换分支</div></pre></td></tr></table></figure></p>
-<p>// 切换到一个分支<br>git checkout [branch-name]</p>
-<p>// 创建并切换到该分支<br>git checkout -b [branch-name]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 与github建立ssh通信，让Git操作免去输入密码的繁琐。</div><div class="line">1. 首先呢，我们先建立ssh密匙。</div><div class="line">  &gt; ssh key must begin with &apos;ssh-ed25519&apos;, &apos;ssh-rsa&apos;, &apos;ssh-dss&apos;, &apos;ecdsa-sha2-nistp256&apos;, &apos;ecdsa-sha2-nistp384&apos;, or &apos;ecdsa-sha2-nistp521&apos;.  -- from github</div><div class="line"></div><div class="line">    根据以上文段我们可以知道github所支持的ssh密匙类型，这里我们创建ssh-rsa密匙。</div><div class="line">    在command line 中输入以下指令:``ssh-keygen -t rsa``去创建一个ssh-rsa密匙。如果你并不需要为你的密匙创建密码和修改名字，那么就一路回车就OK，如果你需要，请您自行Google翻译，因为只是英文问题。</div><div class="line">&gt;$ ssh-keygen -t rsa</div><div class="line">Generating public/private rsa key pair.</div><div class="line">//您可以根据括号中的路径来判断你的.ssh文件放在了什么地方</div><div class="line">Enter file in which to save the key (/c/Users/Liang Guan Quan/.ssh/id_rsa)</div><div class="line"></div><div class="line">2. 到 https://github.com/settings/keys 这个地址中去添加一个新的SSH key，然后把你的xx.pub文件下的内容文本都复制到Key文本域中，然后就可以提交了。</div><div class="line">3. 添加完成之后 我们用``ssh git@github.com`` 命令来连通一下github，如果你在response里面看到了你github账号名，那么就说明配置成功了。  *let&apos;s enjoy github ;)*</div><div class="line"></div><div class="line"></div><div class="line">## gitignore</div><div class="line"></div><div class="line"></div><div class="line">在本地仓库根目录创建 .gitignore 文件。Win7 下不能直接创建，可以创建 &quot;.gitignore.&quot; 文件，后面的标点自动被忽略；</div></pre></td></tr></table></figure></p>
-<p>/.idea          // 过滤指定文件夹<br>/fd/<em>           // 忽略根目录下的 /fd/ 目录的全部内容；
-</em>.iml           // 过滤指定的所有文件<br>!.gitignore     // 不忽略该文件<br>```</p>
-
+<p>删除一个 remote：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm [name]</div></pre></td></tr></table></figure></p>
+<p>重命名 remote：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rename [old-name] [new-name]</div></pre></td></tr></table></figure></p>
+<p>修改远程仓库地址：</p>
+<ul>
+<li>修改命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote set-url origin [url]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例如：<code>git remote set-url origin https://github.com/you/yourpro.git</code></p>
+<ul>
+<li>先删后加<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin [url]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从本地仓库中添加新的文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .               // 添加所有文件</div><div class="line">git add file.txt        // 添加指定文件</div></pre></td></tr></table></figure>
+<p>从本地仓库中删除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm file.txt         // 从版本库中移除，删除文件</div><div class="line">git rm file.txt -cached // 从版本库中移除，不删除原始文件</div><div class="line">git rm -r xxx           // 从版本库中删除指定文件夹</div></pre></td></tr></table></figure></p>
+<p>提交，把内容提交到 HEAD 里：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;注释&quot;</div></pre></td></tr></table></figure></p>
+<p>撤销：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git revert HEAD     // 撤销最近的一个提交</div><div class="line">git reset --mixed   // 取消 commit + add</div><div class="line">git reset --soft    // 取消 commit</div><div class="line">git reset --hard    // 取消 commit + add + local working</div></pre></td></tr></table></figure></p>
+<p>把本地提交 push 到远程服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push [remote-name] [loca-branch]:[remote-branch]</div><div class="line">例：git push origin master:master</div></pre></td></tr></table></figure>
+<p>查看状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure></p>
+<p>从远程库中下载新的改动-方式1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch [remote-name]/[branch]</div></pre></td></tr></table></figure></p>
+<p>从远程库中下载新的改动-方式2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull [remote-name] [branch]</div></pre></td></tr></table></figure></p>
+<p>例：<code>git pull origin master</code><br>pull = fetch + merge</p>
+<p>合并下载的改动到分支-方式1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git merge [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git commit -m&apos;fix conflict&apos;</div></pre></td></tr></table></figure></p>
+<p>合并下载的改动到分支-方式2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git rebase [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git rebase --continue</div></pre></td></tr></table></figure></p>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git branch					// 列出分支</div><div class="line">git branch (branch-name)	// 创建一个新的分支</div><div class="line">git branch -d (branch-nam)	// 删除一个分支</div><div class="line">git push (remote-name) :(remote-branch) 	// 删除 remote 的分支</div></pre></td></tr></table></figure>
+<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 切换到一个分支</div><div class="line">git checkout [branch-name]</div><div class="line">	</div><div class="line">// 创建并切换到该分支</div><div class="line">git checkout -b [branch-name]</div></pre></td></tr></table></figure>
+<h2 id="与github建立ssh通信，让Git操作免去输入密码的繁琐。"><a href="#与github建立ssh通信，让Git操作免去输入密码的繁琐。" class="headerlink" title="与github建立ssh通信，让Git操作免去输入密码的繁琐。"></a>与github建立ssh通信，让Git操作免去输入密码的繁琐。</h2><ol>
+<li>首先呢，我们先建立ssh密匙。<blockquote>
+<p>ssh key must begin with ‘ssh-ed25519’, ‘ssh-rsa’, ‘ssh-dss’, ‘ecdsa-sha2-nistp256’, ‘ecdsa-sha2-nistp384’, or ‘ecdsa-sha2-nistp521’.  – from github</p>
+</blockquote>
+</li>
+</ol>
+<p>根据以上文段我们可以知道github所支持的ssh密匙类型，这里我们创建ssh-rsa密匙。</p>
+<p>在command line 中输入以下指令:<code>ssh-keygen -t rsa</code>去创建一个ssh-rsa密匙。如果你并不需要为你的密匙创建密码和修改名字，那么就一路回车就OK，如果你需要，请您自行Google翻译，因为只是英文问题。</p>
+<blockquote>
+<p>$ ssh-keygen -t rsa<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/c/Users/Liang Guan Quan/.ssh/id_rsa)<br>您可以根据括号中的路径来判断你的.ssh文件放在了什么地方</p>
+</blockquote>
+<ol>
+<li>到 <a href="https://github.com/settings/keys" target="_blank" rel="external">https://github.com/settings/keys</a> 这个地址中去添加一个新的SSH key，然后把你的xx.pub文件下的内容文本都复制到Key文本域中，然后就可以提交了。</li>
+<li>添加完成之后 我们用<code>ssh git@github.com</code> 命令来连通一下github，如果你在response里面看到了你github账号名，那么就说明配置成功了。  <em>let’s enjoy github ;)</em></li>
+</ol>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h2><p>在本地仓库根目录创建 .gitignore 文件。Win7 下不能直接创建，可以创建 “.gitignore.” 文件，后面的标点自动被忽略；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/.idea          // 过滤指定文件夹</div><div class="line">/fd/*           // 忽略根目录下的 /fd/ 目录的全部内容；</div><div class="line">*.iml           // 过滤指定的所有文件</div><div class="line">!.gitignore     // 不忽略该文件</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -466,7 +482,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/05/git/"
-           data-title="Git 命令入门到放弃" data-url="http://yoursite.com/2017/03/05/git/">
+           data-title="Git 常用命令合集" data-url="http://yoursite.com/2017/03/05/git/">
       </div>
     
   </div>
@@ -584,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建"><span class="nav-number">1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程"><span class="nav-number">2.</span> <span class="nav-text">远程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支"><span class="nav-number">1.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换分支"><span class="nav-number">1.1.</span> <span class="nav-text">切换分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与github建立ssh通信，让Git操作免去输入密码的繁琐。"><span class="nav-number">2.</span> <span class="nav-text">与github建立ssh通信，让Git操作免去输入密码的繁琐。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitignore"><span class="nav-number">3.</span> <span class="nav-text">gitignore</span></a></li></ol></div>
             
 
           </div>
