@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-04T16:36:25.383Z</updated>
+  <updated>2017-03-04T16:40:10.910Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/03/05/git/"/>
     <id>http://yoursite.com/2017/03/05/git/</id>
     <published>2017-03-04T16:02:22.000Z</published>
-    <updated>2017-03-04T16:36:25.383Z</updated>
+    <updated>2017-03-04T16:40:10.910Z</updated>
     
     <content type="html"><![CDATA[<h3 id="创建本地仓库："><a href="#创建本地仓库：" class="headerlink" title="创建本地仓库："></a>创建本地仓库：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
 <h3 id="获取远程仓库："><a href="#获取远程仓库：" class="headerlink" title="获取远程仓库："></a>获取远程仓库：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [url]</div></pre></td></tr></table></figure>
@@ -32,12 +32,12 @@
 <h3 id="删除一个-remote："><a href="#删除一个-remote：" class="headerlink" title="删除一个 remote："></a>删除一个 remote：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm [name]</div></pre></td></tr></table></figure>
 <h3 id="重命名-remote："><a href="#重命名-remote：" class="headerlink" title="重命名 remote："></a>重命名 remote：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rename [old-name] [new-name]</div></pre></td></tr></table></figure>
 <h3 id="修改远程仓库地址："><a href="#修改远程仓库地址：" class="headerlink" title="修改远程仓库地址："></a>修改远程仓库地址：</h3><ul>
-<li>修改命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote set-url origin [url]</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p>修改命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote set-url origin [url]</div></pre></td></tr></table></figure>
 <p>例如：<code>git remote set-url origin https://github.com/you/yourpro.git</code></p>
-<ul>
-<li>先删后加<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin [url]</div></pre></td></tr></table></figure>
+</li>
+<li><p>先删后加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin [url]</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="从本地仓库中添加新的文件："><a href="#从本地仓库中添加新的文件：" class="headerlink" title="从本地仓库中添加新的文件："></a>从本地仓库中添加新的文件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .               // 添加所有文件</div><div class="line">git add file.txt        // 添加指定文件</div></pre></td></tr></table></figure>
@@ -51,21 +51,22 @@
 <p>例：<code>git pull origin master</code><br>pull = fetch + merge</p>
 <h3 id="合并下载的改动到分支-方式1："><a href="#合并下载的改动到分支-方式1：" class="headerlink" title="合并下载的改动到分支-方式1："></a>合并下载的改动到分支-方式1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git merge [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git commit -m&apos;fix conflict&apos;</div></pre></td></tr></table></figure>
 <h3 id="合并下载的改动到分支-方式2："><a href="#合并下载的改动到分支-方式2：" class="headerlink" title="合并下载的改动到分支-方式2："></a>合并下载的改动到分支-方式2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git rebase [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git rebase --continue</div></pre></td></tr></table></figure>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git branch					// 列出分支</div><div class="line">git branch (branch-name)	// 创建一个新的分支</div><div class="line">git branch -d (branch-nam)	// 删除一个分支</div><div class="line">git push (remote-name) :(remote-branch) 	// 删除 remote 的分支</div></pre></td></tr></table></figure>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 列出分支</div><div class="line">git branch</div><div class="line">// 创建一个新的分支</div><div class="line">git branch (branch-name)</div><div class="line">// 删除一个分支</div><div class="line">git branch -d (branch-nam)</div><div class="line">// 删除 remote 的分支</div><div class="line">git push (remote-name) :(remote-branch)</div></pre></td></tr></table></figure>
 <h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 切换到一个分支</div><div class="line">git checkout [branch-name]</div><div class="line">	</div><div class="line">// 创建并切换到该分支</div><div class="line">git checkout -b [branch-name]</div></pre></td></tr></table></figure>
 <h3 id="与github建立ssh通信，让Git操作免去输入密码的繁琐。"><a href="#与github建立ssh通信，让Git操作免去输入密码的繁琐。" class="headerlink" title="与github建立ssh通信，让Git操作免去输入密码的繁琐。"></a>与github建立ssh通信，让Git操作免去输入密码的繁琐。</h3><ol>
-<li>首先呢，我们先建立ssh密匙。<blockquote>
+<li><p>首先呢，我们先建立ssh密匙。</p>
+<blockquote>
 <p>ssh key must begin with ‘ssh-ed25519’, ‘ssh-rsa’, ‘ssh-dss’, ‘ecdsa-sha2-nistp256’, ‘ecdsa-sha2-nistp384’, or ‘ecdsa-sha2-nistp521’.  – from github</p>
 </blockquote>
-</li>
-</ol>
 <p>根据以上文段我们可以知道github所支持的ssh密匙类型，这里我们创建ssh-rsa密匙。</p>
-<p>在command line 中输入以下指令:<code>ssh-keygen -t rsa</code>去创建一个ssh-rsa密匙。如果你并不需要为你的密匙创建密码和修改名字，那么就一路回车就OK，如果你需要，请您自行Google翻译，因为只是英文问题。</p>
+</li>
+<li><p>在command line 中输入以下指令:<code>ssh-keygen -t rsa</code>去创建一个ssh-rsa密匙。如果你并不需要为你的密匙创建密码和修改名字，那么就一路回车就OK，如果你需要，请您自行Google翻译，因为只是英文问题。</p>
 <blockquote>
 <p>$ ssh-keygen -t rsa<br>Generating public/private rsa key pair.<br>Enter file in which to save the key (/c/Users/Liang Guan Quan/.ssh/id_rsa)<br>您可以根据括号中的路径来判断你的.ssh文件放在了什么地方</p>
 </blockquote>
-<ol>
-<li>到 <a href="https://github.com/settings/keys" target="_blank" rel="external">https://github.com/settings/keys</a> 这个地址中去添加一个新的SSH key，然后把你的xx.pub文件下的内容文本都复制到Key文本域中，然后就可以提交了。</li>
+</li>
+<li><p>到 <a href="https://github.com/settings/keys" target="_blank" rel="external">https://github.com/settings/keys</a> 这个地址中去添加一个新的SSH key，然后把你的xx.pub文件下的内容文本都复制到Key文本域中，然后就可以提交了。</p>
+</li>
 <li>添加完成之后 我们用<code>ssh git@github.com</code> 命令来连通一下github，如果你在response里面看到了你github账号名，那么就说明配置成功了。  <em>let’s enjoy github ;)</em></li>
 </ol>
 <h3 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h3><p>在本地仓库根目录创建 .gitignore 文件。Win7 下不能直接创建，可以创建 “.gitignore.” 文件，后面的标点自动被忽略；</p>
