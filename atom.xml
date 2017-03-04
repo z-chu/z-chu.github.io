@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-04T16:43:01.277Z</updated>
+  <updated>2017-03-04T16:53:20.258Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,18 +20,37 @@
     <link href="http://yoursite.com/2017/03/05/git/"/>
     <id>http://yoursite.com/2017/03/05/git/</id>
     <published>2017-03-04T16:02:22.000Z</published>
-    <updated>2017-03-04T16:43:01.277Z</updated>
+    <updated>2017-03-04T16:53:20.258Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
-<h3 id="获取远程仓库"><a href="#获取远程仓库" class="headerlink" title="获取远程仓库"></a>获取远程仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [url]</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><ul>
+<li><p>创建本地仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取远程仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [url]</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>例：<code>git clone https://github.com/you/yourpro.git</code></p>
-<h3 id="添加一个新的-remote-远程仓库"><a href="#添加一个新的-remote-远程仓库" class="headerlink" title="添加一个新的 remote 远程仓库"></a>添加一个新的 remote 远程仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add [remote-name] [url]</div></pre></td></tr></table></figure>
-<p>例：<code>git remote add origin https://github.com/you/yourpro.git</code><br>origin：相当于该远程仓库的别名<br><a id="more"></a></p>
-<h3 id="列出所有-remote-的别名"><a href="#列出所有-remote-的别名" class="headerlink" title="列出所有 remote 的别名"></a>列出所有 remote 的别名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote</div></pre></td></tr></table></figure>
-<h3 id="列出所有-remote-的-url"><a href="#列出所有-remote-的-url" class="headerlink" title="列出所有 remote 的 url"></a>列出所有 remote 的 url</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure>
-<h3 id="删除一个-remote"><a href="#删除一个-remote" class="headerlink" title="删除一个 remote"></a>删除一个 remote</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm [name]</div></pre></td></tr></table></figure>
-<h3 id="重命名-remote"><a href="#重命名-remote" class="headerlink" title="重命名 remote"></a>重命名 remote</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rename [old-name] [new-name]</div></pre></td></tr></table></figure>
-<h3 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h3><ul>
+<h2 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h2><ul>
+<li>添加一个新的 remote 远程仓库：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add [remote-name] [url]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例：<code>git remote add origin https://github.com/you/yourpro.git</code> ，origin：相当于该远程仓库的别名<br><a id="more"></a></p>
+<ul>
+<li><p>列出所有 remote 的别名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote</div></pre></td></tr></table></figure>
+</li>
+<li><p>列出所有 remote 的 url：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote -v</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除一个 remote：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rm [name]</div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名 remote：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote rename [old-name] [new-name]</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改远程仓库地址：</p>
+<ul>
 <li><p>直接修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote set-url origin [url]</div></pre></td></tr></table></figure>
 <p>例如：<code>git remote set-url origin https://github.com/you/yourpro.git</code></p>
@@ -40,20 +59,48 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin [url]</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="从本地仓库中添加新的文件"><a href="#从本地仓库中添加新的文件" class="headerlink" title="从本地仓库中添加新的文件"></a>从本地仓库中添加新的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .               // 添加所有文件</div><div class="line">git add file.txt        // 添加指定文件</div></pre></td></tr></table></figure>
-<h3 id="从本地仓库中删除"><a href="#从本地仓库中删除" class="headerlink" title="从本地仓库中删除"></a>从本地仓库中删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm file.txt         // 从版本库中移除，删除文件</div><div class="line">git rm file.txt -cached // 从版本库中移除，不删除原始文件</div><div class="line">git rm -r xxx           // 从版本库中删除指定文件夹</div></pre></td></tr></table></figure>
-<h3 id="提交，把内容提交到-HEAD-里"><a href="#提交，把内容提交到-HEAD-里" class="headerlink" title="提交，把内容提交到 HEAD 里"></a>提交，把内容提交到 HEAD 里</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;注释&quot;</div></pre></td></tr></table></figure>
-<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git revert HEAD     // 撤销最近的一个提交</div><div class="line">git reset --mixed   // 取消 commit + add</div><div class="line">git reset --soft    // 取消 commit</div><div class="line">git reset --hard    // 取消 commit + add + local working</div></pre></td></tr></table></figure>
-<h3 id="把本地提交-push-到远程服务器"><a href="#把本地提交-push-到远程服务器" class="headerlink" title="把本地提交 push 到远程服务器"></a>把本地提交 push 到远程服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push [remote-name] [loca-branch]:[remote-branch]</div><div class="line">例：git push origin master:master</div></pre></td></tr></table></figure>
-<h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
-<h3 id="从远程库中下载新的改动-方式1"><a href="#从远程库中下载新的改动-方式1" class="headerlink" title="从远程库中下载新的改动-方式1"></a>从远程库中下载新的改动-方式1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch [remote-name]/[branch]</div></pre></td></tr></table></figure>
-<h3 id="从远程库中下载新的改动-方式2"><a href="#从远程库中下载新的改动-方式2" class="headerlink" title="从远程库中下载新的改动-方式2"></a>从远程库中下载新的改动-方式2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull [remote-name] [branch]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h2><ul>
+<li>从本地仓库中添加新的文件：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .               // 添加所有文件</div><div class="line">git add file.txt        // 添加指定文件</div></pre></td></tr></table></figure>
+<ul>
+<li><p>从本地仓库中删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm file.txt         // 从版本库中移除，删除文件</div><div class="line">git rm file.txt -cached // 从版本库中移除，不删除原始文件</div><div class="line">git rm -r xxx           // 从版本库中删除指定文件夹</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交，把内容提交到 HEAD 里：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;注释&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>撤销：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git revert HEAD     // 撤销最近的一个提交</div><div class="line">git reset --mixed   // 取消 commit + add</div><div class="line">git reset --soft    // 取消 commit</div><div class="line">git reset --hard    // 取消 commit + add + local working</div></pre></td></tr></table></figure>
+</li>
+<li><p>把本地提交 push 到远程服务器：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push [remote-name] [loca-branch]:[remote-branch]</div><div class="line">例：git push origin master:master</div></pre></td></tr></table></figure>
+<h2 id="更新代码"><a href="#更新代码" class="headerlink" title="更新代码"></a>更新代码</h2><ul>
+<li><p>查看状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程库中下载新的改动-方式1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch [remote-name]/[branch]</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程库中下载新的改动-方式2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull [remote-name] [branch]</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>例：<code>git pull origin master</code><br>pull = fetch + merge</p>
-<h3 id="合并下载的改动到分支-方式1"><a href="#合并下载的改动到分支-方式1" class="headerlink" title="合并下载的改动到分支-方式1"></a>合并下载的改动到分支-方式1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git merge [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git commit -m&apos;fix conflict&apos;</div></pre></td></tr></table></figure>
-<h3 id="合并下载的改动到分支-方式2"><a href="#合并下载的改动到分支-方式2" class="headerlink" title="合并下载的改动到分支-方式2"></a>合并下载的改动到分支-方式2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git rebase [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git rebase --continue</div></pre></td></tr></table></figure>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 列出分支</div><div class="line">git branch</div><div class="line">// 创建一个新的分支</div><div class="line">git branch (branch-name)</div><div class="line">// 删除一个分支</div><div class="line">git branch -d (branch-nam)</div><div class="line">// 删除 remote 的分支</div><div class="line">git push (remote-name) :(remote-branch)</div></pre></td></tr></table></figure>
-<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 切换到一个分支</div><div class="line">git checkout [branch-name]</div><div class="line">	</div><div class="line">// 创建并切换到该分支</div><div class="line">git checkout -b [branch-name]</div></pre></td></tr></table></figure>
-<h3 id="与github建立ssh通信，让Git操作免去输入密码的繁琐"><a href="#与github建立ssh通信，让Git操作免去输入密码的繁琐" class="headerlink" title="与github建立ssh通信，让Git操作免去输入密码的繁琐"></a>与github建立ssh通信，让Git操作免去输入密码的繁琐</h3><ol>
+<ul>
+<li><p>合并下载的改动到分支-方式1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git merge [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git commit -m&apos;fix conflict&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>合并下载的改动到分支-方式2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git rebase [remote-name]/[branch]</div><div class="line">解决冲突...</div><div class="line">git add .</div><div class="line">git rebase --continue</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 列出分支</div><div class="line">git branch</div><div class="line">// 创建一个新的分支</div><div class="line">git branch (branch-name)</div><div class="line">// 删除一个分支</div><div class="line">git branch -d (branch-nam)</div><div class="line">// 删除 remote 的分支</div><div class="line">git push (remote-name) :(remote-branch)</div><div class="line">// 切换到一个分支</div><div class="line">git checkout [branch-name]</div><div class="line">// 创建并切换到该分支</div><div class="line">git checkout -b [branch-name]</div></pre></td></tr></table></figure>
+<h2 id="与github建立ssh通信，让Git操作免去输入密码的繁琐"><a href="#与github建立ssh通信，让Git操作免去输入密码的繁琐" class="headerlink" title="与github建立ssh通信，让Git操作免去输入密码的繁琐"></a>与github建立ssh通信，让Git操作免去输入密码的繁琐</h2><ol>
 <li><p>首先呢，我们先建立ssh密匙。</p>
 <blockquote>
 <p>ssh key must begin with ‘ssh-ed25519’, ‘ssh-rsa’, ‘ssh-dss’, ‘ecdsa-sha2-nistp256’, ‘ecdsa-sha2-nistp384’, or ‘ecdsa-sha2-nistp521’.  – from github</p>
@@ -69,16 +116,25 @@
 </li>
 <li>添加完成之后 我们用<code>ssh git@github.com</code> 命令来连通一下github，如果你在response里面看到了你github账号名，那么就说明配置成功了。  <em>let’s enjoy github ;)</em></li>
 </ol>
-<h3 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h3><p>在本地仓库根目录创建 .gitignore 文件。Win7 下不能直接创建，可以创建 “.gitignore.” 文件，后面的标点自动被忽略；</p>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title="gitignore"></a>gitignore</h2><p>在本地仓库根目录创建 .gitignore 文件。Win7 下不能直接创建，可以创建 “.gitignore.” 文件，后面的标点自动被忽略；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/.idea          // 过滤指定文件夹</div><div class="line">/fd/*           // 忽略根目录下的 /fd/ 目录的全部内容</div><div class="line">*.iml           // 过滤指定的所有文件</div><div class="line">!.gitignore     // 不忽略该文件</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;创建本地仓库&quot;&gt;&lt;a href=&quot;#创建本地仓库&quot; class=&quot;headerlink&quot; title=&quot;创建本地仓库&quot;&gt;&lt;/a&gt;创建本地仓库&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git init&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;获取远程仓库&quot;&gt;&lt;a href=&quot;#获取远程仓库&quot; class=&quot;headerlink&quot; title=&quot;获取远程仓库&quot;&gt;&lt;/a&gt;获取远程仓库&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git clone [url]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;h2 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建本地仓库：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git init&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;获取远程仓库：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git clone [url]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;例：&lt;code&gt;git clone https://github.com/you/yourpro.git&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;添加一个新的-remote-远程仓库&quot;&gt;&lt;a href=&quot;#添加一个新的-remote-远程仓库&quot; class=&quot;headerlink&quot; title=&quot;添加一个新的 remote 远程仓库&quot;&gt;&lt;/a&gt;添加一个新的 remote 远程仓库&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git remote add [remote-name] [url]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;例：&lt;code&gt;git remote add origin https://github.com/you/yourpro.git&lt;/code&gt;&lt;br&gt;origin：相当于该远程仓库的别名&lt;br&gt;
+&lt;h2 id=&quot;远程&quot;&gt;&lt;a href=&quot;#远程&quot; class=&quot;headerlink&quot; title=&quot;远程&quot;&gt;&lt;/a&gt;远程&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;添加一个新的 remote 远程仓库：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git remote add [remote-name] [url]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例：&lt;code&gt;git remote add origin https://github.com/you/yourpro.git&lt;/code&gt; ，origin：相当于该远程仓库的别名&lt;br&gt;
     
     </summary>
     
