@@ -896,13 +896,13 @@ startActivity(intent);
   </entry>
   
   <entry>
-    <title>https-Exception</title>
+    <title>OkHttp在4.4及以下不支持TLS协议的解决方法</title>
     <link href="http://yoursite.com/2017/01/21/https-Exception/"/>
     <id>http://yoursite.com/2017/01/21/https-Exception/</id>
     <published>2017-01-21T05:59:58.000Z</published>
-    <updated>2017-05-06T06:06:05.489Z</updated>
+    <updated>2017-05-06T06:08:39.984Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="OkHttp在4-4及以下不支持TLS协议的解决方法"><a href="#OkHttp在4-4及以下不支持TLS协议的解决方法" class="headerlink" title="OkHttp在4.4及以下不支持TLS协议的解决方法"></a>OkHttp在4.4及以下不支持TLS协议的解决方法</h1><p>在发布水滴preview版的的过程中，5.0以下的手机都不能访问网络。</p>
+    <content type="html"><![CDATA[<p>在发布水滴preview版的的过程中，5.0以下的手机都不能访问网络。</p>
 <p>错误信息如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">javax.net.ssl.SSLHandshakeException: </div><div class="line">javax.net.ssl.SSLProtocolException: </div><div class="line">SSL handshake aborted: ssl=<span class="number">0x79f145b0</span>:</div><div class="line">Failure in SSL library, usually a protocol error error:</div><div class="line"><span class="number">1407742</span>E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version</div></pre></td></tr></table></figure>
 <p>因为之前没有太多接触过网络协议，这个问题也确实很难搜到，所以我找了很久，才找到了原因：Android 4.4及以下的系统默认不支持TLS协议，所以遇到使用TLS协议的网站就无法访问了。</p>
@@ -914,7 +914,7 @@ startActivity(intent);
     
     <summary type="html">
     
-      &lt;h1 id=&quot;OkHttp在4-4及以下不支持TLS协议的解决方法&quot;&gt;&lt;a href=&quot;#OkHttp在4-4及以下不支持TLS协议的解决方法&quot; class=&quot;headerlink&quot; title=&quot;OkHttp在4.4及以下不支持TLS协议的解决方法&quot;&gt;&lt;/a&gt;OkHttp在4.4及以下不支持TLS协议的解决方法&lt;/h1&gt;&lt;p&gt;在发布水滴preview版的的过程中，5.0以下的手机都不能访问网络。&lt;/p&gt;
+      &lt;p&gt;在发布水滴preview版的的过程中，5.0以下的手机都不能访问网络。&lt;/p&gt;
 &lt;p&gt;错误信息如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;javax.net.ssl.SSLHandshakeException: &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;javax.net.ssl.SSLProtocolException: &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;SSL handshake aborted: ssl=&lt;span class=&quot;number&quot;&gt;0x79f145b0&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Failure in SSL library, usually a protocol error error:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1407742&lt;/span&gt;E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert protocol version&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;因为之前没有太多接触过网络协议，这个问题也确实很难搜到，所以我找了很久，才找到了原因：Android 4.4及以下的系统默认不支持TLS协议，所以遇到使用TLS协议的网站就无法访问了。&lt;/p&gt;
