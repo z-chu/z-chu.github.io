@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>赵成柱的博客|Vray Blog</title>
-  <subtitle>Vray Blog</subtitle>
+  <title>Vray Blog</title>
+  <subtitle>我叫赵成柱，我是一名 Android 开发者.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
