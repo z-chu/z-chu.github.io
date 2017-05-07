@@ -4,9 +4,9 @@
   <subtitle>我叫赵成柱，我是一名 Android 开发者.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://z-chu.github.io/"/>
   <updated>2017-05-07T05:41:21.315Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://z-chu.github.io/</id>
   
   <author>
     <name>Vary Zhao</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>(转) Android IM 开发小结</title>
-    <link href="http://yoursite.com/2017/04/20/Android-IM-Summarize/"/>
-    <id>http://yoursite.com/2017/04/20/Android-IM-Summarize/</id>
+    <link href="https://z-chu.github.io/2017/04/20/Android-IM-Summarize/"/>
+    <id>https://z-chu.github.io/2017/04/20/Android-IM-Summarize/</id>
     <published>2017-04-20T06:30:02.000Z</published>
     <updated>2017-05-07T05:41:21.315Z</updated>
     
@@ -62,8 +62,8 @@
   
   <entry>
     <title>Git 常用命令合集</title>
-    <link href="http://yoursite.com/2017/03/05/git/"/>
-    <id>http://yoursite.com/2017/03/05/git/</id>
+    <link href="https://z-chu.github.io/2017/03/05/git/"/>
+    <id>https://z-chu.github.io/2017/03/05/git/</id>
     <published>2017-03-04T16:02:22.000Z</published>
     <updated>2017-03-04T17:01:22.352Z</updated>
     
@@ -180,14 +180,14 @@
     </summary>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="https://z-chu.github.io/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>Java到底是不是一种纯面向对象语言</title>
-    <link href="http://yoursite.com/2017/02/23/java-1/"/>
-    <id>http://yoursite.com/2017/02/23/java-1/</id>
+    <link href="https://z-chu.github.io/2017/02/23/java-1/"/>
+    <id>https://z-chu.github.io/2017/02/23/java-1/</id>
     <published>2017-02-23T15:22:20.000Z</published>
     <updated>2017-02-23T15:23:33.576Z</updated>
     
@@ -266,17 +266,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+      <category term="Java" scheme="https://z-chu.github.io/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>Android快速发布项目到jcenter</title>
-    <link href="http://yoursite.com/2017/02/14/release-JCenter/"/>
-    <id>http://yoursite.com/2017/02/14/release-JCenter/</id>
+    <link href="https://z-chu.github.io/2017/02/14/release-JCenter/"/>
+    <id>https://z-chu.github.io/2017/02/14/release-JCenter/</id>
     <published>2017-02-13T16:06:54.000Z</published>
     <updated>2017-05-06T13:26:14.817Z</updated>
     
@@ -332,15 +332,15 @@
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>RecycleView4种定位滚动方式演示</title>
-    <link href="http://yoursite.com/2017/02/11/RecyclerView-Scroll/"/>
-    <id>http://yoursite.com/2017/02/11/RecyclerView-Scroll/</id>
+    <link href="https://z-chu.github.io/2017/02/11/RecyclerView-Scroll/"/>
+    <id>https://z-chu.github.io/2017/02/11/RecyclerView-Scroll/</id>
     <published>2017-02-11T09:35:14.000Z</published>
     <updated>2017-02-11T09:37:22.802Z</updated>
     
@@ -378,17 +378,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
-      <category term="RecycleView" scheme="http://yoursite.com/tags/RecycleView/"/>
+      <category term="RecycleView" scheme="https://z-chu.github.io/tags/RecycleView/"/>
     
   </entry>
   
   <entry>
     <title>浅谈设计模式之单例模式</title>
-    <link href="http://yoursite.com/2017/02/09/singleton-pattern/"/>
-    <id>http://yoursite.com/2017/02/09/singleton-pattern/</id>
+    <link href="https://z-chu.github.io/2017/02/09/singleton-pattern/"/>
+    <id>https://z-chu.github.io/2017/02/09/singleton-pattern/</id>
     <published>2017-02-09T14:23:54.000Z</published>
     <updated>2017-02-09T14:33:25.022Z</updated>
     
@@ -476,17 +476,17 @@
     
     </summary>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>设计模式概览</title>
-    <link href="http://yoursite.com/2017/02/08/Design-patterns-2/"/>
-    <id>http://yoursite.com/2017/02/08/Design-patterns-2/</id>
+    <link href="https://z-chu.github.io/2017/02/08/Design-patterns-2/"/>
+    <id>https://z-chu.github.io/2017/02/08/Design-patterns-2/</id>
     <published>2017-02-08T15:10:41.000Z</published>
     <updated>2017-02-08T15:22:05.700Z</updated>
     
@@ -567,17 +567,17 @@
     
     </summary>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>面向对象基础</title>
-    <link href="http://yoursite.com/2017/02/07/Design-patterns-1/"/>
-    <id>http://yoursite.com/2017/02/07/Design-patterns-1/</id>
+    <link href="https://z-chu.github.io/2017/02/07/Design-patterns-1/"/>
+    <id>https://z-chu.github.io/2017/02/07/Design-patterns-1/</id>
     <published>2017-02-07T14:15:17.000Z</published>
     <updated>2017-02-07T14:36:13.900Z</updated>
     
@@ -611,15 +611,15 @@
     
     </summary>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>开闭原则</title>
-    <link href="http://yoursite.com/2017/01/23/OpenClosedPrinciple/"/>
-    <id>http://yoursite.com/2017/01/23/OpenClosedPrinciple/</id>
+    <link href="https://z-chu.github.io/2017/01/23/OpenClosedPrinciple/"/>
+    <id>https://z-chu.github.io/2017/01/23/OpenClosedPrinciple/</id>
     <published>2017-01-23T14:38:41.000Z</published>
     <updated>2017-01-23T14:41:35.046Z</updated>
     
@@ -641,17 +641,17 @@
     
     </summary>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>我对MVC和MVP的一些理解</title>
-    <link href="http://yoursite.com/2017/01/21/architecture1/"/>
-    <id>http://yoursite.com/2017/01/21/architecture1/</id>
+    <link href="https://z-chu.github.io/2017/01/21/architecture1/"/>
+    <id>https://z-chu.github.io/2017/01/21/architecture1/</id>
     <published>2017-01-21T08:20:24.000Z</published>
     <updated>2017-01-21T10:33:59.263Z</updated>
     
@@ -687,15 +687,15 @@
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>原型模式</title>
-    <link href="http://yoursite.com/2017/01/21/prototype-pattern/"/>
-    <id>http://yoursite.com/2017/01/21/prototype-pattern/</id>
+    <link href="https://z-chu.github.io/2017/01/21/prototype-pattern/"/>
+    <id>https://z-chu.github.io/2017/01/21/prototype-pattern/</id>
     <published>2017-01-21T07:50:24.000Z</published>
     <updated>2017-01-23T14:41:19.893Z</updated>
     
@@ -724,15 +724,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://z-chu.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>Android面试之性能优化</title>
-    <link href="http://yoursite.com/2017/01/21/Android-interview3/"/>
-    <id>http://yoursite.com/2017/01/21/Android-interview3/</id>
+    <link href="https://z-chu.github.io/2017/01/21/Android-interview3/"/>
+    <id>https://z-chu.github.io/2017/01/21/Android-interview3/</id>
     <published>2017-01-21T06:17:17.000Z</published>
     <updated>2017-01-21T10:33:38.679Z</updated>
     
@@ -804,15 +804,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>Android面试之网络</title>
-    <link href="http://yoursite.com/2017/01/21/Android-interview2/"/>
-    <id>http://yoursite.com/2017/01/21/Android-interview2/</id>
+    <link href="https://z-chu.github.io/2017/01/21/Android-interview2/"/>
+    <id>https://z-chu.github.io/2017/01/21/Android-interview2/</id>
     <published>2017-01-21T06:15:17.000Z</published>
     <updated>2017-01-21T10:46:38.188Z</updated>
     
@@ -859,15 +859,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>Android面试之java基础</title>
-    <link href="http://yoursite.com/2017/01/21/Android-interview1/"/>
-    <id>http://yoursite.com/2017/01/21/Android-interview1/</id>
+    <link href="https://z-chu.github.io/2017/01/21/Android-interview1/"/>
+    <id>https://z-chu.github.io/2017/01/21/Android-interview1/</id>
     <published>2017-01-21T06:14:17.000Z</published>
     <updated>2017-01-21T10:52:47.043Z</updated>
     
@@ -916,15 +916,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>Glide加载圆形image第一次只显示占位图的坑</title>
-    <link href="http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/"/>
-    <id>http://yoursite.com/2017/01/21/GlideLoadedCircularImageBug/</id>
+    <link href="https://z-chu.github.io/2017/01/21/GlideLoadedCircularImageBug/"/>
+    <id>https://z-chu.github.io/2017/01/21/GlideLoadedCircularImageBug/</id>
     <published>2017-01-21T06:03:17.000Z</published>
     <updated>2017-01-21T06:06:41.971Z</updated>
     
@@ -945,15 +945,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>OkHttp在4.4及以下不支持TLS协议的解决方法</title>
-    <link href="http://yoursite.com/2017/01/21/https-Exception/"/>
-    <id>http://yoursite.com/2017/01/21/https-Exception/</id>
+    <link href="https://z-chu.github.io/2017/01/21/https-Exception/"/>
+    <id>https://z-chu.github.io/2017/01/21/https-Exception/</id>
     <published>2017-01-21T05:59:58.000Z</published>
     <updated>2017-05-06T06:08:39.984Z</updated>
     
@@ -977,15 +977,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>如何遍写测试用例</title>
-    <link href="http://yoursite.com/2017/01/20/article-title/"/>
-    <id>http://yoursite.com/2017/01/20/article-title/</id>
+    <link href="https://z-chu.github.io/2017/01/20/article-title/"/>
+    <id>https://z-chu.github.io/2017/01/20/article-title/</id>
     <published>2017-01-20T15:55:29.000Z</published>
     <updated>2017-01-21T10:34:11.119Z</updated>
     
@@ -1058,15 +1058,15 @@ startActivity(intent);
     
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>使用Github搭建自己的博客</title>
-    <link href="http://yoursite.com/2017/01/20/hello-world/"/>
-    <id>http://yoursite.com/2017/01/20/hello-world/</id>
+    <link href="https://z-chu.github.io/2017/01/20/hello-world/"/>
+    <id>https://z-chu.github.io/2017/01/20/hello-world/</id>
     <published>2017-01-20T13:25:12.642Z</published>
     <updated>2017-01-20T16:00:51.371Z</updated>
     
