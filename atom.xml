@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>赵成柱的博客</title>
-  
+  <title>赵成柱的博客|Vray Blog</title>
+  <subtitle>Vray Blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-06T07:26:39.381Z</updated>
+  <updated>2017-05-07T05:41:21.315Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>z-chu</name>
+    <name>Vary Zhao</name>
     <email>zchu8073@gmail.com</email>
   </author>
   
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2017/04/20/Android-IM-Summarize/"/>
     <id>http://yoursite.com/2017/04/20/Android-IM-Summarize/</id>
     <published>2017-04-20T06:30:02.000Z</published>
-    <updated>2017-05-06T07:26:39.381Z</updated>
+    <updated>2017-05-07T05:41:21.315Z</updated>
     
-    <content type="html"><![CDATA[<p>作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。</p>
+    <content type="html"><![CDATA[<h1 id="客户端架构"><a href="#客户端架构" class="headerlink" title="客户端架构"></a>客户端架构</h1><p>作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。</p>
 <h2 id="进程切分"><a href="#进程切分" class="headerlink" title="进程切分"></a>进程切分</h2><p>在 Android 系统中，App 对于自己应用的生命周期是基本没有控制力，系统能在任意时候将你的进程杀死，且不会发出任何通知，也会在它认为合适的时候把你叫起来。进程前后台切换也同样不会给出任何通知。不过进程的生死控制也还是有一些规矩的，大体上来说就是进程占的资源越多（内存，CPU 时间等等），对于用户越不重要（前台进程-&gt;可视进程-&gt;服务进程-&gt;后台进程-&gt;空进程），越容易被干掉。因此，进程应当尽量小巧，且具有高的优先级。</p>
 <p>如果一个应用本身就很小巧的话，一个进程就完全足够了，主线程负责 UI，另起一个后台线程跑一个服务。而如果应用比较庞大的话，将推送服务独立出来则是一个更好的选择。主进程负责用户交互和主要的业务逻辑，占用庞大的资源，当退到后台后，随时被杀死都无所谓。推送进程则仅仅负责与服务器交互，保持最小限度的业务逻辑处理。<br>网络连接和登录状态是绑在一起的，登录之后，同步数据也是必须的操作。因此，登录和同步数据都需要在推送进程中完成，除此之外，其他的业务都交给 UI 进程处理。推送进程收到自己不属于自己的协议时，就将数据扔给 UI 进程处理。</p>
 <p>两个进程之间通信方式没有别的选择，只有 AIDL，难点在于接口的设计。IM 业务逻辑复杂，我们不可能为每一个调用实现一个 AIDL 接口，因此肯定会把接口调用打包成控制命令传递。而标识控制命令比较容易想到的方式，是采用类似于 Message 的 what，由我们为每一个控制命令分配一个命令号（或者再加一个子命令号），并指定对应的命令数据格式，接收端根据命令号再将数据反解出来处理。这种方式比较麻烦，且可维护性很差。更优雅的方式是使用远程过程调用，发送端申明业务的调用接口，并在远端实现这些接口，当发送端调用这些接口时，远端直接调用对应接口的实现。除了使用各种第三方框架外，Java 自身的 Proxy 也能实现这个功能。而从推送进程到 UI 进程还有一点不同，UI 进程随时可能会被干掉，AIDL 调用可能会返回失败，此种情况可选择 Intent 方式传递数据，并兼具唤起 UI 进程的功能。<br><a id="more"></a></p>
@@ -50,7 +50,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。&lt;/p&gt;
+      &lt;h1 id=&quot;客户端架构&quot;&gt;&lt;a href=&quot;#客户端架构&quot; class=&quot;headerlink&quot; title=&quot;客户端架构&quot;&gt;&lt;/a&gt;客户端架构&lt;/h1&gt;&lt;p&gt;作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。&lt;/p&gt;
 &lt;h2 id=&quot;进程切分&quot;&gt;&lt;a href=&quot;#进程切分&quot; class=&quot;headerlink&quot; title=&quot;进程切分&quot;&gt;&lt;/a&gt;进程切分&lt;/h2&gt;&lt;p&gt;在 Android 系统中，App 对于自己应用的生命周期是基本没有控制力，系统能在任意时候将你的进程杀死，且不会发出任何通知，也会在它认为合适的时候把你叫起来。进程前后台切换也同样不会给出任何通知。不过进程的生死控制也还是有一些规矩的，大体上来说就是进程占的资源越多（内存，CPU 时间等等），对于用户越不重要（前台进程-&amp;gt;可视进程-&amp;gt;服务进程-&amp;gt;后台进程-&amp;gt;空进程），越容易被干掉。因此，进程应当尽量小巧，且具有高的优先级。&lt;/p&gt;
 &lt;p&gt;如果一个应用本身就很小巧的话，一个进程就完全足够了，主线程负责 UI，另起一个后台线程跑一个服务。而如果应用比较庞大的话，将推送服务独立出来则是一个更好的选择。主进程负责用户交互和主要的业务逻辑，占用庞大的资源，当退到后台后，随时被杀死都无所谓。推送进程则仅仅负责与服务器交互，保持最小限度的业务逻辑处理。&lt;br&gt;网络连接和登录状态是绑在一起的，登录之后，同步数据也是必须的操作。因此，登录和同步数据都需要在推送进程中完成，除此之外，其他的业务都交给 UI 进程处理。推送进程收到自己不属于自己的协议时，就将数据扔给 UI 进程处理。&lt;/p&gt;
 &lt;p&gt;两个进程之间通信方式没有别的选择，只有 AIDL，难点在于接口的设计。IM 业务逻辑复杂，我们不可能为每一个调用实现一个 AIDL 接口，因此肯定会把接口调用打包成控制命令传递。而标识控制命令比较容易想到的方式，是采用类似于 Message 的 what，由我们为每一个控制命令分配一个命令号（或者再加一个子命令号），并指定对应的命令数据格式，接收端根据命令号再将数据反解出来处理。这种方式比较麻烦，且可维护性很差。更优雅的方式是使用远程过程调用，发送端申明业务的调用接口，并在远端实现这些接口，当发送端调用这些接口时，远端直接调用对应接口的实现。除了使用各种第三方框架外，Java 自身的 Proxy 也能实现这个功能。而从推送进程到 UI 进程还有一点不同，UI 进程随时可能会被干掉，AIDL 调用可能会返回失败，此种情况可选择 Intent 方式传递数据，并兼具唤起 UI 进程的功能。&lt;br&gt;
@@ -278,7 +278,7 @@
     <link href="http://yoursite.com/2017/02/14/release-JCenter/"/>
     <id>http://yoursite.com/2017/02/14/release-JCenter/</id>
     <published>2017-02-13T16:06:54.000Z</published>
-    <updated>2017-02-13T16:12:29.563Z</updated>
+    <updated>2017-05-06T13:26:14.817Z</updated>
     
     <content type="html"><![CDATA[<p>最近在整理项目的时候，想要上传至Jcenter，可以让大家一句代码就可以引入。就在网上寻找，然而网上有些方法实在是太麻烦，故写此篇文章将心酸历程写下，让各位老司机少走弯路，快速发布</p>
 <h2 id="注册Bintray账号"><a href="#注册Bintray账号" class="headerlink" title="注册Bintray账号"></a>注册Bintray账号</h2><p>个人注册 Bintray 地址：<a href="https://bintray.com/signup/oss" target="_blank" rel="external">https://bintray.com/signup/oss</a><br>不要去 <a href="https://bintray.com/login" target="_blank" rel="external">https://bintray.com/login</a> 注册，这个千万不能搞错。<br><strong>注意一下邮箱问题：不能用QQ，163等，推荐用Gmail</strong>，国内用户可以使用github的账号进行登陆完成注册，也要注意邮箱问题。</p>
@@ -299,6 +299,16 @@
 <p>使用maven添加该库：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;com.zchu&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;zlog&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;1.0.0&lt;/version&gt;</div><div class="line">  &lt;type&gt;pom&lt;/type&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
 <h3 id="3-发布"><a href="#3-发布" class="headerlink" title="3. 发布"></a>3. 发布</h3><p>执行下面的语句</p>
 <p><code>./gradlew clean build bintrayUpload -PbintrayUser={Bintray的用户名} -PbintrayKey={API Key} -PdryRun=false</code></p>
+<p><strong>但是</strong>，我相信绝大多数人都会遇到BUILD FAILED 的情况的。<br>打包过程遇到的错误大致总结一下就是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Javadoc generation failed. <span class="function">Generated Javadoc options <span class="title">file</span> <span class="params">(useful <span class="keyword">for</span> troubleshooting)</span>: ‘路径’</span></div></pre></td></tr></table></figure>
+<ul>
+<li>错误: 编码GBK的不可映射字符 ——注释不要用中文，或者修改项目的字符编码</li>
+<li>错误: 编码GBK的不可映射字符 ——注释不要用中文，或者修改项目的字符编码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could not create <span class="keyword">package</span> ‘路径’: HTTP/<span class="number">1.1</span> <span class="number">401</span> Unauthorized [message:This resource <span class="keyword">requires</span> authentication]</div></pre></td></tr></table></figure>
+<ul>
+<li>你一定是用户名或者APIKey填错了。</li>
+</ul>
 <h3 id="4-发布完之后"><a href="#4-发布完之后" class="headerlink" title="4.发布完之后"></a>4.发布完之后</h3><p>不是执行完上述的语句就算完了，还需要通过 JCenter 的审核。</p>
 <p>当然不通过审核也是可以使用的，在根目录的build.gradle中添加形如下面的脚本<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        maven&#123;url <span class="string">'https://dl.bintray.com/zchu/maven/'</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>最为重要的是下面这一句，但是通过审核的话完全不需要添加这一句。</p>

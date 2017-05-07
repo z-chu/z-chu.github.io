@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/2017/04/20/Android-IM-Summarize/</loc>
     
-    <lastmod>2017-05-06T08:39:53.956Z</lastmod>
+    <lastmod>2017-05-07T05:41:21.315Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/04/20/Android-IM-Summarize/</loc>
+    <loc>http://yoursite.com/2017/02/14/release-JCenter/</loc>
     
-    <lastmod>2017-05-06T07:26:39.381Z</lastmod>
+    <lastmod>2017-05-06T13:26:14.817Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2017-05-06T09:59:26.823Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/2017/02/23/java-1/</loc>
     
     <lastmod>2017-02-23T15:23:33.576Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/02/14/release-JCenter/</loc>
-    
-    <lastmod>2017-02-13T16:12:29.563Z</lastmod>
     
   </url>
   

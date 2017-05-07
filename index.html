@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="赵成柱的博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="赵成柱的博客|Vray Blog" type="application/atom+xml" />
 
 
 
@@ -88,12 +88,12 @@
 
 <meta name="description" content="Change is the eternal truth">
 <meta property="og:type" content="website">
-<meta property="og:title" content="赵成柱的博客">
+<meta property="og:title" content="赵成柱的博客|Vray Blog">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="赵成柱的博客">
+<meta property="og:site_name" content="赵成柱的博客|Vray Blog">
 <meta property="og:description" content="Change is the eternal truth">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="赵成柱的博客">
+<meta name="twitter:title" content="赵成柱的博客|Vray Blog">
 <meta name="twitter:description" content="Change is the eternal truth">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title> 赵成柱的博客 </title>
+  <title> 赵成柱的博客|Vray Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,12 +171,12 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">赵成柱的博客</span>
+      <span class="site-title">赵成柱的博客|Vray Blog</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
     
-      <p class="site-subtitle"></p>
+      <p class="site-subtitle">Vray Blog</p>
     
 </div>
 
@@ -276,15 +276,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/Android-IM-Summarize/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -362,7 +362,7 @@
 
       
         
-          <p>作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。</p>
+          <h1 id="客户端架构"><a href="#客户端架构" class="headerlink" title="客户端架构"></a>客户端架构</h1><p>作为一个 IM 软件，最重要的一个特性就是保证消息的达到率和实时性。达到率受服务器性能和设计协议影响，后面再谈。而实时性则主要取决于客户端进程是否长期存活，连接是否一致保持。由于墙的存在，墙内的 Android 系统是没法用到 GCM 服务的，要实时收到消息推送，就只能靠 App 自己了。也幸好 Android 是一个 “多任务操作系统.真”，我们才能够在墙内也能实时收到微信易信的消息。</p>
 <h2 id="进程切分"><a href="#进程切分" class="headerlink" title="进程切分"></a>进程切分</h2><p>在 Android 系统中，App 对于自己应用的生命周期是基本没有控制力，系统能在任意时候将你的进程杀死，且不会发出任何通知，也会在它认为合适的时候把你叫起来。进程前后台切换也同样不会给出任何通知。不过进程的生死控制也还是有一些规矩的，大体上来说就是进程占的资源越多（内存，CPU 时间等等），对于用户越不重要（前台进程-&gt;可视进程-&gt;服务进程-&gt;后台进程-&gt;空进程），越容易被干掉。因此，进程应当尽量小巧，且具有高的优先级。</p>
 <p>如果一个应用本身就很小巧的话，一个进程就完全足够了，主线程负责 UI，另起一个后台线程跑一个服务。而如果应用比较庞大的话，将推送服务独立出来则是一个更好的选择。主进程负责用户交互和主要的业务逻辑，占用庞大的资源，当退到后台后，随时被杀死都无所谓。推送进程则仅仅负责与服务器交互，保持最小限度的业务逻辑处理。<br>网络连接和登录状态是绑在一起的，登录之后，同步数据也是必须的操作。因此，登录和同步数据都需要在推送进程中完成，除此之外，其他的业务都交给 UI 进程处理。推送进程收到自己不属于自己的协议时，就将数据扔给 UI 进程处理。</p>
 <p>两个进程之间通信方式没有别的选择，只有 AIDL，难点在于接口的设计。IM 业务逻辑复杂，我们不可能为每一个调用实现一个 AIDL 接口，因此肯定会把接口调用打包成控制命令传递。而标识控制命令比较容易想到的方式，是采用类似于 Message 的 what，由我们为每一个控制命令分配一个命令号（或者再加一个子命令号），并指定对应的命令数据格式，接收端根据命令号再将数据反解出来处理。这种方式比较麻烦，且可维护性很差。更优雅的方式是使用远程过程调用，发送端申明业务的调用接口，并在远端实现这些接口，当发送端调用这些接口时，远端直接调用对应接口的实现。除了使用各种第三方框架外，Java 自身的 Proxy 也能实现这个功能。而从推送进程到 UI 进程还有一点不同，UI 进程随时可能会被干掉，AIDL 调用可能会返回失败，此种情况可选择 Intent 方式传递数据，并兼具唤起 UI 进程的功能。<br>
@@ -412,15 +412,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/git/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -557,15 +557,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/23/java-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -720,15 +720,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/14/release-JCenter/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -878,15 +878,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/11/RecyclerView-Scroll/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1037,15 +1037,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/09/singleton-pattern/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1203,15 +1203,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/Design-patterns-2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1371,15 +1371,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/07/Design-patterns-1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1527,15 +1527,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/23/OpenClosedPrinciple/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1686,15 +1686,15 @@
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/architecture1/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="z-chu">
+    <meta itemprop="name" content="Vary Zhao">
     <meta itemprop="description" content="">
     <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="赵成柱的博客">
+    <meta itemprop="name" content="赵成柱的博客|Vray Blog">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="赵成柱的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="赵成柱的博客|Vray Blog" src="">
     </span>
   </span>
 
@@ -1871,8 +1871,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460"
-               alt="z-chu" />
-          <p class="site-author-name" itemprop="name">z-chu</p>
+               alt="Vary Zhao" />
+          <p class="site-author-name" itemprop="name">Vary Zhao</p>
           <p class="site-description motion-element" itemprop="description">Change is the eternal truth</p>
         </div>
         <nav class="site-state motion-element">
@@ -1960,7 +1960,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">z-chu</span>
+  <span class="author" itemprop="copyrightHolder">Vary Zhao</span>
 </div>
 
 
