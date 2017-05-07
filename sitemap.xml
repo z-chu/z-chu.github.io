@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://z-chu.github.io/about/index.html</loc>
+    
+    <lastmod>2017-05-07T13:11:23.808Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://z-chu.github.io/2017/04/20/Android-IM-Summarize/</loc>
     
     <lastmod>2017-05-07T05:41:21.315Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://z-chu.github.io/2017/02/14/release-JCenter/</loc>
     
     <lastmod>2017-05-06T13:26:14.817Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://z-chu.github.io/about/index.html</loc>
-    
-    <lastmod>2017-05-06T09:59:26.823Z</lastmod>
     
   </url>
   
