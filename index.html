@@ -286,6 +286,171 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/05/23/react-native1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Vary Zhao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Vary's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Vary's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/23/react-native1/" itemprop="url">
+                  React Native学习笔记(一)
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-23T22:59:16+08:00">
+                2017-05-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-05-23T23:00:52+08:00">
+                2017-05-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/23/react-native1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/23/react-native1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="创建React-Native-项目"><a href="#创建React-Native-项目" class="headerlink" title="创建React Native 项目"></a>创建React Native 项目</h2><p>到你想要存放React-Native项目的目录执行<code>react-native init {项目}</code>  即可初始化一个新的React-Native项目</p>
+<p>创建完成后即可看到index.android.js和index.ios.js还有其他文件。</p>
+<h2 id="让android和ios加载同一部分代码"><a href="#让android和ios加载同一部分代码" class="headerlink" title="让android和ios加载同一部分代码"></a>让android和ios加载同一部分代码</h2><ol>
+<li><p>新创建一个setup.js，名字可随意不一定得是setup.js，但不能是index.js。内容可直接复制index.android.js或index.ios.js的代码，修改下名字即可。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> ...</div><div class="line"></div><div class="line">export <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">setup</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            ...</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'study'</span>, () =&gt; setup);</div></pre></td></tr></table></figure>
+</li>
+<li><p>将setup导入到index.android和index.ios</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">    AppRegistry</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> setup <span class="keyword">from</span> <span class="string">'./setup'</span></div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'study'</span>, () =&gt; setup);</div></pre></td></tr></table></figure>
+</li>
+<li><p>这样一来app启动之后不管是访问index.android还是index.ios都会指向setup，在setup里面做的所有修改都可以运行在android和ios设备上。</p>
+</li>
+</ol>
+<h2 id="创建react-native组件"><a href="#创建react-native组件" class="headerlink" title="创建react-native组件"></a>创建react-native组件</h2><p>这里只简单说明ES6创建组件的方式，新建一个MyComponent.js：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">    Text</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 用export default 将其导出</span></div><div class="line"> <span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">                &lt;Text style=&#123;&#123;fontSize:22,color : '#212121'&#125;&#125;&gt;</div><div class="line">                     Hello.&#123;this.props.name&#125;</div><div class="line">                &lt;/Text&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>在setup中使用：</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">    AppRegistry</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="comment">//导入MyComponent 组件</span></div><div class="line"><span class="keyword">import</span> MyComponent <span class="keyword">from</span> <span class="string">'./MyComponent'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">setup</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">             &lt;MyComponent name="MyComponent"/&gt;          </div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">AppRegistry.registerComponent('study', () =&gt; setup);</div></pre></td></tr></table></figure></p>
+<p><strong>显示效果</strong><br><img src="http://7xq7yd.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720170523212053.png" alt="组件显示效果"></p>
+<h2 id="react-native组件的生命周期"><a href="#react-native组件的生命周期" class="headerlink" title="react-native组件的生命周期"></a>react-native组件的生命周期</h2><p>在iOS中UIViewController提供了(void)viewWillAppear:(BOOL)animated, - (void)viewDidLoad,(void)viewWillDisappear:(BOOL)animated等生命周期方法，在Android中Activity则提供了 onCreate(),onStart(),onResume()    ,onPause(),onStop(),onDestroy()等生命周期方法，这些生命周期方法展示了一个界面从创建到销毁的一生</p>
+<p>那么在React 中组件(Component)也是有自己的生命周期方法的。<br><img src="https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/component-lifecycle.jpg" alt="组件的生命周期"></p>
+<h3 id="组件的生命周期分成三个状态："><a href="#组件的生命周期分成三个状态：" class="headerlink" title="组件的生命周期分成三个状态："></a>组件的生命周期分成三个状态：</h3><ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+<h3 id="组件装载"><a href="#组件装载" class="headerlink" title="组件装载"></a>组件装载</h3><p>组件在渲染之前，会先调用默认的props，ES6就是，static defaultProps；接下来就是组件初始化，constructor（props）组件的构造方法；接下来是 componentWillMount组件在加载之前的方法；render完成组件的渲染；componentDidMount 组件渲染完成。接下来就进入运行阶段啦。（一次调用）</p>
+<h3 id="组件更新"><a href="#组件更新" class="headerlink" title="组件更新"></a>组件更新</h3><p>在运行中，如果组件的属性发生了改变，就会调用 componentWillReceiveProps 会被调用，然后就会调用 shouldComponentUpdate ，询问我们是否要渲染组件，如果返回FALSE的话，就不会渲染；如果是TRUE的话，就会调用componentWillUpdate重新渲染组件，然后render，再后来就完成更新啦componentDidUpdate（多次调用）</p>
+<h3 id="组件卸载"><a href="#组件卸载" class="headerlink" title="组件卸载"></a>组件卸载</h3><p>页面关闭的时候，组件会被卸载，componentWillUnmount，可以完成资源的回收与释放啦。（一次调用）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/05/15/team/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1794,177 +1959,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/01/23/OpenClosedPrinciple/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Vary Zhao">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Vary's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Vary's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/23/OpenClosedPrinciple/" itemprop="url">
-                  开闭原则
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-23T22:38:41+08:00">
-                2017-01-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-01-23T22:41:35+08:00">
-                2017-01-23
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/23/OpenClosedPrinciple/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/23/OpenClosedPrinciple/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>面向扩展开放，面向修改关闭。简单的说就是，别人可以基于你的代码进行拓展编写，但却不能修改你的代码</p>
-<p>开闭原则（OCP）是面向对象设计中“可复用设计”的基石，是面向对象设计七大原则之一，也是面向对象设计中最重要的原则之一，实际上<a href="http://baike.baidu.com/view/1688346.htm" target="_blank" rel="external">里氏替换原则</a>（LSP）、<a href="http://baike.baidu.com/view/1996652.htm" target="_blank" rel="external">依赖倒转原则</a>（DIP）、<a href="http://baike.baidu.com/view/1638378.htm" target="_blank" rel="external">接口隔离原则</a>（ISP）以及<a href="http://baike.baidu.com/view/262290.htm" target="_blank" rel="external">抽象类</a>（Abstract Class）、<a href="http://baike.baidu.com/view/159864.htm" target="_blank" rel="external">接口</a>(Interface)等等，都可以看作是开闭原则的实现方法。</p>
-<h2 id="面向扩展开放，面向修改关闭"><a href="#面向扩展开放，面向修改关闭" class="headerlink" title="面向扩展开放，面向修改关闭"></a>面向扩展开放，面向修改关闭</h2><ol>
-<li><p>对于扩展是开放的（Open for extension）。这意味着模块的行为是可以扩展的。当应用的需求改变时，我们可以对模块进行扩展，使其具有满足那些改变的新行为。也就是说，我们可以改变模块的功能。</p>
-</li>
-<li><p>对于修改是关闭的（Closed for modification）。对模块行为进行扩展时，不必改动模块的源代码。相对的在设计时就应考虑到，不需要改动模块的源代码，就可以对模块进行扩展。</p>
-</li>
-</ol>
-<h2 id="开闭原则的相对性"><a href="#开闭原则的相对性" class="headerlink" title="开闭原则的相对性"></a>开闭原则的相对性</h2><p>软件系统的构建是一个需要不断重构的过程，在这个过程中，模块的功能抽象，模块与模块间的关系，都不会从一开始就非常清晰明了，所以构建100%满足开闭原则的软件系统是相当困难的，这就是开闭原则的相对性。但在设计过程中，通过对模块功能的抽象（接口定义），模块之间的关系的抽象（通过接口调用），抽象与实现的分离（面向接口的程序设计）等，可以尽量接近满足开闭原则。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2012,7 +2006,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2030,7 +2024,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
