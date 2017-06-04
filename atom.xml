@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://z-chu.github.io/"/>
-  <updated>2017-05-23T15:05:23.539Z</updated>
+  <updated>2017-06-04T08:23:29.191Z</updated>
   <id>https://z-chu.github.io/</id>
   
   <author>
@@ -16,17 +16,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>React Native学习笔记(二)</title>
+    <link href="https://z-chu.github.io/2017/06/04/react-native2/"/>
+    <id>https://z-chu.github.io/2017/06/04/react-native2/</id>
+    <published>2017-06-04T08:22:05.000Z</published>
+    <updated>2017-06-04T08:23:29.191Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="导入导出变量"><a href="#导入导出变量" class="headerlink" title="导入导出变量"></a>导入导出变量</h2><ul>
+<li><p>导出变量<br>  在每个变量前加上<code>export</code>关键字，即可导出</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> name=<span class="string">'zchu'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> age=<span class="number">25</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> url=<span class="string">'zchu.githun.io'</span>;</div></pre></td></tr></table></figure>
+<p>  或者你觉得每个都要加关键字，想一步到位，则可以用这种方式导出</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'zchu'</span>;</div><div class="line"><span class="keyword">var</span> age = <span class="number">25</span>;</div><div class="line"><span class="keyword">const</span> url = <span class="string">'zchu.githun.io'</span>;</div><div class="line"><span class="keyword">export</span> &#123;name, age, url&#125;<span class="comment">//批量导出</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>导出方法<br>  同样也是使用<code>export</code>关键字导出</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a+b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>导入变量和方法是一样的</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;文件名&#125;,&#123;name,age,url,sum&#125; <span class="keyword">from</span> <span class="string">'&#123;文件路径&#125;'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>使用导入的变量和方法</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;Text&gt;name:&#123;name&#125;&lt;/Text&gt;</div><div class="line">&lt;Text</div><div class="line">	onPress=&#123;()=&gt;&#123;</div><div class="line">                           Alert.alert("总数为"+sum(5,7))</div><div class="line">                       &#125;&#125;&gt;</div><div class="line">&gt;age:&#123;age&#125;&lt;/Text&gt;</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="props使用详解"><a href="#props使用详解" class="headerlink" title="props使用详解"></a>props使用详解</h2><p>大多数组件在创建时就可以使用各种参数来进行定制。用于定制的这些参数就称为<code>props</code>（属性）。</p>
+<p>通过在不同的场景使用不同的属性定制，可以尽量提高自定义组件的复用范畴。只需在<code>render</code>函数中引用<code>this.props</code>，然后按需处理即可。下面是一个自定义的组件使用<code>props</code>的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppRegistry, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeting</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;Text&gt;Hello &#123;this.props.name&#125;!&lt;/Text&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LotsOfGreetings</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View style=&#123;&#123;alignItems: 'center'&#125;&#125;&gt;</div><div class="line">        &lt;Greeting name='Rexxar' /&gt;</div><div class="line">        &lt;Greeting name='Jaina' /&gt;</div><div class="line">        &lt;Greeting name='Valeera' /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">AppRegistry.registerComponent('LotsOfGreetings', () =&gt; LotsOfGreetings);</div></pre></td></tr></table></figure></p>
+<p>我们在<code>Greeting</code>组件中将<code>name</code>作为一个属性来定制，这样可以复用这一组件来制作各种不同的“问候语”。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;导入导出变量&quot;&gt;&lt;a href=&quot;#导入导出变量&quot; class=&quot;headerlink&quot; title=&quot;导入导出变量&quot;&gt;&lt;/a&gt;导入导出变量&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;导出变量&lt;br&gt;  在每个变量前加上&lt;code&gt;export&lt;/code&gt;关键字，即可导出&lt;/p&gt;
+  &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; name=&lt;span class=&quot;string&quot;&gt;&#39;zchu&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; age=&lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; url=&lt;span class=&quot;string&quot;&gt;&#39;zchu.githun.io&#39;&lt;/span&gt;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  或者你觉得每个都要加关键字，想一步到位，则可以用这种方式导出&lt;/p&gt;
+  &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; name = &lt;span class=&quot;string&quot;&gt;&#39;zchu&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; age = &lt;span class=&quot;number&quot;&gt;25&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; url = &lt;span class=&quot;string&quot;&gt;&#39;zchu.githun.io&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &amp;#123;name, age, url&amp;#125;&lt;span class=&quot;comment&quot;&gt;//批量导出&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;导出方法&lt;br&gt;  同样也是使用&lt;code&gt;export&lt;/code&gt;关键字导出&lt;/p&gt;
+  &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;sum&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;a, b&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; a+b;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="React-Native" scheme="https://z-chu.github.io/tags/React-Native/"/>
+    
+  </entry>
+  
+  <entry>
     <title>React Native学习笔记(一)</title>
     <link href="https://z-chu.github.io/2017/05/23/react-native1/"/>
     <id>https://z-chu.github.io/2017/05/23/react-native1/</id>
     <published>2017-05-23T14:59:16.000Z</published>
-    <updated>2017-05-23T15:05:23.539Z</updated>
+    <updated>2017-06-04T08:21:03.440Z</updated>
     
     <content type="html"><![CDATA[<h2 id="创建React-Native-项目"><a href="#创建React-Native-项目" class="headerlink" title="创建React Native 项目"></a>创建React Native 项目</h2><p>到你想要存放React-Native项目的目录执行<code>react-native init {项目}</code>  即可初始化一个新的React-Native项目</p>
 <p>创建完成后即可看到index.android.js和index.ios.js还有其他文件。</p>
 <h2 id="让android和ios加载同一部分代码"><a href="#让android和ios加载同一部分代码" class="headerlink" title="让android和ios加载同一部分代码"></a>让android和ios加载同一部分代码</h2><ol>
 <li><p>新创建一个setup.js，名字可随意不一定得是setup.js，但不能是index.js。内容可直接复制index.android.js或index.ios.js的代码，修改下名字即可。</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> ...</div><div class="line"></div><div class="line">export <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">setup</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            ...</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'study'</span>, () =&gt; setup);</div></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> ...</div><div class="line"></div><div class="line">export <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">setup</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            ...</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
 </li>
 <li><p>将setup导入到index.android和index.ios</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">    AppRegistry</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> setup <span class="keyword">from</span> <span class="string">'./setup'</span></div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'study'</span>, () =&gt; setup);</div></pre></td></tr></table></figure>
@@ -57,7 +108,7 @@
 &lt;p&gt;创建完成后即可看到index.android.js和index.ios.js还有其他文件。&lt;/p&gt;
 &lt;h2 id=&quot;让android和ios加载同一部分代码&quot;&gt;&lt;a href=&quot;#让android和ios加载同一部分代码&quot; class=&quot;headerlink&quot; title=&quot;让android和ios加载同一部分代码&quot;&gt;&lt;/a&gt;让android和ios加载同一部分代码&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;新创建一个setup.js，名字可随意不一定得是setup.js，但不能是index.js。内容可直接复制index.android.js或index.ios.js的代码，修改下名字即可。&lt;/p&gt;
- &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setup&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Component&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    render() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            ...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        );&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;AppRegistry.registerComponent(&lt;span class=&quot;string&quot;&gt;&#39;study&#39;&lt;/span&gt;, () =&amp;gt; setup);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+ &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;export &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setup&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Component&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    render() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            ...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        );&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;...&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;将setup导入到index.android和index.ios&lt;/p&gt;
  &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; React, &amp;#123; Component &amp;#125; &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;react&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    AppRegistry&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;react-native&#39;&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; setup &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;./setup&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;AppRegistry.registerComponent(&lt;span class=&quot;string&quot;&gt;&#39;study&#39;&lt;/span&gt;, () =&amp;gt; setup);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -1145,28 +1196,6 @@ startActivity(intent);
     </summary>
     
       <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>使用Github搭建自己的博客</title>
-    <link href="https://z-chu.github.io/2017/01/20/hello-world/"/>
-    <id>https://z-chu.github.io/2017/01/20/hello-world/</id>
-    <published>2017-01-20T13:25:12.642Z</published>
-    <updated>2017-01-20T16:00:51.371Z</updated>
-    
-    <content type="html"><![CDATA[<p>　本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。</p>
-<p>　看了<a href="http://blog.csdn.net/gdutxiaoxu/article/details/53576018" title="手把手教你用Hexo+Github 搭建属于自己的博客 " target="_blank" rel="external">《手把手教你用Hexo+Github 搭建属于自己的博客》</a>之后决定搭建自己的博客，开始养成写博客的习惯。</p>
-<p>　写文章会锻炼许多对于编程十分有益的技能。即使没人读我的文章，写作的过程也是有益无害。它能帮助我理清思路，明确对于某个问题的看法，加强或削弱我的某种观点。把凌乱的想法汇聚成精简的文字非常有价值。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　本人一直都泡在CSDN，简书，知乎等论坛，爱关注大牛博客。&lt;/p&gt;
-&lt;p&gt;　看了&lt;a href=&quot;http://blog.csdn.net/gdutxiaoxu/article/details/53576018&quot; title=&quot;手把手教你用Hexo+Github 搭建属于
-    
-    </summary>
     
     
   </entry>
