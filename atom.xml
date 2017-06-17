@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://z-chu.github.io/"/>
-  <updated>2017-06-17T05:17:26.181Z</updated>
+  <updated>2017-06-17T05:24:27.990Z</updated>
   <id>https://z-chu.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://z-chu.github.io/2017/06/17/Android%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
     <id>https://z-chu.github.io/2017/06/17/Android 开发规范/</id>
     <published>2017-06-17T06:14:17.000Z</published>
-    <updated>2017-06-17T05:17:26.181Z</updated>
+    <updated>2017-06-17T05:24:27.990Z</updated>
     
     <content type="html"><![CDATA[<p>为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出</p>
 <p>另外，<a href="https://github.com/ribot/android-boilerplate" target="_blank" rel="external">BoilerPlate</a> 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。</p>
@@ -39,9 +39,55 @@
 <h3 id="2-1-包命名规范"><a href="#2-1-包命名规范" class="headerlink" title="2.1 包命名规范"></a>2.1 包命名规范</h3><ul>
 <li>包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。</li>
 <li>包名的划分，尽量使用按功能模块的划分方式。按照功能模块划分可能你不是很好区分应该划分在哪个功能中，不过也比你按照层区划分要好找很多。具体可以参考这篇博文～<a href="https://hackernoon.com/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">Package by features, not layers</a></li>
-<li><p>通用功能子包名采用[主包名].[通用名称]的命名方式常见通用功能如下表：</p>
-<p>  包名     | 包下的类工作划分<br>  —–    |——<br>  base    |基类相关<br>  utils    |通用工具类<br>  event    |事件载体类(EventBus事件对象)<br>  rx      |RxJava相关帮助类<br>  pref    |用户设置、全局配置、常量等<br>  bean    |数据载体类，javaBean<br>  domain    |model层，业务逻辑<br>  data    |model层，数据操作、数据提供，等数据相关类<br>  presentation|视图层，包含View层和Present层。如：Activity、Fragment、Presenter</p>
-</li>
+<li>通用功能子包名采用[主包名].[通用名称]的命名方式常见通用功能如下表：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>包下的类工作划分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base</td>
+<td>基类相关</td>
+</tr>
+<tr>
+<td>utils</td>
+<td>通用工具类</td>
+</tr>
+<tr>
+<td>event</td>
+<td>事件载体类(EventBus事件对象) </td>
+</tr>
+<tr>
+<td>rx</td>
+<td>RxJava相关帮助类</td>
+</tr>
+<tr>
+<td>pref</td>
+<td>用户设置、全局配置、常量等</td>
+</tr>
+<tr>
+<td>bean</td>
+<td>数据载体类，javaBean</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>model层，业务逻辑</td>
+</tr>
+<tr>
+<td>data</td>
+<td>model层，数据操作、数据提供，等数据相关类</td>
+</tr>
+<tr>
+<td>presentation</td>
+<td>视图层，包含View层和Present层。如：Activity、Fragment、Presenter</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p>一般功能子包名采用[主包名].[模块名称].[子模块名称]的命名方式，例如：</p>
 <p>  模块    | 包名<br>  —–    |——<br>  网络相关|[主包名].data.net<br>  登录模块|[主包名].presentation.login<br>  我的模块|[主包名].presentation.mine</p>
 </li>
@@ -89,19 +135,145 @@
 </tbody>
 </table>
 <h4 id="Drawable-files"><a href="#Drawable-files" class="headerlink" title="Drawable files"></a>Drawable files</h4><ul>
-<li><p>drawable 文件的命名规范</p>
-<p>  Asset Type|Prefix 前缀|Example<br>  ——–|——–|——–<br>  Action bar|<code>ab_</code>|<code>ab_stacked.9.png</code><br>  Button    |<code>btn_</code>    |<code>btn_send_pressed.9.png</code><br>  Dialog    |<code>dialog_</code>    |<code>dialog_top.9.png</code><br>  Divider    |<code>divider_</code>    |<code>divider_horizontal.9.png</code><br>  Icon    |<code>ic_</code>    |<code>ic_star.png</code><br>  Menu|    <code>menu_</code>|    <code>menu_submenu_bg.9.png</code><br>  Notification|    <code>notification_</code>|    <code>notification_bg.9.png</code><br>  Tabs    |<code>tab_</code>    |<code>tab_pressed.9.png</code></p>
-</li>
-<li><p>icons文件的命名规范</p>
-<p>  | Asset Type                      | Prefix 前缀            | Example                        |<br>  | ——————————–| —————-   | —————————- |<br>  | Icons                           | <code>ic_</code>              | <code>ic_star.png</code>                |<br>  | Launcher icons                  | <code>ic_launcher</code>      | <code>ic_launcher_calendar.png</code>   |<br>  | Menu icons and Action Bar icons | <code>ic_menu</code>          | <code>ic_menu_archive.png</code>        |<br>  | Status bar icons                | <code>ic_stat_notify</code>   | <code>ic_stat_notify_msg.png</code>     |<br>  | Tab icons                       | <code>ic_tab</code>           | <code>ic_tab_recent.png</code>          |<br>  | Dialog icons                    | <code>ic_dialog</code>        | <code>ic_dialog_info.png</code>         |</p>
-</li>
-<li><p>选择器状态文件的命名规范</p>
-<p>  | State           | Suffix  尾缀        | Example                          |<br>  |————–|—————–|—————————–|<br>  | Normal       | <code>_normal</code>       | <code>btn_order_normal.9.png</code>    |<br>  | Pressed      | <code>_pressed</code>      | <code>btn_order_pressed.9.png</code>   |<br>  | Focused      | <code>_focused</code>      | <code>btn_order_focused.9.png</code>   |<br>  | Disabled     | <code>_disabled</code>     | <code>btn_order_disabled.9.png</code>  |<br>  | Selected     | <code>_selected</code>     | <code>btn_order_selected.9.png</code>  |</p>
+<li>drawable 文件的命名规范</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Asset Type</th>
+<th>Prefix 前缀</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Action bar</td>
+<td><code>ab_</code></td>
+<td><code>ab_stacked.9.png</code></td>
+</tr>
+<tr>
+<td>Button</td>
+<td><code>btn_</code></td>
+<td><code>btn_send_pressed.9.png</code></td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>dialog_</code></td>
+<td><code>dialog_top.9.png</code></td>
+</tr>
+<tr>
+<td>Divider</td>
+<td><code>divider_</code></td>
+<td><code>divider_horizontal.9.png</code></td>
+</tr>
+<tr>
+<td>Icon</td>
+<td><code>ic_</code></td>
+<td><code>ic_star.png</code></td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><code>menu_</code></td>
+<td><code>menu_submenu_bg.9.png</code></td>
+</tr>
+<tr>
+<td>Notification</td>
+<td><code>notification_</code></td>
+<td><code>notification_bg.9.png</code></td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td><code>tab_</code></td>
+<td><code>tab_pressed.9.png</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>icons文件的命名规范</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Asset Type</th>
+<th>Prefix 前缀</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Icons</td>
+<td><code>ic_</code></td>
+<td><code>ic_star.png</code></td>
+</tr>
+<tr>
+<td>Launcher icons</td>
+<td><code>ic_launcher</code></td>
+<td><code>ic_launcher_calendar.png</code></td>
+</tr>
+<tr>
+<td>Menu icons and Action Bar icons</td>
+<td><code>ic_menu</code></td>
+<td><code>ic_menu_archive.png</code></td>
+</tr>
+<tr>
+<td>Status bar icons</td>
+<td><code>ic_stat_notify</code></td>
+<td><code>ic_stat_notify_msg.png</code></td>
+</tr>
+<tr>
+<td>Tab icons</td>
+<td><code>ic_tab</code></td>
+<td><code>ic_tab_recent.png</code></td>
+</tr>
+<tr>
+<td>Dialog icons</td>
+<td><code>ic_dialog</code></td>
+<td><code>ic_dialog_info.png</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>选择器状态文件的命名规范</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Suffix  尾缀</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td><code>_normal</code></td>
+<td><code>btn_order_normal.9.png</code></td>
+</tr>
+<tr>
+<td>Pressed</td>
+<td><code>_pressed</code></td>
+<td><code>btn_order_pressed.9.png</code></td>
+</tr>
+<tr>
+<td>Focused</td>
+<td><code>_focused</code></td>
+<td><code>btn_order_focused.9.png</code></td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td><code>_disabled</code></td>
+<td><code>btn_order_disabled.9.png</code></td>
+</tr>
+<tr>
+<td>Selected</td>
+<td><code>_selected</code></td>
+<td><code>btn_order_selected.9.png</code></td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>注意：使用AndroidStudio的插件<strong>SelectorChapek</strong>可以快速生成selector，前提是命名要规范。</p>
 </blockquote>
-</li>
-</ul>
 <h3 id="2-4-Inside-Code-Naming-代码内部命名"><a href="#2-4-Inside-Code-Naming-代码内部命名" class="headerlink" title="2.4 Inside Code Naming 代码内部命名"></a>2.4 Inside Code Naming 代码内部命名</h3><h4 id="2-4-1-常量名"><a href="#2-4-1-常量名" class="headerlink" title="2.4.1 常量名"></a>2.4.1 常量名</h4><p>常量名命名模式为<strong>CONSTANT_CASE</strong>，<strong>全部字母大写</strong>，用下划线分隔单词。那到底什么算是一个常量？</p>
 <p>每个常量都是一个静态<code>final</code>字段，但不是所有静态<code>final</code>字段都是常量。在决定一个字段是否是一个常量时，考虑它是否真的感觉像是一个常量。例如，如果任何一个该实例的观测状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变对象一般是不够的，它要真的一直不变才能将它示为常量。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Constants</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER = <span class="number">5</span>;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableListNAMES = ImmutableList.of(<span class="string">"Ed"</span>, <span class="string">"Ann"</span>);</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Joiner COMMA_JOINER = Joiner.on(<span class="string">','</span>); <span class="comment">// because Joiner is immutable</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> SomeMutableType[] EMPTY_ARRAY = &#123;&#125;;</div><div class="line"><span class="keyword">enum</span> SomeEnum &#123; ENUM_CONSTANT &#125;</div><div class="line"></div><div class="line"><span class="comment">// Not constants</span></div><div class="line"><span class="keyword">static</span> String nonFinal = <span class="string">"non-final"</span>;</div><div class="line"><span class="keyword">final</span> String nonStatic = <span class="string">"non-static"</span>;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Set mutableCollection = <span class="keyword">new</span> HashSet();</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableSet mutableElements = ImmutableSet.of(mutable);</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Logger logger = Logger.getLogger(MyClass.getName());</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> String[] nonEmptyArray = &#123;<span class="string">"these"</span>, <span class="string">"can"</span>, <span class="string">"change"</span>&#125;;</div></pre></td></tr></table></figure>
