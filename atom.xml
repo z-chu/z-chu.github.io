@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://z-chu.github.io/"/>
-  <updated>2017-06-17T05:24:27.990Z</updated>
+  <updated>2017-06-17T05:26:20.870Z</updated>
   <id>https://z-chu.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://z-chu.github.io/2017/06/17/Android%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
     <id>https://z-chu.github.io/2017/06/17/Android 开发规范/</id>
     <published>2017-06-17T06:14:17.000Z</published>
-    <updated>2017-06-17T05:24:27.990Z</updated>
+    <updated>2017-06-17T05:26:20.870Z</updated>
     
     <content type="html"><![CDATA[<p>为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出</p>
 <p>另外，<a href="https://github.com/ribot/android-boilerplate" target="_blank" rel="external">BoilerPlate</a> 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。</p>
@@ -88,11 +88,32 @@
 </tbody>
 </table>
 <ul>
-<li><p>一般功能子包名采用[主包名].[模块名称].[子模块名称]的命名方式，例如：</p>
-<p>  模块    | 包名<br>  —–    |——<br>  网络相关|[主包名].data.net<br>  登录模块|[主包名].presentation.login<br>  我的模块|[主包名].presentation.mine</p>
-</li>
-<li><p>只需导入用到的类，千万不能用 <code>*</code> 导入包下所有类</p>
-</li>
+<li>一般功能子包名采用[主包名].[模块名称].[子模块名称]的命名方式，例如：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>包名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网络相关</td>
+<td>[主包名].data.net</td>
+</tr>
+<tr>
+<td>登录模块</td>
+<td>[主包名].presentation.login</td>
+</tr>
+<tr>
+<td>我的模块</td>
+<td>[主包名].presentation.mine</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>只需导入用到的类，千万不能用 <code>*</code> 导入包下所有类</li>
 </ul>
 <h3 id="2-2-Class-files-类命名规范"><a href="#2-2-Class-files-类命名规范" class="headerlink" title="2.2 Class files 类命名规范"></a>2.2 Class files 类命名规范</h3><p>类命名方式采用 <strong>大驼峰</strong> 命名法。尽量避免缩写，除非该缩写是众所周知的。</p>
 <p>对于继承自安卓组件的类来说，类名应该以该组件名结尾，例如 ： <code>SignInActivity</code>, <code>SignInFragment</code>, <code>ImageUploaderService</code>, <code>ChangePasswordDialog</code>.<br>对于工具类来说，命名方式应该以其完成功能开始,以 Utils 结束 ，例如 ：<code>HttpUtils</code> , <code>ImageUtils</code></p>
