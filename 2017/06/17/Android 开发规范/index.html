@@ -1,0 +1,1107 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vary,zchu,z-chu,赵成柱,Vary Zhao,Android" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Vary's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出
+另外，BoilerPlate 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。
+1 Android Studio规范
+尽量使用最新版本的Android Studio开发
+编码格式统一为UTF-8
+编辑完.java、 .xml等文件后一定要格式化,一定要格式化,一定要格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 开发规范">
+<meta property="og:url" content="https://z-chu.github.io/2017/06/17/Android 开发规范/index.html">
+<meta property="og:site_name" content="Vary's Blog">
+<meta property="og:description" content="为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出
+另外，BoilerPlate 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。
+1 Android Studio规范
+尽量使用最新版本的Android Studio开发
+编码格式统一为UTF-8
+编辑完.java、 .xml等文件后一定要格式化,一定要格式化,一定要格">
+<meta property="og:updated_time" content="2017-06-17T05:17:26.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 开发规范">
+<meta name="twitter:description" content="为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出
+另外，BoilerPlate 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。
+1 Android Studio规范
+尽量使用最新版本的Android Studio开发
+编码格式统一为UTF-8
+编辑完.java、 .xml等文件后一定要格式化,一定要格式化,一定要格">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://z-chu.github.io/2017/06/17/Android 开发规范/"/>
+
+
+
+
+
+  <title> Android 开发规范 | Vary's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Vary's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">我叫赵成柱，我是一名 Android 开发者.</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/06/17/Android 开发规范/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Vary Zhao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Vary's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Vary's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 开发规范
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-17T14:14:17+08:00">
+                2017-06-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-17T13:17:26+08:00">
+                2017-06-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/17/Android 开发规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/17/Android 开发规范/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为了利于项目维护以及规范开发，促进成员之间Code Review的效率，故提出以下开发规范，如有更好建议，欢迎提出</p>
+<p>另外，<a href="https://github.com/ribot/android-boilerplate" target="_blank" rel="external">BoilerPlate</a> 是一个很好的参考材料和学习项目，你对MVP架构会有一个新的认识。</p>
+<h2 id="1-Android-Studio规范"><a href="#1-Android-Studio规范" class="headerlink" title="1 Android Studio规范"></a>1 Android Studio规范</h2><ul>
+<li>尽量使用最新版本的Android Studio开发</li>
+<li>编码格式统一为<strong>UTF-8</strong></li>
+<li>编辑完<code>.java</code>、 <code>.xml</code>等文件后<strong>一定要格式化,一定要格式化,一定要格式化</strong>，格式使用IDE默认模板即可（快捷键：Ctrl+Alt+L）</li>
+<li>删除多余的<code>import</code>，减少警告出现，可利用IDE的<code>Optimize Imports</code>自动优化(Settings → Keymap → Optimize Imports)</li>
+<li>Android Studio 常用开发插件可以参考这里~<a href="http://www.jianshu.com/p/c76b0d8a642d" target="_blank" rel="external">Android Studio插件整理</a></li>
+</ul>
+<h2 id="2-命名规范"><a href="#2-命名规范" class="headerlink" title="2 命名规范"></a>2 命名规范</h2><p>代码中的命名严禁使用拼音与英文混合的方式,更不允许直接使用中文的方式。正确的英文拼写和语法可以让阅读者易于理解,避免歧义。</p>
+<blockquote>
+<p>注意：即使纯拼音命名方式也要避免采用。但<code>alibaba</code>、<code>taobao</code>、<code>youku</code>、<code>zhihu</code>等国际通用的名称,可视同英文。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="2-1-包命名规范"><a href="#2-1-包命名规范" class="headerlink" title="2.1 包命名规范"></a>2.1 包命名规范</h3><ul>
+<li>包名全部小写，连续的单词只是简单地连接起来，不使用下划线，采用反域名命名规则，全部使用小写字母。</li>
+<li>包名的划分，尽量使用按功能模块的划分方式。按照功能模块划分可能你不是很好区分应该划分在哪个功能中，不过也比你按照层区划分要好找很多。具体可以参考这篇博文～<a href="https://hackernoon.com/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">Package by features, not layers</a></li>
+<li><p>通用功能子包名采用[主包名].[通用名称]的命名方式常见通用功能如下表：</p>
+<p>  包名     | 包下的类工作划分<br>  —–    |——<br>  base    |基类相关<br>  utils    |通用工具类<br>  event    |事件载体类(EventBus事件对象)<br>  rx      |RxJava相关帮助类<br>  pref    |用户设置、全局配置、常量等<br>  bean    |数据载体类，javaBean<br>  domain    |model层，业务逻辑<br>  data    |model层，数据操作、数据提供，等数据相关类<br>  presentation|视图层，包含View层和Present层。如：Activity、Fragment、Presenter</p>
+</li>
+<li><p>一般功能子包名采用[主包名].[模块名称].[子模块名称]的命名方式，例如：</p>
+<p>  模块    | 包名<br>  —–    |——<br>  网络相关|[主包名].data.net<br>  登录模块|[主包名].presentation.login<br>  我的模块|[主包名].presentation.mine</p>
+</li>
+<li><p>只需导入用到的类，千万不能用 <code>*</code> 导入包下所有类</p>
+</li>
+</ul>
+<h3 id="2-2-Class-files-类命名规范"><a href="#2-2-Class-files-类命名规范" class="headerlink" title="2.2 Class files 类命名规范"></a>2.2 Class files 类命名规范</h3><p>类命名方式采用 <strong>大驼峰</strong> 命名法。尽量避免缩写，除非该缩写是众所周知的。</p>
+<p>对于继承自安卓组件的类来说，类名应该以该组件名结尾，例如 ： <code>SignInActivity</code>, <code>SignInFragment</code>, <code>ImageUploaderService</code>, <code>ChangePasswordDialog</code>.<br>对于工具类来说，命名方式应该以其完成功能开始,以 Utils 结束 ，例如 ：<code>HttpUtils</code> , <code>ImageUtils</code></p>
+<h3 id="2-3-Resources-files-资源文件命名规范"><a href="#2-3-Resources-files-资源文件命名规范" class="headerlink" title="2.3 Resources files 资源文件命名规范"></a>2.3 Resources files 资源文件命名规范</h3><p>全部小写，采用下划线命名法，加前缀区分</p>
+<h4 id="Layout-files"><a href="#Layout-files" class="headerlink" title="Layout files"></a>Layout files</h4><p>布局文件的命名需要与他所嵌入的安卓组件匹配，但是将组件名称前移到开始处,例如,我们要创建一个名字为 SignInActivity, 其名字应该为 activity_sign_in.xml.</p>
+<table>
+<thead>
+<tr>
+<th>Component 组件</th>
+<th>Class Name</th>
+<th>Layout Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activity</td>
+<td><code>UserProfileActivity</code></td>
+<td><code>activity_user_profile.xml</code></td>
+</tr>
+<tr>
+<td>Fragment</td>
+<td><code>SignUpFragment</code></td>
+<td><code>fragment_sign_up.xml</code></td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>ChangePasswordDialog</code></td>
+<td><code>dialog_change_password.xml</code></td>
+</tr>
+<tr>
+<td>ListView Item</td>
+<td>—</td>
+<td><code>list_item_person.xml</code></td>
+</tr>
+<tr>
+<td>GridView Item</td>
+<td>—</td>
+<td><code>grid_item_person.xml</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Drawable-files"><a href="#Drawable-files" class="headerlink" title="Drawable files"></a>Drawable files</h4><ul>
+<li><p>drawable 文件的命名规范</p>
+<p>  Asset Type|Prefix 前缀|Example<br>  ——–|——–|——–<br>  Action bar|<code>ab_</code>|<code>ab_stacked.9.png</code><br>  Button    |<code>btn_</code>    |<code>btn_send_pressed.9.png</code><br>  Dialog    |<code>dialog_</code>    |<code>dialog_top.9.png</code><br>  Divider    |<code>divider_</code>    |<code>divider_horizontal.9.png</code><br>  Icon    |<code>ic_</code>    |<code>ic_star.png</code><br>  Menu|    <code>menu_</code>|    <code>menu_submenu_bg.9.png</code><br>  Notification|    <code>notification_</code>|    <code>notification_bg.9.png</code><br>  Tabs    |<code>tab_</code>    |<code>tab_pressed.9.png</code></p>
+</li>
+<li><p>icons文件的命名规范</p>
+<p>  | Asset Type                      | Prefix 前缀            | Example                        |<br>  | ——————————–| —————-   | —————————- |<br>  | Icons                           | <code>ic_</code>              | <code>ic_star.png</code>                |<br>  | Launcher icons                  | <code>ic_launcher</code>      | <code>ic_launcher_calendar.png</code>   |<br>  | Menu icons and Action Bar icons | <code>ic_menu</code>          | <code>ic_menu_archive.png</code>        |<br>  | Status bar icons                | <code>ic_stat_notify</code>   | <code>ic_stat_notify_msg.png</code>     |<br>  | Tab icons                       | <code>ic_tab</code>           | <code>ic_tab_recent.png</code>          |<br>  | Dialog icons                    | <code>ic_dialog</code>        | <code>ic_dialog_info.png</code>         |</p>
+</li>
+<li><p>选择器状态文件的命名规范</p>
+<p>  | State           | Suffix  尾缀        | Example                          |<br>  |————–|—————–|—————————–|<br>  | Normal       | <code>_normal</code>       | <code>btn_order_normal.9.png</code>    |<br>  | Pressed      | <code>_pressed</code>      | <code>btn_order_pressed.9.png</code>   |<br>  | Focused      | <code>_focused</code>      | <code>btn_order_focused.9.png</code>   |<br>  | Disabled     | <code>_disabled</code>     | <code>btn_order_disabled.9.png</code>  |<br>  | Selected     | <code>_selected</code>     | <code>btn_order_selected.9.png</code>  |</p>
+<blockquote>
+<p>注意：使用AndroidStudio的插件<strong>SelectorChapek</strong>可以快速生成selector，前提是命名要规范。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-4-Inside-Code-Naming-代码内部命名"><a href="#2-4-Inside-Code-Naming-代码内部命名" class="headerlink" title="2.4 Inside Code Naming 代码内部命名"></a>2.4 Inside Code Naming 代码内部命名</h3><h4 id="2-4-1-常量名"><a href="#2-4-1-常量名" class="headerlink" title="2.4.1 常量名"></a>2.4.1 常量名</h4><p>常量名命名模式为<strong>CONSTANT_CASE</strong>，<strong>全部字母大写</strong>，用下划线分隔单词。那到底什么算是一个常量？</p>
+<p>每个常量都是一个静态<code>final</code>字段，但不是所有静态<code>final</code>字段都是常量。在决定一个字段是否是一个常量时，考虑它是否真的感觉像是一个常量。例如，如果任何一个该实例的观测状态是可变的，则它几乎肯定不会是一个常量。只是永远不打算改变对象一般是不够的，它要真的一直不变才能将它示为常量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Constants</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER = <span class="number">5</span>;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableListNAMES = ImmutableList.of(<span class="string">"Ed"</span>, <span class="string">"Ann"</span>);</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Joiner COMMA_JOINER = Joiner.on(<span class="string">','</span>); <span class="comment">// because Joiner is immutable</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> SomeMutableType[] EMPTY_ARRAY = &#123;&#125;;</div><div class="line"><span class="keyword">enum</span> SomeEnum &#123; ENUM_CONSTANT &#125;</div><div class="line"></div><div class="line"><span class="comment">// Not constants</span></div><div class="line"><span class="keyword">static</span> String nonFinal = <span class="string">"non-final"</span>;</div><div class="line"><span class="keyword">final</span> String nonStatic = <span class="string">"non-static"</span>;</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Set mutableCollection = <span class="keyword">new</span> HashSet();</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> ImmutableSet mutableElements = ImmutableSet.of(mutable);</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> Logger logger = Logger.getLogger(MyClass.getName());</div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> String[] nonEmptyArray = &#123;<span class="string">"these"</span>, <span class="string">"can"</span>, <span class="string">"change"</span>&#125;;</div></pre></td></tr></table></figure>
+<h4 id="2-4-2-Class-Variable-Naming-类变量命名"><a href="#2-4-2-Class-Variable-Naming-类变量命名" class="headerlink" title="2.4.2 Class Variable Naming 类变量命名"></a>2.4.2 Class Variable Naming 类变量命名</h4><ul>
+<li>公有变量按 <code>小驼峰</code> 法命名</li>
+<li>私有 &amp; 非静态成员变量以 <code>m</code> 开头</li>
+<li>私有 &amp; 静态成员变量以 <code>s</code> 开头</li>
+<li>常量以大写字母和下划线 <code>_</code> 组成</li>
+<li>尽量使用 <code>功能/描述 + 类型</code> 的模式 ,如 <code>mNameTextView</code></li>
+<li>类中变量的组件类型请不要使用缩写</li>
+<li>自定义异常必须以Exception结尾</li>
+<li>注意不要使用 <code>aa</code> <code>bb</code> <code>cc3</code> 这种变态的命名方式 ！！</li>
+<li>除for循环变量外，一律不得使用i、j、k等单字符作为变量名 </li>
+<li>类变量过多时请 <code>分块摆放</code> 并且 <code>写好注释</code></li>
+<li><code>接口类</code> 请直接定义在类的最后</li>
+</ul>
+<p>Example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="comment">//静态常量</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOME_CONSTANT = <span class="number">42</span>;</div><div class="line">    <span class="comment">//公有变量</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> publicField;</div><div class="line">    <span class="comment">//私有静态变量</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MyClass sSingleton;</div><div class="line">    <span class="comment">//默认变量</span></div><div class="line">    <span class="keyword">int</span> mPackagePrivate;</div><div class="line">    <span class="comment">//私有变量</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mPrivate;</div><div class="line">    <span class="comment">//继承型变量</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> mProtected;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果项目中使用ButterKnife，则不添加m前缀，以<strong>小驼峰</strong>风格命名。</p>
+</blockquote>
+<h4 id="2-4-3-Class-Method-Naming-类方法命名"><a href="#2-4-3-Class-Method-Naming-类方法命名" class="headerlink" title="2.4.3 Class Method Naming 类方法命名"></a>2.4.3 Class Method Naming 类方法命名</h4><ul>
+<li>类方法采用 <strong>小驼峰</strong> 命名法</li>
+<li>根据函数所完成功能命名 ， 如 <code>changView()</code></li>
+<li><p>在函数头写对于函数功能、参数和返回值的注释，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取两个数中最大的一个</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> value1 参与比较的第一个数</div><div class="line"> * <span class="doctag">@param</span> value2 参与比较的第二个数</div><div class="line"> * <span class="doctag">@return</span> 两个参数中最大的一个数</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> value1, <span class="keyword">int</span> value2)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (value1 &gt; value2) ? value1 : value2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个函数请尽量保持在 <strong>50行</strong> 之内 ！！</p>
+</li>
+</ul>
+<h4 id="2-4-4-layout-xml-布局文件变量命名"><a href="#2-4-4-layout-xml-布局文件变量命名" class="headerlink" title="2.4.4 layout.xml 布局文件变量命名"></a>2.4.4 layout.xml 布局文件变量命名</h4><ul>
+<li>id 以 <strong>类型<em>命名</em>所在组件</strong> 的模式，例如： <code>@+id/tv_name_main</code> 、 <code>@id/btn_send_chat</code>,多数情况 <code>_所在模块</code>可省略，如：<code>@id/btn_send</code></li>
+<li>布局多处重用的请使用 <code>&lt;include&gt;</code> 标签</li>
+<li>所有文本请定义在 <code>strings.xml</code> 中 , 如 <code>@string/app_name</code></li>
+<li>重用dp请定义在 <code>dimens.xml</code> 中 , 如  <code>@dimen/entry_item_height</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Component 组件</th>
+<th>Abbreviation 缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListView</td>
+<td><code>lv</code></td>
+</tr>
+<tr>
+<td>TextView</td>
+<td><code>tv</code></td>
+</tr>
+<tr>
+<td>ImageView</td>
+<td><code>iv</code></td>
+</tr>
+<tr>
+<td>Button</td>
+<td><code>btn</code></td>
+</tr>
+<tr>
+<td>EditText</td>
+<td><code>et</code></td>
+</tr>
+<tr>
+<td>LinearLayout</td>
+<td><code>ll</code></td>
+</tr>
+<tr>
+<td>ReleativeLayout</td>
+<td><code>rl</code></td>
+</tr>
+<tr>
+<td>ViewPager</td>
+<td><code>vp</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-4-5-colors-xml"><a href="#2-4-5-colors-xml" class="headerlink" title="2.4.5 colors.xml"></a>2.4.5 colors.xml</h4><p><strong>colors</strong>的<strong>name</strong>命名使用下划线命名法，在你的<code>colors.xml</code>文件中应该只是映射颜色的名称一个ARGB值，而没有其它的。不要使用它为不同的按钮来定义ARGB值。</p>
+<p><strong>不要这样做</strong><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"button_foreground"</span>&gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"button_background"</span>&gt;</span>#2A91BD<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_background_inactive"</span>&gt;</span>#5F5F5F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_background_active"</span>&gt;</span>#939393<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_foreground"</span>&gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_foreground_important"</span>&gt;</span>#FF9D2F<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">     ...</div><div class="line">     <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"comment_shadow"</span>&gt;</span>#323232<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>使用这种格式，你会非常容易的开始重复定义ARGB值，这使如果需要改变基本色变的很复杂。同时，这些定义是跟一些环境关联起来的，如button或者comment, 应该放到一个按钮风格中，而不是在color.xml文件中。</p>
+<p><strong>相反，这样做</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--主色--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>#ff149BCC<span class="tag">&lt;/<span class="name">color</span>&gt;</span><span class="comment">&lt;!--主色调--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>#ff1976D2<span class="tag">&lt;/<span class="name">color</span>&gt;</span><span class="comment">&lt;!--在Material Design，对应状态栏颜色--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>#ff0EC7F0<span class="tag">&lt;/<span class="name">color</span>&gt;</span> <span class="comment">&lt;!--强调色 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorGrounding"</span>&gt;</span>#ffF4F3F1<span class="tag">&lt;/<span class="name">color</span>&gt;</span><span class="comment">&lt;!--界面底色--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"colorRipple"</span>&gt;</span>#B2EBF2<span class="tag">&lt;/<span class="name">color</span>&gt;</span><span class="comment">&lt;!--点击时水波纹颜色--&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--文字颜色--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textPrimary"</span>&gt;</span>#172434<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textSecondary"</span>&gt;</span>#666666<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textPrimaryInverted"</span>&gt;</span>@color/white<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"textSecondaryInverted"</span>&gt;</span>@color/white_A50<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--通用颜色--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blue"</span>&gt;</span>#ff1976D2<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blue_light"</span>&gt;</span>#ff149BCC<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"white"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"white_A50"</span>&gt;</span>#80ffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span><span class="comment">&lt;!--50%透明度--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"yellow"</span>&gt;</span>#f59800<span class="tag">&lt;/<span class="name">color</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>向应用设计者那里要这个调色板，名称不需要跟<code>green</code>、<code>blue</code>等等相同。<code>brand_primary</code>、<code>brand_secondary</code>、<code>brand_negative</code>这样的名字也是完全可以接受的。 像这样规范的颜色很容易修改或重构，会使应用一共使用了多少种不同的颜色变得非常清晰。 通常一个具有审美价值的UI来说，减少使用颜色的种类是非常重要的。</p>
+<h4 id="2-4-6-dimens-xml"><a href="#2-4-6-dimens-xml" class="headerlink" title="2.4.6 dimens.xml"></a>2.4.6 dimens.xml</h4><p>像对待colors.xml一样对待dimens.xml文件 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。 一个好的例子，如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--font sizes--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_micro"</span>&gt;</span>10.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_small"</span>&gt;</span>12.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_medium"</span>&gt;</span>14.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_large"</span>&gt;</span>16.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_xlarge"</span>&gt;</span>18.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"font_extra_large"</span>&gt;</span>22.0sp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- typical spacing between two views --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_huge"</span>&gt;</span>40dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_large"</span>&gt;</span>24dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_normal"</span>&gt;</span>14dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_small"</span>&gt;</span>10dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"spacing_tiny"</span>&gt;</span>4dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--布局规范--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"toolbar_height"</span>&gt;</span>48dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"bottomBar_height"</span>&gt;</span>56dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"tab_height"</span>&gt;</span>40dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dimen</span> <span class="attr">name</span>=<span class="string">"row_view_height"</span>&gt;</span>48dp<span class="tag">&lt;/<span class="name">dimen</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>布局时在写<code>margins</code>和<code>paddings</code>时，你应该使用<code>spacing_xxxx</code>尺寸格式来布局，而不是像对待<code>string</code>字符串一样直接写值。 这样写会非常有感觉，会使组织和改变风格或布局是非常容易。</p>
+<h4 id="2-4-7-styles-xml"><a href="#2-4-7-styles-xml" class="headerlink" title="2.4.7 styles.xml"></a>2.4.7 styles.xml</h4><p>style的name命名使用大驼峰命名法例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ContentText"</span>&gt;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textSize"</span>&gt;</span>@dimen/font_normal<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColor"</span>&gt;</span>@color/basic_black<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>将一个大的style文件分割成多个文件</strong>， 你可以有多个<code>styles.xml</code> 文件。Android SDK支持其它文件，<code>styles</code>这个文件名称并没有作用，起作用的是在文件 里xml的<code>&lt;style&gt;</code>标签。因此你可以有多个style文件<code>styles.xml</code>、<code>style_home.xml</code>、<code>style_item_details.xml</code>、<code>styles_forms.xml</code>。 不同于资源文件路径需要为系统构建起的有意义，在<code>res/values</code>目录下的文件可以任意命名。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/LoranWong/Android-Code-Style" target="_blank" rel="external">Android-Code-Style</a></p>
+<p><a href="http://www.jianshu.com/p/419f5357357d" target="_blank" rel="external">Android开发规范</a></p>
+<p><a href="https://mp.weixin.qq.com/s/1BvSaNAX3vUMwhLumKFhqw" target="_blank" rel="external">Android开发规范和架构总结</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Vary Zhao wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎你扫描上面的二维码，加我微信</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/17/Android 代码规范/" rel="next" title="Android 代码规范">
+                <i class="fa fa-chevron-left"></i> Android 代码规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/06/17/Android 开发规范/"
+     data-title="Android 开发规范"
+     data-content=""
+     data-url="https://z-chu.github.io/2017/06/17/Android 开发规范/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/06/17/Android 开发规范/"
+           data-title="Android 开发规范" data-url="https://z-chu.github.io/2017/06/17/Android 开发规范/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460"
+               alt="Vary Zhao" />
+          <p class="site-author-name" itemprop="name">Vary Zhao</p>
+          <p class="site-description motion-element" itemprop="description">最大的困难不是技术，是懒。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/z-chu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e9ea7137a0a2" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Android-Studio规范"><span class="nav-number">1.</span> <span class="nav-text">1 Android Studio规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-命名规范"><span class="nav-number">2.</span> <span class="nav-text">2 命名规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-包命名规范"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 包命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Class-files-类命名规范"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Class files 类命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Resources-files-资源文件命名规范"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Resources files 资源文件命名规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Layout-files"><span class="nav-number">2.3.1.</span> <span class="nav-text">Layout files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Drawable-files"><span class="nav-number">2.3.2.</span> <span class="nav-text">Drawable files</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Inside-Code-Naming-代码内部命名"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Inside Code Naming 代码内部命名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-常量名"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 常量名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-Class-Variable-Naming-类变量命名"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 Class Variable Naming 类变量命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3-Class-Method-Naming-类方法命名"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3 Class Method Naming 类方法命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4-layout-xml-布局文件变量命名"><span class="nav-number">2.4.4.</span> <span class="nav-text">2.4.4 layout.xml 布局文件变量命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5-colors-xml"><span class="nav-number">2.4.5.</span> <span class="nav-text">2.4.5 colors.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-6-dimens-xml"><span class="nav-number">2.4.6.</span> <span class="nav-text">2.4.6 dimens.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-7-styles-xml"><span class="nav-number">2.4.7.</span> <span class="nav-text">2.4.7 styles.xml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vary Zhao</span>
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">本站访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv">本站总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"z-chu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
