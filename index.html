@@ -286,6 +286,196 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/07/17/API设计/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Vary Zhao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Vary's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Vary's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/17/API设计/" itemprop="url">
+                  API 设计
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T20:14:17+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-18T20:17:08+08:00">
+                2017-07-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/17/API设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/17/API设计/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文转载自：<a href="https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/">https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/</a></p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>使用 RESTful 风格的 API 设计。</p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。</p>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>尽量部署在专属域名下，如 github：</p>
+<blockquote>
+<p><code>https://api.github.com/</code></p>
+</blockquote>
+<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>应该把版本号放到 URL 中，如 API 有改版的时候，应保证老版的 API 持续提供服务一段时间。</p>
+<blockquote>
+<p><code>https://api.example.com/v1/</code></p>
+</blockquote>
+<h2 id="路径和资源"><a href="#路径和资源" class="headerlink" title="路径和资源"></a>路径和资源</h2><p>在 Restful 风格的 API 中，每个路径都代表着互联网中的一个资源。所以 URL 地址中应该使用名词，并且因为大多是资源集合，所以应该使用复数形式。如果是有从属关系的资源，应该服从从属关系，下面给出几个例子：</p>
+<ul>
+<li><code>https://api.example.com/v1/posts</code></li>
+<li><code>https://api.example.com/v1/posts/{postId}</code></li>
+<li><code>https://api.example.com/v1/posts/{postId}/comments</code></li>
+</ul>
+<h2 id="HTTP-动词"><a href="#HTTP-动词" class="headerlink" title="HTTP 动词"></a>HTTP 动词</h2><p>HTTP 动词可以完美对应数据库的增删查改操作，于是我们就把 HTTP 动词和我们的增删查改操作对应起来：</p>
+<ul>
+<li>GET：查询数据</li>
+<li>POST：增加数据</li>
+<li>PUT：更新数据(客户端提供改变后的完整资源)</li>
+<li>PATCH：更新数据(客户端更新某几条属性)</li>
+<li><p>DELETE：删除数据</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/17/API设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/06/17/Android 开发规范/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -425,196 +615,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/17/Android 开发规范/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/06/17/API设计/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Vary Zhao">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/13902657?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Vary's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Vary's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/17/API设计/" itemprop="url">
-                  API 设计
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-17T14:14:17+08:00">
-                2017-06-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-18T20:16:01+08:00">
-                2017-07-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/17/API设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/17/API设计/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文转载自：<a href="https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/">https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/</a></p>
-<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>使用 RESTful 风格的 API 设计。</p>
-<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。</p>
-<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>尽量部署在专属域名下，如 github：</p>
-<blockquote>
-<p><code>https://api.github.com/</code></p>
-</blockquote>
-<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>应该把版本号放到 URL 中，如 API 有改版的时候，应保证老版的 API 持续提供服务一段时间。</p>
-<blockquote>
-<p><code>https://api.example.com/v1/</code></p>
-</blockquote>
-<h2 id="路径和资源"><a href="#路径和资源" class="headerlink" title="路径和资源"></a>路径和资源</h2><p>在 Restful 风格的 API 中，每个路径都代表着互联网中的一个资源。所以 URL 地址中应该使用名词，并且因为大多是资源集合，所以应该使用复数形式。如果是有从属关系的资源，应该服从从属关系，下面给出几个例子：</p>
-<ul>
-<li><code>https://api.example.com/v1/posts</code></li>
-<li><code>https://api.example.com/v1/posts/{postId}</code></li>
-<li><code>https://api.example.com/v1/posts/{postId}/comments</code></li>
-</ul>
-<h2 id="HTTP-动词"><a href="#HTTP-动词" class="headerlink" title="HTTP 动词"></a>HTTP 动词</h2><p>HTTP 动词可以完美对应数据库的增删查改操作，于是我们就把 HTTP 动词和我们的增删查改操作对应起来：</p>
-<ul>
-<li>GET：查询数据</li>
-<li>POST：增加数据</li>
-<li>PUT：更新数据(客户端提供改变后的完整资源)</li>
-<li>PATCH：更新数据(客户端更新某几条属性)</li>
-<li><p>DELETE：删除数据</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/17/API设计/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
