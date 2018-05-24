@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://z-chu.github.io/2017/08/15/team/</loc>
+    
+    <lastmod>2018-05-24T12:38:27.105Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://z-chu.github.io/2017/07/17/API%E8%AE%BE%E8%AE%A1/</loc>
     
-    <lastmod>2017-07-18T12:17:08.345Z</lastmod>
+    <lastmod>2018-05-24T12:38:01.277Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>https://z-chu.github.io/2017/05/23/react-native1/</loc>
     
     <lastmod>2017-06-04T08:21:03.440Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://z-chu.github.io/2017/05/15/team/</loc>
-    
-    <lastmod>2017-05-15T14:13:31.046Z</lastmod>
     
   </url>
   

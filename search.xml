@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[API 设计]]></title>
+    <title><![CDATA[作为android小组长，该做什么]]></title>
+    <url>%2F2017%2F08%2F15%2Fteam%2F</url>
+    <content type="text"><![CDATA[首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃; 统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（即使项目开始没意识到，当意识到时应该立马站出来），这个模块统一做一个轮子，大家直接调用即可。 要对整体的框架和功能了如指掌，当领导问你某个模块能否调整，是否会牵扯到其他模块，或者引出其他问题，应该心中有数； 当下属在和产品设计讨论时，讨论过程中，你听明白了，你下属还没明白，不要立马说就是怎么怎么回事，因为你没必要跟下属抢风头，这样反而给下属不好看； 当因为下属没做完或者没做好，导致延期或者加班，对上或者对外要保护自己的下属，恰当的时候，单独找他谈话，也许是工作方式不对，也许是工作能力不行，要对症下药； 时不时的请下属吃个饭，不在于贵贱，而在于心意。当有人要离开，也应该一起吃个饭，我们无法一起工作，但还是可以做朋友的嘛；]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Server API 设计]]></title>
     <url>%2F2017%2F07%2F17%2FAPI%E8%AE%BE%E8%AE%A1%2F</url>
-    <content type="text"><![CDATA[本文转载自：https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/ 设计使用 RESTful 风格的 API 设计。 协议使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。 域名尽量部署在专属域名下，如 github： https://api.github.com/ 版本应该把版本号放到 URL 中，如 API 有改版的时候，应保证老版的 API 持续提供服务一段时间。 https://api.example.com/v1/ 路径和资源在 Restful 风格的 API 中，每个路径都代表着互联网中的一个资源。所以 URL 地址中应该使用名词，并且因为大多是资源集合，所以应该使用复数形式。如果是有从属关系的资源，应该服从从属关系，下面给出几个例子： https://api.example.com/v1/posts https://api.example.com/v1/posts/{postId} https://api.example.com/v1/posts/{postId}/comments HTTP 动词HTTP 动词可以完美对应数据库的增删查改操作，于是我们就把 HTTP 动词和我们的增删查改操作对应起来： GET：查询数据 POST：增加数据 PUT：更新数据(客户端提供改变后的完整资源) PATCH：更新数据(客户端更新某几条属性) DELETE：删除数据 示例下面是结合 HTTP 动词和路径提供一些示例： GET /posts ：获取所有文章 POST /posts ：创建一篇文章 GET /posts/{postId} ：获取指定 Id 的文章信息 PUT /posts/{postId} ：修改指定 Id 的文章信息(客户端需要提供全部属性) PATCH /post/{postId} ：修改指定 Id 的文章信息(客户端提供需要修改的部分属性) DELETE /post/{postId} ：删除指定 Id 的文章 GET /posts/{postId}/comments ：获取指定 Id 文章的所有评论 POST /posts/{postId}/comments ：在指定 Id 文章下创建一条评论 Query 查询在 GET 查询的时候我们不可能一次性获取所有资源，那么我们需要提供一些查询条件。 下面是一些常用的查询： ?index=2&amp;size=20：第二页每页20条 ?sortby=name&amp;order=asc：第二页每页20条 全局信息全局通用信息应该放在请求头里，避免使用 Query 拼接，如： APPID（Android/iOS/H5） APPVER（版本号） CHANNEL（渠道号） APP-BUILD-NUM（内部小版本号） TOKEN NETWORK（网络环境） LANGUAGE（语言） 传输数据Request使用 json 格式传输数据，如果需要上传文件则使用表单的形式提交。 Response使用 json 格式传输数据，Content-Type一致设定为application/json。响应格式应该统一，下面给出一个例子： 名字 类型 含义 code int 状态码 message String 状态信息 data List or Object 数据 time long 时间戳 具体的响应如下： 123456&#123; 'code': 0, 'message': '获取成功', 'data': [], // 返回一个集合 'time': 1472435695000&#125; 或者返回某一个数据： 123456&#123; 'code': 0, 'message': '获取成功', 'data': &#123;&#125;, // 返回一个对象 'time': 1472435695000&#125; 安全为了保证客户端与服务端通信的安全，我们使用 HTTPS 协议。 在身份认证上使用 Oauth 2.0 协议，用户登录之后在客户端保存一份 token，避免在客户端持久化存储用户名和密码。之后每次访问需要身份认证的 API 时，必须携带 token 访问。 避免空指针API 设计的时候应该合理帮助前端避免空指针异常，在一些字段或者属性为空的时候应该返回默认值：如 String 返回&quot;&quot;, int 返回0, Object 返回 {}, Array or List 返回 []。]]></content>
+    <content type="text"><![CDATA[设计使用 RESTful 风格的 API 设计。 协议使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。 域名尽量部署在专属域名下，如 github： https://api.github.com/ 版本应该把版本号放到 URL 中，如 API 有改版的时候，应保证老版的 API 持续提供服务一段时间。 https://api.example.com/v1/ 路径和资源在 Restful 风格的 API 中，每个路径都代表着互联网中的一个资源。所以 URL 地址中应该使用名词，并且因为大多是资源集合，所以应该使用复数形式。如果是有从属关系的资源，应该服从从属关系，下面给出几个例子： https://api.example.com/v1/posts https://api.example.com/v1/posts/{postId} https://api.example.com/v1/posts/{postId}/comments HTTP 动词HTTP 动词可以完美对应数据库的增删查改操作，于是我们就把 HTTP 动词和我们的增删查改操作对应起来： GET：查询数据 POST：增加数据 PUT：更新数据(客户端提供改变后的完整资源) PATCH：更新数据(客户端更新某几条属性) DELETE：删除数据 示例下面是结合 HTTP 动词和路径提供一些示例： GET /posts ：获取所有文章 POST /posts ：创建一篇文章 GET /posts/{postId} ：获取指定 Id 的文章信息 PUT /posts/{postId} ：修改指定 Id 的文章信息(客户端需要提供全部属性) PATCH /post/{postId} ：修改指定 Id 的文章信息(客户端提供需要修改的部分属性) DELETE /post/{postId} ：删除指定 Id 的文章 GET /posts/{postId}/comments ：获取指定 Id 文章的所有评论 POST /posts/{postId}/comments ：在指定 Id 文章下创建一条评论 Query 查询在 GET 查询的时候我们不可能一次性获取所有资源，那么我们需要提供一些查询条件。 下面是一些常用的查询： ?index=2&amp;size=20：第二页每页20条 ?sortby=name&amp;order=asc：第二页每页20条 全局信息全局通用信息应该放在请求头里，避免使用 Query 拼接，如： APPID（Android/iOS/H5） APPVER（版本号） CHANNEL（渠道号） APP-BUILD-NUM（内部小版本号） TOKEN NETWORK（网络环境） LANGUAGE（语言） 传输数据Request使用 json 格式传输数据，如果需要上传文件则使用表单的形式提交。 Response使用 json 格式传输数据，Content-Type一致设定为application/json。响应格式应该统一，下面给出一个例子： 名字 类型 含义 code int 状态码 message String 状态信息 data List or Object 数据 time long 时间戳 具体的响应如下： 123456&#123; 'code': 0, 'message': '获取成功', 'data': [], // 返回一个集合 'time': 1472435695000&#125; 或者返回某一个数据： 123456&#123; 'code': 0, 'message': '获取成功', 'data': &#123;&#125;, // 返回一个对象 'time': 1472435695000&#125; 安全为了保证客户端与服务端通信的安全，我们使用 HTTPS 协议。 在身份认证上使用 Oauth 2.0 协议，用户登录之后在客户端保存一份 token，避免在客户端持久化存储用户名和密码。之后每次访问需要身份认证的 API 时，必须携带 token 访问。 避免空指针API 设计的时候应该合理帮助前端避免空指针异常，在一些字段或者属性为空的时候应该返回默认值：如 String 返回&quot;&quot;, int 返回0, Object 返回 {}, Array or List 返回 []。]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -39,14 +47,6 @@
       <tags>
         <tag>React-Native</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[作为android小组长，该做什么]]></title>
-    <url>%2F2017%2F05%2F15%2Fteam%2F</url>
-    <content type="text"><![CDATA[首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃; 统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（即使项目开始没意识到，当意识到时应该立马站出来），这个模块统一做一个轮子，大家直接调用即可。 要对整体的框架和功能了如指掌，当领导问你某个模块能否调整，是否会牵扯到其他模块，或者引出其他问题，应该心中有数； 当下属在和产品设计讨论时，讨论过程中，你听明白了，你下属还没明白，不要立马说就是怎么怎么回事，因为你没必要跟下属抢风头，这样反而给下属不好看； 当因为下属没做完或者没做好，导致延期或者加班，对上或者对外要保护自己的下属，恰当的时候，单独找他谈话，也许是工作方式不对，也许是工作能力不行，要对症下药； 时不时的请下属吃个饭，不在于贵贱，而在于心意。当有人要离开，也应该一起吃个饭，我们无法一起工作，但还是可以做朋友的嘛；]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[(转) Android IM 开发小结]]></title>

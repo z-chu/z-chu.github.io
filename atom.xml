@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://z-chu.github.io/"/>
-  <updated>2017-07-18T12:17:08.345Z</updated>
+  <updated>2018-05-24T12:38:27.105Z</updated>
   <id>https://z-chu.github.io/</id>
   
   <author>
@@ -16,14 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>API 设计</title>
+    <title>作为android小组长，该做什么</title>
+    <link href="https://z-chu.github.io/2017/08/15/team/"/>
+    <id>https://z-chu.github.io/2017/08/15/team/</id>
+    <published>2017-08-15T14:09:06.000Z</published>
+    <updated>2018-05-24T12:38:27.105Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃;</li>
+<li>统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（即使项目开始没意识到，当意识到时应该立马站出来），这个模块统一做一个轮子，大家直接调用即可。</li>
+<li>要对整体的框架和功能了如指掌，当领导问你某个模块能否调整，是否会牵扯到其他模块，或者引出其他问题，应该心中有数；</li>
+<li>当下属在和产品设计讨论时，讨论过程中，你听明白了，你下属还没明白，不要立马说就是怎么怎么回事，因为你没必要跟下属抢风头，这样反而给下属不好看；</li>
+<li>当因为下属没做完或者没做好，导致延期或者加班，对上或者对外要保护自己的下属，恰当的时候，单独找他谈话，也许是工作方式不对，也许是工作能力不行，要对症下药；</li>
+<li>时不时的请下属吃个饭，不在于贵贱，而在于心意。当有人要离开，也应该一起吃个饭，我们无法一起工作，但还是可以做朋友的嘛；</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃;&lt;/li&gt;
+&lt;li&gt;统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://z-chu.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Server API 设计</title>
     <link href="https://z-chu.github.io/2017/07/17/API%E8%AE%BE%E8%AE%A1/"/>
     <id>https://z-chu.github.io/2017/07/17/API设计/</id>
     <published>2017-07-17T12:14:17.000Z</published>
-    <updated>2017-07-18T12:17:08.345Z</updated>
+    <updated>2018-05-24T12:38:01.277Z</updated>
     
-    <content type="html"><![CDATA[<p>本文转载自：<a href="https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/" target="_blank" rel="external">https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/</a></p>
-<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>使用 RESTful 风格的 API 设计。</p>
+    <content type="html"><![CDATA[<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>使用 RESTful 风格的 API 设计。</p>
 <h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。</p>
 <h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>尽量部署在专属域名下，如 github：</p>
 <blockquote>
@@ -119,8 +148,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;本文转载自：&lt;a href=&quot;https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/&quot;&gt;https://loshine.me/2016/09/01/android-best-practice-p1-interface-design/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设计&quot;&gt;&lt;a href=&quot;#设计&quot; class=&quot;headerlink&quot; title=&quot;设计&quot;&gt;&lt;/a&gt;设计&lt;/h2&gt;&lt;p&gt;使用 RESTful 风格的 API 设计。&lt;/p&gt;
+      &lt;h2 id=&quot;设计&quot;&gt;&lt;a href=&quot;#设计&quot; class=&quot;headerlink&quot; title=&quot;设计&quot;&gt;&lt;/a&gt;设计&lt;/h2&gt;&lt;p&gt;使用 RESTful 风格的 API 设计。&lt;/p&gt;
 &lt;h2 id=&quot;协议&quot;&gt;&lt;a href=&quot;#协议&quot; class=&quot;headerlink&quot; title=&quot;协议&quot;&gt;&lt;/a&gt;协议&lt;/h2&gt;&lt;p&gt;使用 HTTPS 协议，保证 HTTP 的方便的同时保证一定的安全性。&lt;/p&gt;
 &lt;h2 id=&quot;域名&quot;&gt;&lt;a href=&quot;#域名&quot; class=&quot;headerlink&quot; title=&quot;域名&quot;&gt;&lt;/a&gt;域名&lt;/h2&gt;&lt;p&gt;尽量部署在专属域名下，如 github：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -718,36 +746,6 @@
     
     
       <category term="React-Native" scheme="https://z-chu.github.io/tags/React-Native/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>作为android小组长，该做什么</title>
-    <link href="https://z-chu.github.io/2017/05/15/team/"/>
-    <id>https://z-chu.github.io/2017/05/15/team/</id>
-    <published>2017-05-15T14:09:06.000Z</published>
-    <updated>2017-05-15T14:13:31.046Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃;</li>
-<li>统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（即使项目开始没意识到，当意识到时应该立马站出来），这个模块统一做一个轮子，大家直接调用即可。</li>
-<li>要对整体的框架和功能了如指掌，当领导问你某个模块能否调整，是否会牵扯到其他模块，或者引出其他问题，应该心中有数；</li>
-<li>当下属在和产品设计讨论时，讨论过程中，你听明白了，你下属还没明白，不要立马说就是怎么怎么回事，因为你没必要跟下属抢风头，这样反而给下属不好看；</li>
-<li>当因为下属没做完或者没做好，导致延期或者加班，对上或者对外要保护自己的下属，恰当的时候，单独找他谈话，也许是工作方式不对，也许是工作能力不行，要对症下药；</li>
-<li>时不时的请下属吃个饭，不在于贵贱，而在于心意。当有人要离开，也应该一起吃个饭，我们无法一起工作，但还是可以做朋友的嘛；</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;首先，要有一个思想，九品芝麻官也是官，不是让你去摆谱，而是说下面的人会把你但领导看，你必须要有领导的样儿，该站出来是站出来，该严肃是严肃;&lt;/li&gt;
-&lt;li&gt;统筹协调工作。我们这一期基本只改了UI,没有增加新功能，然后有很多模块类似。这个时候，组长就应该站出来（
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://z-chu.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-    
     
   </entry>
   
