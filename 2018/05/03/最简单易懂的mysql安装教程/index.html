@@ -86,55 +86,45 @@
 
 
 
-<meta name="description" content="性能优化
-界面不流程，如何去debug调试View，来定位卡顿问题？
-如何解决卡顿问题？
-xml编写和View写法是否合理？
-移除不必要的背景图
-window默认背景图
-ListView设置背景后，item又设置了背景图
-多层嵌套，多次设置背景图
-
-
-优化布局避免空间View树过高，空间重叠
-自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
-
-　可以通过An">
+<meta name="description" content="今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。
+一、安装1.解压zip包到安装目录先从MySQL官网 下载mysql最新的免安装版压缩包
+解压之后变成这个样子：
+里面的文件是这个样子
+下面开始了，请注意
+2.配置文件
+在安装目录创建一个名为：my.ini的选项文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android面试之性能优化">
-<meta property="og:url" content="https://z-chu.github.io/2017/01/21/Android-interview3/index.html">
+<meta property="og:title" content="最简单易懂的mysql安装教程">
+<meta property="og:url" content="https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/index.html">
 <meta property="og:site_name" content="Vary's Blog">
-<meta property="og:description" content="性能优化
-界面不流程，如何去debug调试View，来定位卡顿问题？
-如何解决卡顿问题？
-xml编写和View写法是否合理？
-移除不必要的背景图
-window默认背景图
-ListView设置背景后，item又设置了背景图
-多层嵌套，多次设置背景图
-
-
-优化布局避免空间View树过高，空间重叠
-自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
-
-　可以通过An">
-<meta property="og:updated_time" content="2017-01-21T10:33:38.679Z">
+<meta property="og:description" content="今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。
+一、安装1.解压zip包到安装目录先从MySQL官网 下载mysql最新的免安装版压缩包
+解压之后变成这个样子：
+里面的文件是这个样子
+下面开始了，请注意
+2.配置文件
+在安装目录创建一个名为：my.ini的选项文件">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-8baa90639789ce1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-a26aea8c516290ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-330f1dd587615496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-73c49a017e91d972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-c172fec14d2aa422.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-20da7e7504e7c102.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-a29a01574f9c6904.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-1fdd004257a0ff31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-5ffe1ab1799071dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1474734-602b38329a2e10fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-24T12:43:58.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android面试之性能优化">
-<meta name="twitter:description" content="性能优化
-界面不流程，如何去debug调试View，来定位卡顿问题？
-如何解决卡顿问题？
-xml编写和View写法是否合理？
-移除不必要的背景图
-window默认背景图
-ListView设置背景后，item又设置了背景图
-多层嵌套，多次设置背景图
-
-
-优化布局避免空间View树过高，空间重叠
-自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。
-
-　可以通过An">
+<meta name="twitter:title" content="最简单易懂的mysql安装教程">
+<meta name="twitter:description" content="今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。
+一、安装1.解压zip包到安装目录先从MySQL官网 下载mysql最新的免安装版压缩包
+解压之后变成这个样子：
+里面的文件是这个样子
+下面开始了，请注意
+2.配置文件
+在安装目录创建一个名为：my.ini的选项文件">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1474734-8baa90639789ce1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -162,13 +152,13 @@ ListView设置背景后，item又设置了背景图
 
 
 
-  <link rel="canonical" href="https://z-chu.github.io/2017/01/21/Android-interview3/"/>
+  <link rel="canonical" href="https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/"/>
 
 
 
 
 
-  <title> Android面试之性能优化 | Vary's Blog </title>
+  <title> 最简单易懂的mysql安装教程 | Vary's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -324,7 +314,7 @@ ListView设置背景后，item又设置了背景图
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2017/01/21/Android-interview3/">
+  <link itemprop="mainEntityOfPage" href="https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Vary Zhao">
@@ -348,7 +338,7 @@ ListView设置背景后，item又设置了背景图
             
             
               
-                Android面试之性能优化
+                最简单易懂的mysql安装教程
               
             
           </h2>
@@ -363,8 +353,8 @@ ListView设置背景后，item又设置了背景图
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T14:17:17+08:00">
-                2017-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T14:14:16+08:00">
+                2018-05-03
               </time>
             
 
@@ -379,8 +369,8 @@ ListView设置背景后，item又设置了背景图
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-01-21T18:33:38+08:00">
-                2017-01-21
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-24T20:43:58+08:00">
+                2018-05-24
               </time>
             
           </span>
@@ -416,8 +406,8 @@ ListView设置背景后，item又设置了背景图
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/21/Android-interview3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/21/Android-interview3/" itemprop="commentCount"></span>
+                <a href="/2018/05/03/最简单易懂的mysql安装教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/03/最简单易懂的mysql安装教程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,52 +438,56 @@ ListView设置背景后，item又设置了背景图
       
 
       
-        <h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><ol>
-<li>界面不流程，如何去debug调试View，来定位卡顿问题？</li>
-<li>如何解决卡顿问题？</li>
-<li>xml编写和View写法是否合理？</li>
-<li>移除不必要的背景图<ul>
-<li>window默认背景图</li>
-<li>ListView设置背景后，item又设置了背景图</li>
-<li>多层嵌套，多次设置背景图</li>
-</ul>
+        <p>今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。</p>
+<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><h3 id="1-解压zip包到安装目录"><a href="#1-解压zip包到安装目录" class="headerlink" title="1.解压zip包到安装目录"></a>1.解压zip包到安装目录</h3><p>先从<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">MySQL官网</a> 下载mysql最新的免安装版压缩包<br><img src="https://upload-images.jianshu.io/upload_images/1474734-8baa90639789ce1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解压之后变成这个样子：<br><img src="https://upload-images.jianshu.io/upload_images/1474734-a26aea8c516290ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>里面的文件是这个样子<br><img src="https://upload-images.jianshu.io/upload_images/1474734-330f1dd587615496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面开始了，请注意</p>
+<h3 id="2-配置文件"><a href="#2-配置文件" class="headerlink" title="2.配置文件"></a>2.配置文件</h3><ol>
+<li>在安装目录创建一个名为：<strong><code>my.ini</code></strong>的选项文件<br><img src="https://upload-images.jianshu.io/upload_images/1474734-73c49a017e91d972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><a id="more"></a></li>
+<li><p>创建mysql数据库数据的存放目录,如上图的<strong>data</strong>目录</p>
 </li>
-<li>优化布局避免空间View树过高，空间重叠</li>
-<li>自定义View的时候使用clipRect裁剪出需要绘制的区域绘制，已减少其他区域的绘制。</li>
+<li><p>再将以下内容复制到选项文件</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="comment"># 设置mysql的安装目录</span></div><div class="line"><span class="attr">basedir</span>=D:\\Program Files\\mysql-<span class="number">8.0</span>.<span class="number">11</span>-winx64</div><div class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></div><div class="line"><span class="attr">datadir</span>=D:\\Program Files\\mysql-<span class="number">8.0</span>.<span class="number">11</span>-winx64\\data</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>　可以通过Android SDK提供的Hierarchy View可量化的子View的总是和测量（measure）、布局（layout）、绘制（draw）所消耗的时间，以及View层级树的高度</p>
-<p>　首先要明白的是UI的绘制流程：measure-layout-draw，measure与layout都需要for loop所有的子控件，汇集起来才能完成绘制，布局。所以子控件越多，所消耗的时间越长(inflate，layout_weight，relative，多层嵌套等)，减少不必要的子控件或层级，是相当有必要的。你可以通过merge,viewstub这些标签来减少层级嵌套。如果你的空间观念没那么好，可以用HierarchyViewer工具来检查。<br><a id="more"></a></p>
-<h1 id="Mesure过程"><a href="#Mesure过程" class="headerlink" title="Mesure过程"></a>Mesure过程</h1><ul>
-<li>设置本View视图的最终大小</li>
-<li>如果该View对象是个ViewGroup类型，需要重写该<code>onMeasure()</code>方法，对其子视图进行遍历的<code>measure()</code>过程。</li>
-<li><code>measureChilren()</code>,内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法</li>
-<li><code>measureChlid()</code>，为指定的子视图measure，会被measureChildren调用</li>
-<li><code>measureChildWithMargins()</code>,为指定子视图考虑了margin和padding的measure。</li>
-</ul>
-<h1 id="Layout过程"><a href="#Layout过程" class="headerlink" title="Layout过程"></a>Layout过程</h1><ol>
-<li>layout方法会设置该View视图位于父视图的坐标轴，即mLeft,mTop,mRight，mBottom(调用<code>setFrame()</code>函数去实现）</li>
-<li>接下来回调<code>onLayout()</code>方法（如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局）</li>
-<li>如果该View是个ViewGroup类型，需要遍历每个子视图的childView，调用该子视图的layout()方法去设置它的坐标值</li>
+<p>你也可以先将内容复制到任何文本编辑器（如记事本）中，然后更名为my.ini,将其移动到MySQL安装目录中即可。</p>
+<p><strong>注意两点:</strong></p>
+<ol>
+<li>每个人的安装目录不一样，所以，安装目录及数据的存放目录相应的更改即可。</li>
+<li><code>datadir=D:\\Program Files\\mysql-8.0.11-winx64\\data</code>中的<code>’\\’</code>千万不要写成了<code>’\’</code>。</li>
 </ol>
-<h1 id="帧率"><a href="#帧率" class="headerlink" title="帧率"></a>帧率</h1><p>　在安卓中界面要看起来流畅，那么它的帧率是60，也就是说在1秒钟之内它会刷新60次，那么每次刷新的耗时也就是1000ms除了60，等于16.67ms.<br>　那么如果视图的刷新时间在16ms之内完成了，我们用起来就会觉得很流畅，那么假如因为某种原因，一个刷新过程没有在16ms之内完成，那么就会出现掉帧现象，也就是卡顿了。那么为了不出现这种掉帧现象，让用户用起来更流程，就需要尽量让一个绘制过程在16ms只能完成。<br>　这也就是性能优化所要最终完成的目标。Measure+Layout+Draw&lt;=16ms.<br>　那么我们就只要看measure、layout、draw都干了那些事情，有哪些点是可以优化的，只要逐个的解决这些优化点，也就完成了一系列的View优化工作。</p>
-<h1 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h1><h3 id="从内优化（从View本身）"><a href="#从内优化（从View本身）" class="headerlink" title="从内优化（从View本身）"></a>从内优化（从View本身）</h3><ul>
-<li>尽可能少的使用margin,padding<br>因为在测量绘制的过程中，会单独对已经设置过margin和padding的View进行另外多一步的操作，所有这个时候可以采用在父View中设置margin和padding来代替在子View中进行分别设置</li>
-<li>减少View层级<br>这3个过程都涉及到循环遍历子View的过程，所有减少View的层级可以很好的加快循环遍历的过程</li>
-<li>去除不必要的背景</li>
-<li>去除不必要的scrollbar和不需要的效果</li>
-<li>慎用渐变</li>
+<p>可选：您还可以在my.ini文件中配置其他服务器设置，例如内存，缓存或InnoDB配置信息。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[mysql]</div><div class="line"># 设置mysql客户端默认字符集</div><div class="line">default-character-set=utf8 </div><div class="line">[mysqld]</div><div class="line">#设置3306端口</div><div class="line">port = 3306 </div><div class="line"># 设置mysql的安装目录</div><div class="line">basedir=D:\\Program Files\\mysql-8.0.11-winx64</div><div class="line"># 设置mysql数据库的数据的存放目录</div><div class="line">datadir=D:\\Program Files\\mysql-8.0.11-winx64\\data</div><div class="line">skip-grant-tables</div><div class="line"># 允许最大连接数</div><div class="line">max_connections=200</div><div class="line"># 服务端使用的字符集默认为8比特编码的latin1字符集</div><div class="line">character-set-server=utf8</div><div class="line"># 创建新表时将使用的默认存储引擎</div><div class="line">default-storage-engine=INNODB</div></pre></td></tr></table></figure>
+<h3 id="3-初始化数据库"><a href="#3-初始化数据库" class="headerlink" title="3.初始化数据库"></a>3.初始化数据库</h3><p>在文件浏览器的路径显示栏上输入<strong>cmd</strong><br><img src="https://upload-images.jianshu.io/upload_images/1474734-c172fec14d2aa422.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>进入到mysql安装目录下的bin文件夹下，如图：<br><img src="https://upload-images.jianshu.io/upload_images/1474734-20da7e7504e7c102.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>注意要以管理员身份进入，演示图片为win7,win10可能默认不是管理员身份。<br>成功进入bin目录后，执行命令 <code>mysqld --initialize --console</code></p>
+<p>执行完成后，会打印 root 用户的初始默认密码，比如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">... [Server] D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\bin\mysqld.exe (mysqld <span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>) initializing of server <span class="keyword">in</span> progress as process <span class="number">11064</span></div><div class="line">... [Server] Error message file 'D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\share\english\errmsg.sys' had only <span class="number">1090</span> error messages, but it should contain <span class="built_in">at</span> least <span class="number">4512</span> error messages. Check that the above file is the right version <span class="keyword">for</span> this program!</div><div class="line">... [Server] A temporary password is generated <span class="keyword">for</span> root@localhost: ehPpKtWtV8(?</div><div class="line">... [Server] D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\bin\mysqld.exe (mysqld <span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>) initializing of server has completed</div></pre></td></tr></table></figure>
+<p>其中，第4行的<code>ehPpKtWtV8(?</code>就是初始密码，在没有更改密码前，需要记住这个密码，后续登录需要用到。</p>
+<p>要是你手贱，关快了，或者没记住，那也没事，可以在<code>datadir</code>目录找到<strong>[计算机名].err</strong>查看，或者再执行一遍初始化命令，又会重新生成的。当然，也可以使用安全工具，强制改密码，用什么方法，自己随意。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-a29a01574f9c6904.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1474734-1fdd004257a0ff31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="4-安装服务"><a href="#4-安装服务" class="headerlink" title="4.安装服务"></a>4.安装服务</h3><p>在MySQL安装目录的 bin 目录下执行命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqld --install [服务名]</div></pre></td></tr></table></figure>
+<p>后面的服务名可以不写，默认的名字为 mysql。当然，如果你的电脑上需要安装多个MySQL服务，就可以用不同的名字区分了，比如 mysql5 和 mysql8。</p>
+<p>安装完成之后，就可以通过命令<code>net start mysql</code>启动MySQL的服务了。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-5ffe1ab1799071dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其他启动方式：</p>
+<ul>
+<li>在bin目录找到mysql.exe点击启动</li>
+<li>Windows+R输入services.msc打开服务管理，找到MYSQL服务点击启动</li>
 </ul>
-<h3 id="从外优化"><a href="#从外优化" class="headerlink" title="从外优化"></a>从外优化</h3><ul>
-<li>布局嵌套过于复杂<br>这个会直接导致View的层级变多，然后测量绘制的效率变差</li>
-<li>View的过度绘制</li>
-<li>View的频繁重新渲染</li>
-<li><p>UI线程中进行耗时操作</p>
-<p>在Android4.0其实是不允许ui线程中做网络操作了，那假如说你不小心做了写IO操作，而且他们又比较耗时，有可能会导致UI线程卡顿。View绘制阻塞</p>
-</li>
-<li><p>冗余资源及错误逻辑导致加载和执行缓慢（其实就代码写的烂）<br>比如你在<code>getView()</code>里去for循环，for循环里又for循环，又去声明变量之类的，都会导致代码的执行效率很差</p>
-</li>
-<li>频繁触发GC,导致渲染受阻<br>GC线程优先级高于UI线程，所有如果内存管理不够合理的话频繁的触发了GC,就会导致UI线程的受阻</li>
-</ul>
+<hr>
+<h2 id="二、更改密码和密码认证插件"><a href="#二、更改密码和密码认证插件" class="headerlink" title="二、更改密码和密码认证插件"></a>二、更改密码和密码认证插件</h2><p>更改密码和密码认证插件<br>在MySQL安装目录的 bin 目录下执行命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -p</div></pre></td></tr></table></figure></p>
+<p>这时候会提示输入密码，记住之前自动生成的密码，填入即可登录成功，进入MySQL命令模式。</p>
+<p>在MySQL8.0.4以前，执行<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">SET</span> PASSWORD=PASSWORD('[修改的密码]');</div></pre></td></tr></table></figure></p>
+<p>就可以更改密码，但是<code>MySQL8.0.4</code>开始，这样默认是不行的。因为之前，MySQL的密码认证插件是“mysql_native_password”，而现在使用的是“caching_sha2_password”。</p>
+<p>因为当前有很多数据库工具和链接包都不支持“caching_sha2_password”，为了方便，我暂时还是改回了“mysql_native_password”认证插件。</p>
+<p>在MySQL中执行命令,修改密码验证插件，同时修改密码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">'password'</span>;</div></pre></td></tr></table></figure>
+<p>如果想默认使用“mysql_native_password”插件认证，可以在my.ini配置文件中配置default_authentication_plugin项。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</div></pre></td></tr></table></figure>
+<p>最后在命令行输入<code>mysql –u 用户名 –p</code><br>再输入你之前设置的密码回车即可。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-602b38329a2e10fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>好啦，大功搞成，现在你可以愉快的使用MySQL啦！</strong></p>
 
       
     </div>
@@ -525,8 +519,8 @@ ListView设置背景后，item又设置了背景图
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/21/Android-interview2/" rel="next" title="Android面试之网络">
-                <i class="fa fa-chevron-left"></i> Android面试之网络
+              <a href="/2017/08/15/team/" rel="next" title="作为android小组长，该做什么">
+                <i class="fa fa-chevron-left"></i> 作为android小组长，该做什么
               </a>
             
           </div>
@@ -534,10 +528,6 @@ ListView设置背景后，item又设置了背景图
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/21/prototype-pattern/" rel="prev" title="原型模式">
-                原型模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,10 +542,10 @@ ListView设置背景后，item又设置了背景图
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/01/21/Android-interview3/"
-     data-title="Android面试之性能优化"
+        <div class="ds-share flat" data-thread-key="2018/05/03/最简单易懂的mysql安装教程/"
+     data-title="最简单易懂的mysql安装教程"
      data-content=""
-     data-url="https://z-chu.github.io/2017/01/21/Android-interview3/">
+     data-url="https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -582,8 +572,8 @@ ListView设置背景后，item又设置了背景图
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/21/Android-interview3/"
-           data-title="Android面试之性能优化" data-url="https://z-chu.github.io/2017/01/21/Android-interview3/">
+      <div class="ds-thread" data-thread-key="2018/05/03/最简单易懂的mysql安装教程/"
+           data-title="最简单易懂的mysql安装教程" data-url="https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/">
       </div>
     
   </div>
@@ -710,7 +700,7 @@ ListView设置背景后，item又设置了背景图
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#性能优化"><span class="nav-number">1.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mesure过程"><span class="nav-number">2.</span> <span class="nav-text">Mesure过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Layout过程"><span class="nav-number">3.</span> <span class="nav-text">Layout过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#帧率"><span class="nav-number">4.</span> <span class="nav-text">帧率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何优化"><span class="nav-number">5.</span> <span class="nav-text">如何优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从内优化（从View本身）"><span class="nav-number">5.0.1.</span> <span class="nav-text">从内优化（从View本身）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从外优化"><span class="nav-number">5.0.2.</span> <span class="nav-text">从外优化</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装"><span class="nav-number">1.</span> <span class="nav-text">一、安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-解压zip包到安装目录"><span class="nav-number">1.1.</span> <span class="nav-text">1.解压zip包到安装目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">2.配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-初始化数据库"><span class="nav-number">1.3.</span> <span class="nav-text">3.初始化数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装服务"><span class="nav-number">1.4.</span> <span class="nav-text">4.安装服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、更改密码和密码认证插件"><span class="nav-number">2.</span> <span class="nav-text">二、更改密码和密码认证插件</span></a></li></ol></div>
             
 
           </div>

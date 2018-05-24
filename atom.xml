@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://z-chu.github.io/"/>
-  <updated>2018-05-24T12:38:27.105Z</updated>
+  <updated>2018-05-24T12:43:58.013Z</updated>
   <id>https://z-chu.github.io/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最简单易懂的mysql安装教程</title>
+    <link href="https://z-chu.github.io/2018/05/03/%E6%9C%80%E7%AE%80%E5%8D%95%E6%98%93%E6%87%82%E7%9A%84mysql%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
+    <id>https://z-chu.github.io/2018/05/03/最简单易懂的mysql安装教程/</id>
+    <published>2018-05-03T06:14:16.000Z</published>
+    <updated>2018-05-24T12:43:58.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。</p>
+<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><h3 id="1-解压zip包到安装目录"><a href="#1-解压zip包到安装目录" class="headerlink" title="1.解压zip包到安装目录"></a>1.解压zip包到安装目录</h3><p>先从<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">MySQL官网</a> 下载mysql最新的免安装版压缩包<br><img src="https://upload-images.jianshu.io/upload_images/1474734-8baa90639789ce1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解压之后变成这个样子：<br><img src="https://upload-images.jianshu.io/upload_images/1474734-a26aea8c516290ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>里面的文件是这个样子<br><img src="https://upload-images.jianshu.io/upload_images/1474734-330f1dd587615496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>下面开始了，请注意</p>
+<h3 id="2-配置文件"><a href="#2-配置文件" class="headerlink" title="2.配置文件"></a>2.配置文件</h3><ol>
+<li>在安装目录创建一个名为：<strong><code>my.ini</code></strong>的选项文件<br><img src="https://upload-images.jianshu.io/upload_images/1474734-73c49a017e91d972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><a id="more"></a></li>
+<li><p>创建mysql数据库数据的存放目录,如上图的<strong>data</strong>目录</p>
+</li>
+<li><p>再将以下内容复制到选项文件</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="comment"># 设置mysql的安装目录</span></div><div class="line"><span class="attr">basedir</span>=D:\\Program Files\\mysql-<span class="number">8.0</span>.<span class="number">11</span>-winx64</div><div class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></div><div class="line"><span class="attr">datadir</span>=D:\\Program Files\\mysql-<span class="number">8.0</span>.<span class="number">11</span>-winx64\\data</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>你也可以先将内容复制到任何文本编辑器（如记事本）中，然后更名为my.ini,将其移动到MySQL安装目录中即可。</p>
+<p><strong>注意两点:</strong></p>
+<ol>
+<li>每个人的安装目录不一样，所以，安装目录及数据的存放目录相应的更改即可。</li>
+<li><code>datadir=D:\\Program Files\\mysql-8.0.11-winx64\\data</code>中的<code>’\\’</code>千万不要写成了<code>’\’</code>。</li>
+</ol>
+<p>可选：您还可以在my.ini文件中配置其他服务器设置，例如内存，缓存或InnoDB配置信息。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[mysql]</div><div class="line"># 设置mysql客户端默认字符集</div><div class="line">default-character-set=utf8 </div><div class="line">[mysqld]</div><div class="line">#设置3306端口</div><div class="line">port = 3306 </div><div class="line"># 设置mysql的安装目录</div><div class="line">basedir=D:\\Program Files\\mysql-8.0.11-winx64</div><div class="line"># 设置mysql数据库的数据的存放目录</div><div class="line">datadir=D:\\Program Files\\mysql-8.0.11-winx64\\data</div><div class="line">skip-grant-tables</div><div class="line"># 允许最大连接数</div><div class="line">max_connections=200</div><div class="line"># 服务端使用的字符集默认为8比特编码的latin1字符集</div><div class="line">character-set-server=utf8</div><div class="line"># 创建新表时将使用的默认存储引擎</div><div class="line">default-storage-engine=INNODB</div></pre></td></tr></table></figure>
+<h3 id="3-初始化数据库"><a href="#3-初始化数据库" class="headerlink" title="3.初始化数据库"></a>3.初始化数据库</h3><p>在文件浏览器的路径显示栏上输入<strong>cmd</strong><br><img src="https://upload-images.jianshu.io/upload_images/1474734-c172fec14d2aa422.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>进入到mysql安装目录下的bin文件夹下，如图：<br><img src="https://upload-images.jianshu.io/upload_images/1474734-20da7e7504e7c102.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>注意要以管理员身份进入，演示图片为win7,win10可能默认不是管理员身份。<br>成功进入bin目录后，执行命令 <code>mysqld --initialize --console</code></p>
+<p>执行完成后，会打印 root 用户的初始默认密码，比如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">... [Server] D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\bin\mysqld.exe (mysqld <span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>) initializing of server <span class="keyword">in</span> progress as process <span class="number">11064</span></div><div class="line">... [Server] Error message file 'D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\share\english\errmsg.sys' had only <span class="number">1090</span> error messages, but it should contain <span class="built_in">at</span> least <span class="number">4512</span> error messages. Check that the above file is the right version <span class="keyword">for</span> this program!</div><div class="line">... [Server] A temporary password is generated <span class="keyword">for</span> root@localhost: ehPpKtWtV8(?</div><div class="line">... [Server] D:\Program Files\mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>-winx64\bin\mysqld.exe (mysqld <span class="number">8</span>.<span class="number">0</span>.<span class="number">11</span>) initializing of server has completed</div></pre></td></tr></table></figure>
+<p>其中，第4行的<code>ehPpKtWtV8(?</code>就是初始密码，在没有更改密码前，需要记住这个密码，后续登录需要用到。</p>
+<p>要是你手贱，关快了，或者没记住，那也没事，可以在<code>datadir</code>目录找到<strong>[计算机名].err</strong>查看，或者再执行一遍初始化命令，又会重新生成的。当然，也可以使用安全工具，强制改密码，用什么方法，自己随意。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-a29a01574f9c6904.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1474734-1fdd004257a0ff31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="4-安装服务"><a href="#4-安装服务" class="headerlink" title="4.安装服务"></a>4.安装服务</h3><p>在MySQL安装目录的 bin 目录下执行命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqld --install [服务名]</div></pre></td></tr></table></figure>
+<p>后面的服务名可以不写，默认的名字为 mysql。当然，如果你的电脑上需要安装多个MySQL服务，就可以用不同的名字区分了，比如 mysql5 和 mysql8。</p>
+<p>安装完成之后，就可以通过命令<code>net start mysql</code>启动MySQL的服务了。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-5ffe1ab1799071dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其他启动方式：</p>
+<ul>
+<li>在bin目录找到mysql.exe点击启动</li>
+<li>Windows+R输入services.msc打开服务管理，找到MYSQL服务点击启动</li>
+</ul>
+<hr>
+<h2 id="二、更改密码和密码认证插件"><a href="#二、更改密码和密码认证插件" class="headerlink" title="二、更改密码和密码认证插件"></a>二、更改密码和密码认证插件</h2><p>更改密码和密码认证插件<br>在MySQL安装目录的 bin 目录下执行命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -uroot -p</div></pre></td></tr></table></figure></p>
+<p>这时候会提示输入密码，记住之前自动生成的密码，填入即可登录成功，进入MySQL命令模式。</p>
+<p>在MySQL8.0.4以前，执行<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">SET</span> PASSWORD=PASSWORD('[修改的密码]');</div></pre></td></tr></table></figure></p>
+<p>就可以更改密码，但是<code>MySQL8.0.4</code>开始，这样默认是不行的。因为之前，MySQL的密码认证插件是“mysql_native_password”，而现在使用的是“caching_sha2_password”。</p>
+<p>因为当前有很多数据库工具和链接包都不支持“caching_sha2_password”，为了方便，我暂时还是改回了“mysql_native_password”认证插件。</p>
+<p>在MySQL中执行命令,修改密码验证插件，同时修改密码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">'password'</span>;</div></pre></td></tr></table></figure>
+<p>如果想默认使用“mysql_native_password”插件认证，可以在my.ini配置文件中配置default_authentication_plugin项。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</div></pre></td></tr></table></figure>
+<p>最后在命令行输入<code>mysql –u 用户名 –p</code><br>再输入你之前设置的密码回车即可。<br><img src="https://upload-images.jianshu.io/upload_images/1474734-602b38329a2e10fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>好啦，大功搞成，现在你可以愉快的使用MySQL啦！</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天安装MySQL花了蛮长时间的，感觉坑还是挺多的，写遍文章总结一下。&lt;/p&gt;
+&lt;h2 id=&quot;一、安装&quot;&gt;&lt;a href=&quot;#一、安装&quot; class=&quot;headerlink&quot; title=&quot;一、安装&quot;&gt;&lt;/a&gt;一、安装&lt;/h2&gt;&lt;h3 id=&quot;1-解压zip包到安装目录&quot;&gt;&lt;a href=&quot;#1-解压zip包到安装目录&quot; class=&quot;headerlink&quot; title=&quot;1.解压zip包到安装目录&quot;&gt;&lt;/a&gt;1.解压zip包到安装目录&lt;/h3&gt;&lt;p&gt;先从&lt;a href=&quot;https://dev.mysql.com/downloads/mysql/&quot;&gt;MySQL官网&lt;/a&gt; 下载mysql最新的免安装版压缩包&lt;br&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1474734-8baa90639789ce1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;解压之后变成这个样子：&lt;br&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1474734-a26aea8c516290ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;里面的文件是这个样子&lt;br&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1474734-330f1dd587615496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;下面开始了，请注意&lt;/p&gt;
+&lt;h3 id=&quot;2-配置文件&quot;&gt;&lt;a href=&quot;#2-配置文件&quot; class=&quot;headerlink&quot; title=&quot;2.配置文件&quot;&gt;&lt;/a&gt;2.配置文件&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;在安装目录创建一个名为：&lt;strong&gt;&lt;code&gt;my.ini&lt;/code&gt;&lt;/strong&gt;的选项文件&lt;br&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1474734-73c49a017e91d972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>作为android小组长，该做什么</title>
@@ -1590,63 +1666,6 @@ startActivity(intent);
 &lt;p&gt;也可以说，TCP/IP协议是传输层协议，主要解决数据如何在网络中传输，&lt;/p&gt;
 &lt;p&gt;而HTTP是应用层协议，主要解决如何包装数据。&lt;/p&gt;
 &lt;p&gt;关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="https://z-chu.github.io/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android面试之java基础</title>
-    <link href="https://z-chu.github.io/2017/01/21/Android-interview1/"/>
-    <id>https://z-chu.github.io/2017/01/21/Android-interview1/</id>
-    <published>2017-01-21T06:14:17.000Z</published>
-    <updated>2017-01-21T10:52:47.043Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。</p>
-<p>　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。</p>
-<p>　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。<br>程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。<br>软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。<br>而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。</p>
-<p>　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。</p>
-<p>　<strong>模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的</strong><br><a id="more"></a></p>
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>　Java 1.5发行版本中增加了<a href="http://baike.baidu.com/link?url=1-VXaHvjPzn-1gMNiAipJJGyv6E7HAL0emZ-GwIOIzXwMCHGSxG8Vk27xGJfaDn2Svd2iMdd24RO9bAcBBAxrfLyoqGYOYn0INkg35Ii2PW" target="_blank" rel="external">泛型(Generic)</a>。<br>　在没有泛型之前，从集合中读取到的每个对象都必须进行转换。<br>如果有人不小心插入了类型错误的对象，在编译时是无法察觉的，在运行时的转换处理就会出错。<br>有了泛型之后，可以告诉编译起每个集合中接受哪些对象类型。编译器自动地为你的插入进行转化，并在编译是告知是否插入了类型错误的对象。<br>这样可以使程序既更加安全，又更加清楚。</p>
-<p>　每个泛型都定义一个原生态类型,即不带任何实际类型参数的泛型名称。例如，与List<e>相对应的原生态类型是List。原生态类型就像从类型声明中删除了所有泛型信息一样。</e></p>
-<p>　请不要在新代码中使用原生类型，<strong>如果使用原生态类型，就失掉了泛型在安全性和表述性方面的所有优势。</strong></p>
-<h2 id="sleep-和wait-的区别"><a href="#sleep-和wait-的区别" class="headerlink" title="sleep()和wait()的区别"></a>sleep()和wait()的区别</h2><p><code>sleep()</code>方法和<code>wait()</code>方法都成产生让当前运行的线程停止运行的效果，这是它们的共同点。</p>
-<h3 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h3><ol>
-<li>最主要是<code>sleep()</code>没有释放锁，而<code>wait()</code>释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
-<li><p>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用（使用范围）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">synchronized</span>(x)&#123;</div><div class="line">	x.notify()</div><div class="line">	<span class="comment">//或者wait()</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>这两个方法来自不同的类分别是Thread和Object</p>
-</li>
-<li><code>sleep</code>必须捕获异常，而<code>wait</code>，<code>notify</code>和<code>notifyAll</code>不需要捕获异常</li>
-</ol>
-<h2 id="JAVA反射机制"><a href="#JAVA反射机制" class="headerlink" title="JAVA反射机制"></a>JAVA反射机制</h2><ul>
-<li>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</li>
-<li>Java反射机制主要提供了以下功能： 在运行时判断任意一个对象所属的类；在运行时构造任意一个类的对象；在运行时判断任意一个类所具有的成员变量和方法；在运行时调用任意一个对象的方法；生成动态代理。</li>
-</ul>
-<h2 id="weak-soft-strong引用的区别"><a href="#weak-soft-strong引用的区别" class="headerlink" title="weak/soft/strong引用的区别"></a>weak/soft/strong引用的区别</h2><ul>
-<li>强引用(StrongReference) 是 Java 的默认引用实现,  它会一直存活于 JVM 内， 直到没有任何对象指向它时 GC 执行后才会被回收</li>
-<li>弱引用(WeakReference)， 顾名思义,  是一个弱引用,  当所引用的对象在 JVM 内不再有强引用时, GC 后 weak reference 将会被自动回收</li>
-<li>软引用SoftReference 于 WeakReference 的特性基本一致， 最大的区别在于 SoftReference 会尽可能长的保留引用直到 JVM 内存不足时才会被回收(虚拟机保证), 这一特性使得 SoftReference 非常适合缓存应用</li>
-</ul>
-<h2 id="Object的hashCode-与equals-的区别和作用"><a href="#Object的hashCode-与equals-的区别和作用" class="headerlink" title="Object的hashCode()与equals()的区别和作用"></a>Object的hashCode()与equals()的区别和作用</h2><p><code>equals(Object obj)</code>方法用来判断两个对象是否“相同”，如果“相同”则返回true，否则返回false。<br><code>hashcode()</code>方法返回一个int数，在Object类中的默认实现是“将该对象的内部地址转换成一个整数返回”。 </p>
-<p>　<strong>在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。</strong>如果不这样做的话，就会违反Object.hashCode的通用约定，从而导致该类无法结合所有基于hashCode的集合一起正常运作，这些集合包含HashMap，HashSet,HashTable。</p>
-<p>　这些集合通过对象的<code>hashCode</code>和<code>equals</code>方法判断集合中是否已存着该对象。</p>
-<p>　约定：<strong>如果两个对象相同，那么他们的hashcode一定相等，如果两个对象不相同，他们的hashcode可能相同。</strong></p>
-<p>伪代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span>(obj1.hashCode()==obj2.hashCode())&#123;</div><div class="line">	<span class="keyword">if</span>(obj1.equals(obj2))&#123;</div><div class="line">		<span class="comment">//	集合中已存在该元素；</span></div><div class="line">	&#125;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//集合中不存着该元素</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;面向对象&quot;&gt;&lt;a href=&quot;#面向对象&quot; class=&quot;headerlink&quot; title=&quot;面向对象&quot;&gt;&lt;/a&gt;面向对象&lt;/h2&gt;&lt;p&gt;　一个面向对象的程序（OOP）实际上就是一个相对去中心化、模块化的程序。&lt;/p&gt;
-&lt;p&gt;　对于一个OOP来说，它的一个”碎片”，就是一个独立成立、保持自身完整性的单元；它可以和其他的OOP”碎片”整合在一起形成一个可分解的指令结构。&lt;/p&gt;
-&lt;p&gt;　“对象”限制了程序漏洞所能造成的损害，有效地对功能实行了隔离，把每个功能都限制在一个可掌控的单元内，这样一来，即使一个对象崩溃了，程序的其他部分也能够继续运转。&lt;br&gt;程序员可以把这个坏掉的单元换掉，就好像我们可以给一个汽车换刹车片一样。&lt;br&gt;软件的销售商可以购买或者销售各种事先编制好的”对象”库给其他的软件研发人员，后者则可以基于这些库里的对象快速地组装起大型软件，而不用再像以前那样重新一行一行的编写新的代码。&lt;br&gt;而到了要为这种大型软件升级的时候，你所要做的就是升级旧的对象或者加入新的对象。&lt;/p&gt;
-&lt;p&gt;　再比如：我们做的app，它有许多的功能，每一个功能它对应一个模块。我们通过一个一个实现再把这些模块堆起来，通过我们的接口、方法、回调等把它们组合起来，最后形成我们的面向对象程序，也就是最后生成了我们的app。&lt;/p&gt;
-&lt;p&gt;　&lt;strong&gt;模块自身应该是单一的、高内聚的，模块与模块之间应该是低耦合的&lt;/strong&gt;&lt;br&gt;
     
     </summary>
     
